@@ -1,0 +1,12 @@
+{
+  "background_color": "#ffffff",
+  "description": "Bhakti Sewa - Digital Temple, Aarti, Mantra, Katha",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Bhakti Sewa",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Bhakti",
+  "start_url": "/",
+  "theme_color": "#000000"
+}
