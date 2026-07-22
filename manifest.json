@@ -5,8 +5,8 @@
   "display": "standalone",
   "name": "Bhakti Sewa",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/bhakti-sewa/",
   "short_name": "Bhakti",
-  "start_url": "/",
+  "start_url": "/bhakti-sewa/",
   "theme_color": "#000000"
 }
