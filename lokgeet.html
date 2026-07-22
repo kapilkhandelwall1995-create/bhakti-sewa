@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <!-- स्क्रीन ज़ूम रोकने के लिए viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>राजस्थान के लोकगीत</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #000000;
+            color: #d4af37;
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 3px solid #d4af37;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
+        }
+        header p { margin: 10px 0 0 0; font-size: 1.2em; color: #f3e5ab; }
+        
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+        
+        /* मेन कैटेगरी कार्ड की डिज़ाइन */
+        .category-card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.1);
+            border-left: 6px solid #d4af37;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(212, 175, 55, 0.3);
+        }
+        h2 { color: #d4af37; margin-top: 0; border-bottom: 1px dashed #d4af37; padding-bottom: 10px; }
+        strong { color: #d4af37; }
+        ul { list-style-type: square; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .view-more { text-align: right; color: #d4af37; font-weight: bold; margin-top: 15px; font-size: 0.9em; }
+
+        /* डिटेल पेज */
+        #detail-page { display: none; }
+        
+        .song-list {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.1);
+            border-top: 4px solid #d4af37;
+            margin-bottom: 30px;
+        }
+        
+        /* गानों की लिस्ट को क्लिकेबल बनाया गया है */
+        .song-item { 
+            padding: 15px; 
+            border-bottom: 1px dashed #444; 
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 5px;
+        }
+        .song-item:hover {
+            background-color: #2a2a2a; 
+        }
+        .song-item:last-child { border-bottom: none; }
+        .song-title { color: #d4af37; font-size: 1.2em; font-weight: bold; margin-bottom: 5px; }
+        .song-desc { color: #ccc; font-size: 0.95em; }
+        
+        .back-btn {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .back-btn:hover { background-color: #b8962e; }
+
+        footer { text-align: center; padding: 20px; background-color: #000000; color: #d4af37; margin-top: 50px; border-top: 2px solid #d4af37; }
+
+        /* =========================================
+           फुल स्क्रीन पॉपअप (Modal) की डिज़ाइन 
+           ========================================= */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.85); 
+            backdrop-filter: blur(5px);
+            align-items: center; 
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #111; 
+            border: 3px solid #d4af37; 
+            border-radius: 10px;
+            width: 85%;
+            max-width: 600px;
+            max-height: 80vh; 
+            overflow-y: auto; 
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); 
+        }
+        .close-btn {
+            color: #d4af37;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            position: sticky;
+            top: -10px; 
+            background-color: #111;
+            padding-left: 10px;
+            z-index: 10;
+        }
+        .close-btn:hover { color: #fff; }
+        .modal-lyrics {
+            color: #e0e0e0;
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.8;
+            white-space: pre-wrap; /* लाइन ब्रेक सही दिखाने के लिए */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>राजस्थान के लोकगीत</h1>
+        <p>संस्कार, वार और त्योहारों की संगीतमय धरोहर</p>
+    </header>
+
+    <!-- MAIN CATEGORIES VIEW -->
+    <div id="main-categories" class="container">
+        <div class="category-card" onclick="openCategory('tyohar')">
+            <h2>1. त्योहारों के गीत</h2>
+            <p>होली, तीज और गणगौर जैसे प्रमुख त्योहारों के गीत।</p>
+            <div class="view-more">गीतों की सूची देखें ➔</div>
+        </div>
+        <div class="category-card" onclick="openCategory('vivah')">
+            <h2>2. विवाह एवं संस्कारों के गीत</h2>
+            <p>बन्ना-बन्नी, मायरा और विवाह की रस्मों के गीत।</p>
+            <div class="view-more">गीतों की सूची देखें ➔</div>
+        </div>
+        <div class="category-card" onclick="openCategory('janm')">
+            <h2>3. जन्म के गीत</h2>
+            <p>जच्चा, होलर और कुआं पूजन (जलवा) के मंगल गीत।</p>
+            <div class="view-more">गीतों की सूची देखें ➔</div>
+        </div>
+        <div class="category-card" onclick="openCategory('grahpravesh')">
+            <h2>4. गृहप्रवेश के गीत</h2>
+            <p>नए घर में प्रवेश, वास्तु शांति और कलश स्थापना के गीत।</p>
+            <div class="view-more">गीतों की सूची देखें ➔</div>
+        </div>
+        <div class="category-card" onclick="openCategory('raatrijaga')">
+            <h2>5. रातीजगा के गीत</h2>
+            <p>कुलदेवी, पितर जी और लोक देवताओं के रात्रि जागरण के गीत।</p>
+            <div class="view-more">गीतों की सूची देखें ➔</div>
+        </div>
+        <div class="category-card" onclick="openCategory('navratri')">
+            <h2>6. नवरात्रि के गीत</h2>
+            <p>माता जी की चिरजा, गरबा और देवी स्तुति के गीत।</p>
+            <div class="view-more">गीतों की सूची देखें ➔</div>
+        </div>
+    </div>
+
+    <!-- DETAIL PAGE (यहाँ data.js से गानों की लिस्ट आएगी) -->
+    <div id="detail-page" class="container">
+        <button class="back-btn" onclick="goBack()">⬅ पीछे जाएँ</button>
+        <div class="song-list">
+            <h2 id="category-title">कैटेगरी का नाम</h2>
+            <div id="songs-container">
+                <!-- गानों की लिस्ट JS द्वारा यहाँ जनरेट होगी -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================== -->
+    <!-- FULL SCREEN SONG MODAL (गोल्डन बॉक्स) -->
+    <!-- ===================================== -->
+    <div id="song-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSongModal()">&times;</span>
+            <h2 id="modal-song-title" style="margin-bottom: 5px;">गीत का नाम</h2>
+            <div id="modal-song-lyrics" class="modal-lyrics">
+                गीत के बोल या जानकारी यहाँ दिखाई देगी...
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div style="text-align: center; font-size: 12px; color: #d1d5db; line-height: 1.6; margin-top: 20px;">
+    
+    <p style="color: #ffffff; font-weight: bold; margin-bottom: 5px;">&copy; 2026 राजस्थानी लोकगीत संग्रह। सर्वाधिकार सुरक्षित।</p>
+    
+    <!-- आपका हाईलाइट किया हुआ नाम -->
+    <p style="margin-top: 5px; margin-bottom: 15px; font-size: 14px;">
+        <span style="color: #a1a1aa;">प्रस्तुतकर्ता: </span> 
+        <span style="color: #FFD700; font-weight: bold; letter-spacing: 1px; text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5);">कपिल खंडेलवाल</span>
+    </p>
+    
+    <p style="margin-top: 10px; margin-bottom: 10px; color: #a1a1aa;">
+        राजस्थानी लोकगीतों को सहेजने की यह हमारी एक छोटी-सी 'भक्ति सेवा' है।<br>
+        अपनी संस्कृति और विरासत को नई पीढ़ी तक पहुंचाने में हमारा साथ दें।<br>
+        आपके अमूल्य सुझाव और मार्गदर्शन इस प्रयास को और भी सुंदर बनाएंगे।<br>
+        आइए मिलकर अपनी माटी की खुशबू को इस डिजिटल दुनिया में अमर बनाएं।
+    </p>
+    
+    <p style="color: #9ca3af;">
+        यदि आपको लगता है कि कोई गीत अधूरा है या आप इस लिस्ट में कोई नया गीत शामिल करवाना चाहते हैं, तो कृपया बेझिझक हमें बताएं।<br>
+        आप व्हाट्सएप (<span style="color: #25D366; font-weight: bold; letter-spacing: 0.5px;">WhatsApp No: +91-8824901073</span>) के माध्यम से अपने सुझाव हमें भेज सकते हैं।
+    </p>
+
+</div>
+
+    </footer>
+
+    <!-- आपकी data.js फाइल लिंक (ध्यान रहे यह फाइल उसी फोल्डर में हो) -->
+    <script src="data.js"></script>
+
+    <!-- लॉजिक स्क्रिप्ट -->
+    <script>
+        function openCategory(categoryId) {
+            const categoryData = lokgeetData[categoryId];
+            if(!categoryData) return; 
+
+            document.getElementById('category-title').innerText = categoryData.title;
+
+            let songsHTML = '';
+            categoryData.songs.forEach(song => {
+                // सुरक्षित रूप से टेक्स्ट भेजने के लिए encodeURIComponent का उपयोग
+                const encodedTitle = encodeURIComponent(song.title);
+                const encodedDesc = encodeURIComponent(song.desc);
+                
+                // लिस्ट में सिर्फ 80 कैरेक्टर का डिस्क्रिप्शन दिखाएंगे
+                let shortDesc = song.desc;
+                if(shortDesc.length > 80) {
+                    shortDesc = shortDesc.substring(0, 80) + '...';
+                }
+
+                songsHTML += `
+                    <div class="song-item" onclick="openSongModal('${encodedTitle}', '${encodedDesc}')">
+                        <div class="song-title">${song.title}</div>
+                        <div class="song-desc">${shortDesc}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('songs-container').innerHTML = songsHTML;
+
+            document.getElementById('main-categories').style.display = 'none';
+            document.getElementById('detail-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            document.getElementById('detail-page').style.display = 'none';
+            document.getElementById('main-categories').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // ===============================================
+        // फुल स्क्रीन पॉपअप (Modal) खोलने और बंद करने के फंक्शन
+        // ===============================================
+        
+        function openSongModal(encodedTitle, encodedLyrics) {
+            // टेक्स्ट को वापस डिकोड (decode) करना
+            const title = decodeURIComponent(encodedTitle);
+            const lyrics = decodeURIComponent(encodedLyrics);
+
+            document.getElementById('modal-song-title').innerText = title;
+            document.getElementById('modal-song-lyrics').innerText = lyrics; 
+            
+            document.getElementById('song-modal').style.display = 'flex'; 
+            document.body.style.overflow = 'hidden'; // पीछे का स्क्रॉल बंद करें
+        }
+
+        function closeSongModal() {
+            document.getElementById('song-modal').style.display = 'none'; 
+            document.body.style.overflow = 'auto'; // पीछे का स्क्रॉल चालू करें
+        }
+    </script>
+</body>
+</html>

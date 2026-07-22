@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#000000">
+
+<title>Bhakti Sewa Panchang</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+:root{
+
+--gold:#FFD700;
+--bg:#000;
+--card:#111;
+--text:#fff;
+
+}
+
+
+
+body{
+
+background:var(--bg);
+
+color:var(--text);
+
+font-family:
+"Noto Sans Devanagari",
+Arial,
+sans-serif;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+}
+
+
+
+
+
+/* ===============================
+HEADER
+================================ */
+
+
+.panchang-header{
+
+background:#111;
+
+border-bottom:2px solid var(--gold);
+
+padding:15px;
+
+text-align:center;
+
+box-shadow:
+0 0 20px rgba(255,215,0,.3);
+
+}
+
+
+
+.panchang-header h1{
+
+color:var(--gold);
+
+font-size:26px;
+
+}
+
+
+
+
+
+/* ===============================
+LIVE MARQUEE
+================================ */
+
+
+.live-box{
+
+width:94%;
+
+margin:12px auto;
+
+padding:12px;
+
+border-radius:15px;
+
+background:#151515;
+
+border:1px solid var(--gold);
+
+color:var(--gold);
+
+box-shadow:
+0 0 15px rgba(255,215,0,.25);
+
+overflow:hidden;
+
+}
+
+
+
+.live-box marquee{
+
+font-size:16px;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+/* ===============================
+MAIN CARD
+================================ */
+
+
+.container{
+
+width:94%;
+
+margin:auto;
+
+}
+
+
+
+.panchang-card{
+
+background:
+linear-gradient(
+145deg,
+#161616,
+#080808
+);
+
+border:1px solid var(--gold);
+
+border-radius:20px;
+
+padding:18px;
+
+margin-top:15px;
+
+box-shadow:
+
+0 0 25px rgba(255,215,0,.2);
+
+}
+
+
+
+
+
+.title{
+
+text-align:center;
+
+color:var(--gold);
+
+font-size:22px;
+
+margin-bottom:15px;
+
+}
+
+
+
+
+
+/* ===============================
+TODAY GRID
+================================ */
+
+
+.today-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+gap:12px;
+
+}
+
+
+
+
+.info-card{
+
+background:#151515;
+
+border:1px solid #555;
+
+border-radius:15px;
+
+padding:12px;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+
+
+.info-card:hover{
+
+border-color:var(--gold);
+
+transform:scale(1.03);
+
+}
+
+
+
+.info-card span{
+
+display:block;
+
+color:var(--gold);
+
+font-size:15px;
+
+margin-bottom:8px;
+
+}
+
+
+
+.info-card p{
+
+font-size:16px;
+
+color:white;
+
+}
+
+
+
+
+
+/* ===============================
+SPECIAL DETAILS
+================================ */
+
+
+.details-box{
+
+margin-top:15px;
+
+background:#0c0c0c;
+
+border-radius:15px;
+
+border:1px solid #333;
+
+padding:15px;
+
+}
+
+
+
+.details-box div{
+
+padding:8px 0;
+
+border-bottom:1px solid #333;
+
+}
+
+
+
+.details-box div:last-child{
+
+border:none;
+
+}
+
+
+.details-box b{
+
+color:var(--gold);
+
+}
+
+
+
+
+/* ===============================
+BOTTOM MARQUEE
+================================ */
+
+
+.bottom-live{
+
+margin:15px auto;
+
+width:94%;
+
+background:#111;
+
+border:1px solid var(--gold);
+
+border-radius:15px;
+
+padding:12px;
+
+color:var(--gold);
+
+}
+
+
+
+
+
+/* ===============================
+MONTH SECTION
+================================ */
+
+
+.month-title{
+
+text-align:center;
+
+color:var(--gold);
+
+font-size:22px;
+
+margin:20px 0;
+
+}
+
+
+
+
+
+.month-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:10px;
+
+}
+
+
+
+
+.month-btn{
+
+background:#151515;
+
+color:white;
+
+border:1px solid var(--gold);
+
+padding:12px 5px;
+
+border-radius:12px;
+
+font-size:14px;
+
+cursor:pointer;
+
+}
+
+
+
+.month-btn:hover{
+
+background:var(--gold);
+
+color:#000;
+
+}
+
+
+
+
+
+.month-data{
+
+display:none;
+
+margin-top:12px;
+
+padding:15px;
+
+background:#111;
+
+border:1px solid var(--gold);
+
+border-radius:15px;
+
+white-space:pre-line;
+
+line-height:1.7;
+
+}
+
+/* ===============================
+CALENDAR GRID STYLES
+================================ */
+
+.calendar-grid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.cal-day-btn{
+  background: #151515;
+  color: var(--gold);
+  border: 1px solid #444;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+
+.cal-day-btn:hover, .cal-day-btn.active{
+  background: var(--gold);
+  color: #000;
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.selected-day-card{
+  display: none;
+  margin-top: 15px;
+  background: #161616;
+  border: 1px solid var(--gold);
+  border-radius: 15px;
+  padding: 15px;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.selected-day-card h3{
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-size: 18px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="panchang-header">
+
+<h1>
+🙏 भक्ति सेवा पंचांग
+</h1>
+
+</header>
+
+
+
+<div class="live-box">
+
+<marquee scrollamount="5" id="topLive">
+
+✨ आज का शुभ पंचांग अपडेट जल्द ही यहाँ दिखाई देगा ✨
+
+</marquee>
+
+</div>
+
+
+
+
+<div class="container">
+
+
+<div class="panchang-card">
+
+
+<h2 class="title">
+
+📅 आज का पंचांग
+
+</h2>
+
+
+
+<div class="today-grid">
+
+
+<div class="info-card">
+
+<span>🌙 तिथि</span>
+
+<p id="tithi">
+Loading...
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<span>⭐ नक्षत्र</span>
+
+<p id="nakshatra">
+Loading...
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<span>🔱 योग</span>
+
+<p id="yog">
+Loading...
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<span>🕉️ करण</span>
+
+<p id="karan">
+Loading...
+</p>
+
+</div>
+
+
+</div>
+
+<!-- ===============================
+MORE PANCHANG DETAILS
+================================ -->
+
+
+<div class="details-box">
+
+
+<div>
+
+<b>⏳ राहुकाल:</b>
+
+<span id="rahuKaal">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>✨ अभिजीत मुहूर्त:</b>
+
+<span id="abhijit">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>🌅 सूर्योदय:</b>
+
+<span id="sunrise">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>🌇 सूर्यास्त:</b>
+
+<span id="sunset">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>🌙 चंद्रोदय:</b>
+
+<span id="moonrise">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>🌙 चंद्रास्त:</b>
+
+<span id="moonset">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>♈ राशि:</b>
+
+<span id="rashi">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>⚠️ दोष:</b>
+
+<span id="dosh">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>🙏 व्रत:</b>
+
+<span id="fast">
+Loading...
+</span>
+
+</div>
+
+
+
+<div>
+
+<b>🎉 त्योहार:</b>
+
+<span id="festival">
+Loading...
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ===============================
+BOTTOM LIVE UPDATE
+================================ -->
+
+
+<div class="bottom-live">
+
+
+<marquee scrollamount="5" id="bottomLive">
+
+✨ भक्ति सेवा पंचांग में आपका स्वागत है ✨
+
+</marquee>
+
+
+</div>
+
+
+
+
+
+
+<!-- ===============================
+MONTH SECTION
+================================ -->
+
+
+<div class="container">
+
+
+<h2 class="month-title">
+
+📅 मासिक पंचांग
+
+</h2>
+
+
+
+<div class="month-grid">
+
+
+
+<button 
+class="month-btn"
+onclick="showMonth('January')">
+
+जनवरी
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('February')">
+
+फरवरी
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('March')">
+
+मार्च
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('April')">
+
+अप्रैल
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('May')">
+
+मई
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('June')">
+
+जून
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('July')">
+
+जुलाई
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('August')">
+
+अगस्त
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('September')">
+
+सितंबर
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('October')">
+
+अक्टूबर
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('November')">
+
+नवंबर
+
+</button>
+
+
+<button 
+class="month-btn"
+onclick="showMonth('December')">
+
+दिसंबर
+
+</button>
+
+
+</div>
+
+
+
+<div id="monthBox" class="month-data"></div>
+
+
+</div>
+
+
+</div>
+
+
+<script src="panchangData.js"></script>
+
+
+<script>
+
+
+
+// =====================================
+// TODAY DATE LOAD
+// =====================================
+
+
+function getToday(){
+
+let date =
+new Date()
+.toISOString()
+.split("T")[0];
+
+return date;
+
+}
+
+// =====================================
+// LOAD PANCHANG (Top Marquee with App Message)
+// =====================================
+
+function loadPanchang(){
+
+const today = getToday();
+
+const dataStore = typeof panchangData !== "undefined" ? panchangData : (typeof window.panchangData !== "undefined" ? window.panchangData : null);
+
+let data = (dataStore && dataStore[today]) ? dataStore[today] : null;
+
+if(!data){
+  let tithiEl = document.getElementById("tithi");
+  if(tithiEl) tithiEl.innerText = "डेटा उपलब्ध नहीं";
+  return;
+}
+
+// पंचांग कार्ड के डेटा भरना
+let tElem = document.getElementById("tithi");
+if(tElem) tElem.innerText = data.tithi;
+
+let nElem = document.getElementById("nakshatra");
+if(nElem) nElem.innerText = data.nakshatra;
+
+let yElem = document.getElementById("yog");
+if(yElem) yElem.innerText = data.yog;
+
+let kElem = document.getElementById("karan");
+if(kElem) kElem.innerText = data.karan;
+
+let rElem = document.getElementById("rahuKaal");
+if(rElem) rElem.innerText = data.rahuKaal;
+
+let aElem = document.getElementById("abhijit");
+if(aElem) aElem.innerText = data.abhijit;
+
+let srElem = document.getElementById("sunrise");
+if(srElem) srElem.innerText = data.sunrise;
+
+let ssElem = document.getElementById("sunset");
+if(ssElem) ssElem.innerText = data.sunset;
+
+let mrElem = document.getElementById("moonrise");
+if(mrElem) mrElem.innerText = data.moonrise;
+
+let msElem = document.getElementById("moonset");
+if(msElem) msElem.innerText = data.moonset;
+
+let rasElem = document.getElementById("rashi");
+if(rasElem) rasElem.innerText = data.rashi;
+
+let dosElem = document.getElementById("dosh");
+if(dosElem) dosElem.innerText = data.dosh;
+
+let fElem = document.getElementById("fast");
+if(fElem) fElem.innerText = (data.fast && data.fast.length) ? data.fast.join(", ") : "कोई व्रत नहीं";
+
+let fesElem = document.getElementById("festival");
+if(fesElem) fesElem.innerText = data.festival ? data.festival : "कोई विशेष त्योहार नहीं";
+
+
+// =====================================
+// TOP LIVE MARQUEE में भक्ति सेवा ऐप का संदेश
+// =====================================
+let topEl = document.getElementById("topLive");
+if(topEl){
+  topEl.innerText = `🙏 भक्ति सेवा ऐप - आपका अपना डिजिटल मन्दिर | जहाँ आपको मिलती है प्रतिदिन आरती, चालीसा, व्रत-त्योहार और सटीक पंचांग की जानकारी | सनातन धर्म की पावन यात्रा में आपका स्वागत है! ✨ जय श्री राम 🙏`;
+}
+
+
+// BOTTOM LIVE
+let bottomEl = document.getElementById("bottomLive");
+if(bottomEl){
+  bottomEl.innerText = `📢 अपडेट: अपना दैनिक पंचांग और व्रत जानकारी यहां देखें | 🙏 जय सनातन धर्म`;
+}
+
+}
+
+
+// =====================================
+// CALENDAR GRID MONTH SYSTEM
+// =====================================
+
+function showMonth(monthName){
+
+let box = document.getElementById("monthBox");
+
+const monthMap = {
+  "January": { code: "01", days: 31 },
+  "February": { code: "02", days: 28 }, // 2026 साधारण वर्ष है
+  "March": { code: "03", days: 31 },
+  "April": { code: "04", days: 30 },
+  "May": { code: "05", days: 31 },
+  "June": { code: "06", days: 30 },
+  "July": { code: "07", days: 31 },
+  "August": { code: "08", days: 31 },
+  "September": { code: "09", days: 30 },
+  "October": { code: "10", days: 31 },
+  "November": { code: "11", days: 30 },
+  "December": { code: "12", days: 31 }
+};
+
+let mData = monthMap[monthName];
+let dataStore = typeof panchangData !== "undefined" ? panchangData : (typeof window.panchangData !== "undefined" ? window.panchangData : null);
+
+if(!dataStore){
+  box.innerHTML = "पंचांग डेटा उपलब्ध नहीं है।";
+  box.style.display = "block";
+  return;
+}
+
+let htmlContent = `<h3 style="color:var(--gold); text-align:center; margin-bottom:10px;">📅 ${monthName} 2026 - तारीख चुनें</h3>`;
+htmlContent += `<div class="calendar-grid">`;
+
+// उस महीने के कुल दिनों के हिसाब से गोल बटन बनाना
+for(let i = 1; i <= mData.days; i++){
+  let dayStr = i < 10 ? "0" + i : "" + i;
+  let dateKey = `2026-${mData.code}-${dayStr}`;
+  
+  // चेक करें कि इस तारीख का डेटा panchangData में मौजूद है या नहीं
+  if(dataStore[dateKey]){
+    htmlContent += `<button class="cal-day-btn" onclick="showDayDetails('${dateKey}')">${i}</button>`;
+  } else {
+    // अगर डेटा नहीं है तो बटन को थोड़ा फीका दिखा सकते हैं
+    htmlContent += `<button class="cal-day-btn" style="opacity: 0.4; cursor: not-allowed;" title="डेटा उपलब्ध नहीं">${i}</button>`;
+  }
+}
+
+htmlContent += `</div>`;
+htmlContent += `<div id="dayDetailCard" class="selected-day-card">तारीख पर क्लिक करें...</div>`;
+
+box.innerHTML = htmlContent;
+box.style.display = "block";
+
+}
+
+// किसी विशिष्ट तारीख पर क्लिक करने पर उसका पूरा डेटा दिखाने के लिए
+function showDayDetails(dateKey){
+  let dataStore = typeof panchangData !== "undefined" ? panchangData : (typeof window.panchangData !== "undefined" ? window.panchangData : null);
+  let dayData = dataStore ? dataStore[dateKey] : null;
+  let detailBox = document.getElementById("dayDetailCard");
+
+  if(!dayData){
+    detailBox.innerHTML = `<h3>तारीख: ${dateKey}</h3><p>माफ़ कीजिए, इस तारीख का डेटा अभी नहीं है।</p>`;
+    detailBox.style.display = "block";
+    return;
+  }
+
+  let festivalStr = dayData.festival ? `🎉 त्योहार: ${dayData.festival}\n` : "";
+  let fastStr = (dayData.fast && dayData.fast.length > 0) ? `🙏 व्रत: ${dayData.fast.join(", ")}\n` : "";
+  let doshStr = dayData.dosh ? `⚠️ दोष: ${dayData.dosh}\n` : "";
+
+  detailBox.innerHTML = `
+    <h3>📌 दिनांक: ${dateKey}</h3>
+    <p><b>🌙 तिथि:</b> ${dayData.tithi}</p>
+    <p><b>⭐ नक्षत्र:</b> ${dayData.nakshatra}</p>
+    <p><b>🔱 योग:</b> ${dayData.yog} | <b>🕉️ करण:</b> ${dayData.karan}</p>
+    <p><b>⏳ राहुकाल:</b> ${dayData.rahuKaal}</p>
+    <p><b>🌅 सूर्योदय:</b> ${dayData.sunrise} | <b>🌇 सूर्यास्त:</b> ${dayData.sunset}</p>
+    <p>${festivalStr}${fastStr}${doshStr}</p>
+  `;
+  detailBox.style.display = "block";
+}
+
+
+
+
+
+
+
+// =====================================
+// APP START
+// =====================================
+
+
+window.onload=function(){
+
+loadPanchang();
+
+};
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 दैनिक राशिफल · भक्ति सेवा</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0a0806;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 750px;
+            width: 100%;
+            background: linear-gradient(145deg, #1a150e, #0d0b07);
+            border-radius: 40px;
+            padding: 25px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255,215,0,0.04);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 18px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.06);
+            margin-bottom: 22px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255,215,0,0.2);
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700, #b8960f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .date-badge {
+            background: rgba(255,215,0,0.06);
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.1);
+            color: #FFD700;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 18px 0 22px;
+        }
+
+        .zodiac-item {
+            background: linear-gradient(160deg, #1f1a10, #12100a);
+            border: 1px solid rgba(255,215,0,0.06);
+            border-radius: 18px;
+            padding: 14px 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zodiac-item:hover {
+            transform: translateY(-4px);
+            border-color: #FFD700;
+            box-shadow: 0 8px 30px rgba(255,215,0,0.08);
+            background: linear-gradient(160deg, #2a2215, #18140a);
+        }
+
+        .zodiac-item:active {
+            transform: scale(0.95);
+        }
+
+        .zodiac-item i {
+            font-size: 1.8rem;
+            color: #FFD700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .zodiac-item .name {
+            color: #f5efe0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .zodiac-item .sub {
+            color: #8a7d62;
+            font-size: 0.55rem;
+            margin-top: 2px;
+        }
+
+        #result {
+            display: none;
+            margin-top: 18px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            background: linear-gradient(165deg, rgba(30,25,18,0.95), rgba(12,10,7,0.98));
+            border-radius: 24px;
+            padding: 22px 18px;
+            border: 1px solid rgba(255,215,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '✦';
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            font-size: 4.5rem;
+            color: rgba(255,215,0,0.02);
+            transform: rotate(15deg);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,215,0,0.05);
+            margin-bottom: 15px;
+        }
+
+        .result-header i {
+            font-size: 1.8rem;
+            color: #FFD700;
+        }
+
+        .result-header h2 {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #FFD700, #b8960f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #horoscope {
+            color: #e6dbc6;
+            font-size: 1rem;
+            line-height: 1.7;
+            padding: 14px 16px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 16px;
+            border-left: 3px solid #FFD700;
+            min-height: 65px;
+            white-space: pre-wrap;
+        }
+
+        .meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255,215,0,0.06);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.2);
+            padding: 5px 16px 5px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.04);
+            color: #b8aa8a;
+            font-size: 0.85rem;
+        }
+
+        .meta-item i {
+            color: #FFD700;
+        }
+
+        .meta-item span {
+            color: #f5efe0;
+            font-weight: 500;
+        }
+
+        .loading-shimmer {
+            background: linear-gradient(110deg, #2a241a 25%, #3f3524 45%, #2a241a 65%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            color: transparent !important;
+            -webkit-background-clip: text;
+            background-clip: text;
+            border-left-color: rgba(255,215,0,0.15) !important;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,215,0,0.03);
+            color: #5a4f3a;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+        }
+
+        .footer i {
+            color: #b8960f;
+            margin: 0 4px;
+            font-size: 0.4rem;
+        }
+
+        @media (max-width: 500px) {
+            .container { padding: 15px 10px; border-radius: 28px; }
+            .logo h1 { font-size: 1rem; }
+            .logo i { font-size: 1.6rem; }
+            .date-badge { font-size: 0.65rem; padding: 4px 12px; }
+            .grid { gap: 7px; }
+            .zodiac-item { padding: 10px 4px; border-radius: 14px; }
+            .zodiac-item i { font-size: 1.4rem; }
+            .zodiac-item .name { font-size: 0.75rem; }
+            .result-header h2 { font-size: 1.2rem; }
+            #horoscope { font-size: 0.88rem; padding: 10px 12px; }
+            .meta-item { font-size: 0.75rem; padding: 4px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-om"></i>
+            <h1>भक्ति · राशिफल</h1>
+        </div>
+        <div class="date-badge">
+            <i class="fas fa-calendar-day"></i>
+            <span id="dateDisplay"></span>
+        </div>
+    </div>
+
+    <div class="grid" id="zodiacGrid"></div>
+
+    <div id="result">
+        <div class="result-card">
+            <div class="result-header">
+                <i class="fas fa-star"></i>
+                <h2 id="signTitle">—</h2>
+            </div>
+            <div id="horoscope">🙏 कृपया अपनी राशि चुनें</div>
+            <div class="meta">
+                <div class="meta-item">
+                    <i class="fas fa-palette"></i>
+                    रंग: <span id="colorVal">—</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-dice"></i>
+                    शुभ अंक: <span id="numberVal">—</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-circle"></i> श्री गणेशाय नमः <i class="fas fa-circle"></i>
+    </div>
+</div>
+
+<script>
+// ================================================================
+//  ⚡ FASTEST WORKING CODE - 1-2 SECONDS ONLY!
+// ================================================================
+
+// ----- ZODIAC DATA -----
+const zodiacSigns = [
+    { id: 'aries', name: 'मेष', icon: 'fa-ram', emoji: '♈' },
+    { id: 'taurus', name: 'वृषभ', icon: 'fa-bull', emoji: '♉' },
+    { id: 'gemini', name: 'मिथुन', icon: 'fa-twins', emoji: '♊' },
+    { id: 'cancer', name: 'कर्क', icon: 'fa-crab', emoji: '♋' },
+    { id: 'leo', name: 'सिंह', icon: 'fa-lion', emoji: '♌' },
+    { id: 'virgo', name: 'कन्या', icon: 'fa-maiden', emoji: '♍' },
+    { id: 'libra', name: 'तुला', icon: 'fa-scale-balanced', emoji: '♎' },
+    { id: 'scorpio', name: 'वृश्चिक', icon: 'fa-scorpion', emoji: '♏' },
+    { id: 'sagittarius', name: 'धनु', icon: 'fa-arrow-right-arrow-left', emoji: '♐' },
+    { id: 'capricorn', name: 'मकर', icon: 'fa-goat', emoji: '♑' },
+    { id: 'aquarius', name: 'कुंभ', icon: 'fa-water', emoji: '♒' },
+    { id: 'pisces', name: 'मीन', icon: 'fa-fish', emoji: '♓' }
+];
+
+// ----- QUICK FALLBACK DATA (3 options each) -----
+const fastData = {
+    aries: [
+        { text: '🔥 आज आपका आत्मविश्वास बुलंद रहेगा। नई शुरुआत के लिए दिन शुभ!', color: 'लाल', num: '9' },
+        { text: '⭐ आज आप हर चुनौती को पार करेंगे। नेतृत्व के गुण दिखेंगे।', color: 'लाल', num: '1' }
+    ],
+    taurus: [
+        { text: '💰 धैर्य से काम लें। वित्तीय लाभ हो सकता है।', color: 'हरा', num: '6' },
+        { text: '🌿 स्थिरता का दिन। मेहनत रंग लाएगी।', color: 'हरा', num: '2' }
+    ],
+    gemini: [
+        { text: '🗣️ संवाद कौशल बेहतर रहेगा। नए लोगों से मुलाकात होगी।', color: 'पीला', num: '5' },
+        { text: '🧠 बुद्धि और चतुराई से काम लें। नए अवसर मिलेंगे।', color: 'पीला', num: '3' }
+    ],
+    cancer: [
+        { text: '🏠 परिवार के साथ समय बिताएं। भावनात्मक रूप से मजबूत रहेंगे।', color: 'सफेद', num: '2' },
+        { text: '🌊 आज आपका अंतर्ज्ञान मजबूत होगा।', color: 'सफेद', num: '8' }
+    ],
+    leo: [
+        { text: '🦁 नेतृत्व के गुण दिखेंगे। करियर में उन्नति होगी।', color: 'सुनहरा', num: '1' },
+        { text: '⭐ आज आप सबका ध्यान आकर्षित करेंगे।', color: 'सुनहरा', num: '9' }
+    ],
+    virgo: [
+        { text: '🧘 स्वास्थ्य पर ध्यान दें। दिनचर्या में सुधार लाएं।', color: 'हरा', num: '4' },
+        { text: '📋 व्यवस्था और अनुशासन से काम लें। सफलता मिलेगी।', color: 'हरा', num: '2' }
+    ],
+    libra: [
+        { text: '💕 रिश्तों में मिठास रहेगी। कला और सौंदर्य में रुचि बढ़ेगी।', color: 'गुलाबी', num: '7' },
+        { text: '⚖️ संतुलन बनाए रखें। आज का दिन शुभ है।', color: 'गुलाबी', num: '3' }
+    ],
+    scorpio: [
+        { text: '🔮 गहन विचारों वाला दिन। ध्यान और योग से लाभ होगा।', color: 'काला', num: '8' },
+        { text: '🦂 रहस्यमयी दिन। अपने अंतर्ज्ञान पर भरोसा करें।', color: 'काला', num: '4' }
+    ],
+    sagittarius: [
+        { text: '🏹 साहस और रोमांच का दिन। नई जगहों की यात्रा हो सकती है।', color: 'नीला', num: '3' },
+        { text: '😊 आशावादी रहें। आज सब कुछ अच्छा होगा।', color: 'नीला', num: '7' }
+    ],
+    capricorn: [
+        { text: '⛰️ मेहनत रंग लाएगी। करियर में स्थिरता आएगी।', color: 'भूरा', num: '10' },
+        { text: '📈 अनुशासन से काम लें। सफलता मिलेगी।', color: 'भूरा', num: '4' }
+    ],
+    aquarius: [
+        { text: '💡 नवाचार और बदलाव के लिए दिन उपयुक्त है।', color: 'आसमानी', num: '11' },
+        { text: '🤝 मित्रों से मिलें। नए विचार लाएं।', color: 'आसमानी', num: '5' }
+    ],
+    pisces: [
+        { text: '🎨 कल्पनाशीलता बढ़ेगी। रचनात्मक कार्यों में मन लगेगा।', color: 'बैंगनी', num: '12' },
+        { text: '🧘 आध्यात्मिकता की ओर रुझान बढ़ेगा।', color: 'बैंगनी', num: '6' }
+    ]
+};
+
+// ================================================================
+//  DOM REFS
+// ================================================================
+const grid = document.getElementById('zodiacGrid');
+const resultDiv = document.getElementById('result');
+const signTitle = document.getElementById('signTitle');
+const horoscope = document.getElementById('horoscope');
+const colorVal = document.getElementById('colorVal');
+const numberVal = document.getElementById('numberVal');
+const dateDisplay = document.getElementById('dateDisplay');
+
+// ================================================================
+//  DATE
+// ================================================================
+const today = new Date();
+dateDisplay.textContent = today.toLocaleDateString('hi-IN', { 
+    weekday: 'short', 
+    day: 'numeric', 
+    month: 'short' 
+});
+
+// ================================================================
+//  RENDER GRID
+// ================================================================
+zodiacSigns.forEach(sign => {
+    const div = document.createElement('div');
+    div.className = 'zodiac-item';
+    div.innerHTML = `
+        <i class="fas ${sign.icon}"></i>
+        <div class="name">${sign.name}</div>
+        <div class="sub">${sign.emoji}</div>
+    `;
+    div.addEventListener('click', () => getHoroscope(sign.id));
+    grid.appendChild(div);
+});
+
+// ================================================================
+//  ⚡ MAIN FUNCTION - FAST & SIMPLE
+// ================================================================
+async function getHoroscope(signId) {
+    // Show result
+    resultDiv.style.display = 'block';
+    
+    const sign = zodiacSigns.find(s => s.id === signId);
+    signTitle.textContent = sign ? sign.name : signId;
+    
+    // Show loading
+    horoscope.className = 'loading-shimmer';
+    horoscope.textContent = '⏳ लोड हो रहा है...';
+    colorVal.textContent = '—';
+    numberVal.textContent = '—';
+    
+    // Disable clicks
+    document.querySelectorAll('.zodiac-item').forEach(el => {
+        el.style.opacity = '0.5';
+        el.style.pointerEvents = 'none';
+    });
+    
+    // ----- FAST: Try API only once (2 seconds timeout) -----
+    try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 2000); // 2 second timeout
+        
+        const res = await fetch(`https://aztro.sameerkumar.website/?sign=${signId}&day=today`, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            signal: controller.signal
+        });
+        
+        clearTimeout(timeout);
+        
+        if (res.ok) {
+            const data = await res.json();
+            horoscope.className = '';
+            horoscope.textContent = data.description || 'आज का दिन शुभ रहेगा।';
+            colorVal.textContent = data.color || 'सुनहरा';
+            numberVal.textContent = data.lucky_number || '—';
+        } else {
+            // Use fallback
+            useFallback(signId);
+        }
+    } catch(error) {
+        // Use fallback
+        useFallback(signId);
+    }
+    
+    // Re-enable clicks
+    document.querySelectorAll('.zodiac-item').forEach(el => {
+        el.style.opacity = '1';
+        el.style.pointerEvents = 'auto';
+    });
+}
+
+// ================================================================
+//  FALLBACK FUNCTION (Instant)
+// ================================================================
+function useFallback(signId) {
+    const options = fastData[signId] || fastData.aries;
+    const random = options[Math.floor(Math.random() * options.length)];
+    horoscope.className = '';
+    horoscope.textContent = random.text;
+    colorVal.textContent = random.color;
+    numberVal.textContent = random.num;
+}
+
+// ================================================================
+//  AUTO LOAD - FAST
+// ================================================================
+setTimeout(() => {
+    getHoroscope('aries');
+}, 300);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+
+<meta name="theme-color" content="#000000">
+
+
+<title>
+Bhakti Sewa Details
+</title>
+
+
+
+<style>
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+
+html,body{
+
+width:100%;
+height:100%;
+
+background:#000;
+
+color:#FFD700;
+
+font-family:
+Arial,
+sans-serif;
+
+overflow:hidden;
+
+}
+
+
+
+body{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+
+
+
+
+h2{
+
+
+width:100%;
+
+padding:18px;
+
+text-align:center;
+
+background:#111;
+
+border-bottom:
+2px solid #FFD700;
+
+font-size:26px;
+
+
+}
+
+
+
+
+
+#contentArea{
+
+
+width:90%;
+
+
+height:74vh;
+
+
+margin-top:15px;
+
+
+overflow-y:auto;
+
+
+border:
+2px solid #FFD700;
+
+
+border-radius:15px;
+
+
+padding:15px;
+
+
+background:#0b0b0b;
+
+
+box-shadow:
+0 0 15px rgba(255,215,0,.25);
+
+
+}
+
+
+
+
+
+
+
+.data-card{
+
+
+background:#151515;
+
+
+border:
+1px solid #FFD700;
+
+
+border-radius:12px;
+
+
+padding:18px;
+
+
+margin-bottom:15px;
+
+
+text-align:center;
+
+
+cursor:pointer;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.data-card:hover{
+
+
+transform:scale(1.02);
+
+
+background:#1f1f1f;
+
+
+}
+
+
+
+
+
+
+
+.data-card h3{
+
+
+font-size:22px;
+
+
+margin-bottom:10px;
+
+
+color:#FFD700;
+
+
+}
+
+
+
+
+
+
+
+.data-card p{
+
+
+font-size:17px;
+
+
+color:#fff;
+
+
+}
+
+
+
+
+
+
+
+.data-text{
+
+
+white-space:pre-line;
+
+
+text-align:justify;
+
+
+line-height:1.8;
+
+
+font-size:18px;
+
+
+color:#fff;
+
+
+}
+
+
+
+
+
+
+
+
+.back-btn{
+
+
+margin:15px;
+
+
+padding:14px 25px;
+
+
+background:#FFD700;
+
+
+color:#000;
+
+
+font-size:18px;
+
+
+font-weight:bold;
+
+
+border:none;
+
+
+border-radius:12px;
+
+
+cursor:pointer;
+
+
+transition:.3s;
+
+
+}
+
+
+
+
+
+
+
+.back-btn:hover{
+
+
+background:#ffea70;
+
+
+transform:scale(1.05);
+
+
+}
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+
+<h2 id="pageTitle">
+
+🙏 Bhakti Sewa
+
+</h2>
+
+
+
+
+
+<div id="contentArea">
+
+
+</div>
+
+
+
+
+
+<button
+class="back-btn"
+onclick="location.href='index.html'">
+
+
+🔙 वापस जाएं
+
+
+</button>
+
+<script src="data.js"></script>
+
+
+<script>
+
+
+// ==========================================
+// GET TYPE FROM URL
+// ==========================================
+
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+
+
+const type =
+params.get("type");
+
+
+
+const container =
+document.getElementById(
+"contentArea"
+);
+
+
+
+const title =
+document.getElementById(
+"pageTitle"
+);
+
+
+
+
+
+
+// ==========================================
+// TYPE NAME
+// ==========================================
+
+
+const typeName={
+
+
+aarti:
+"🙏 आरती",
+
+
+katha:
+"📖 कथा",
+
+
+mantra:
+"🕉️ मंत्र",
+
+
+chalisa:
+"📜 चालीसा",
+
+
+stuti:
+"📿 स्तुति",
+
+
+bhajan:
+"🎵 भजन"
+
+
+
+};
+
+
+
+
+
+title.innerText =
+typeName[type]
+||
+"🙏 Bhakti Sewa";
+
+
+
+
+
+
+
+// ==========================================
+// SOCIAL REDIRECT
+// ==========================================
+
+
+if(type==="stuti"){
+
+
+    window.location.href =
+    "https://www.instagram.com/bhaktisagar.app/";
+
+
+}
+
+
+
+
+
+else if(type==="bhajan"){
+
+
+    window.location.href =
+    "https://www.youtube.com/@bhaktisagarkapil";
+
+
+}
+
+
+
+
+
+else{
+
+
+    loadGodList();
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// LOAD GOD LIST
+// ==========================================
+
+
+function loadGodList(){
+
+
+
+    container.innerHTML="";
+
+
+
+
+    if(
+    typeof devtaData==="undefined" ||
+    !devtaData.length
+    ){
+
+
+
+        container.innerHTML=`
+
+        <h3 style="
+        text-align:center;
+        color:#FFD700;">
+
+        डेटा उपलब्ध नहीं है
+
+        </h3>
+
+        `;
+
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+    devtaData.forEach(god=>{
+
+
+
+        if(god[type]){
+
+
+
+            const card =
+            document.createElement(
+            "div"
+            );
+
+
+
+            card.className =
+            "data-card";
+
+
+
+
+
+
+            card.onclick=function(){
+
+
+
+                showContent(
+                god,
+                type
+                );
+
+
+            };
+
+
+
+
+
+
+
+            card.innerHTML=`
+
+
+            <h3>
+
+            🙏 ${god.name}
+
+            </h3>
+
+
+            <p>
+
+            ${typeName[type]}
+
+            </p>
+
+
+            `;
+
+
+
+
+
+
+            container.appendChild(
+            card
+            );
+
+
+
+        }
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// SHOW FULL CONTENT
+// ==========================================
+
+
+function showContent(god,type){
+
+
+
+    container.innerHTML="";
+
+
+
+
+    const box =
+    document.createElement(
+    "div"
+    );
+
+
+
+    box.className =
+    "data-card";
+
+
+
+
+
+
+
+    box.innerHTML=`
+
+
+    <h2 style="
+    margin-bottom:20px;
+    color:#FFD700;">
+
+    🙏 ${god.name}
+
+    </h2>
+
+
+
+
+
+    <p class="data-text">
+
+    ${god[type]}
+
+    </p>
+
+
+
+
+
+    <br>
+
+
+
+
+    <button
+    class="back-btn"
+    onclick="loadGodList()">
+
+    🔙 वापस सूची
+
+    </button>
+
+
+    `;
+
+
+
+
+
+
+
+    container.appendChild(
+    box
+    );
+
+
+
+    container.scrollTop=0;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================================
+// SAFE ERROR HANDLER
+// ==========================================
+
+
+window.addEventListener(
+"error",
+function(e){
+
+
+console.warn(
+"BhaktiSewa Details Error:",
+e.message
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+// ==========================================
+// READY
+// ==========================================
+
+
+console.log(
+"🙏 BhaktiSewa Details Loaded Successfully"
+);
+
+
+
+</script>
+
+
+
+</body>
+
+
+</html>

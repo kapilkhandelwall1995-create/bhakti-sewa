@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#000000">
+
+<meta name="description" content="Bhakti Sewa - Digital Temple, Aarti, Mantra, Katha">
+
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+<meta http-equiv="X-Frame-Options" content="DENY">
+
+
+<title>
+Bhakti Sewa - Complete App
+</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- ===============================
+SIDEBAR
+================================ -->
+
+
+<div id="sidebar" class="sidebar">
+
+
+<div class="sidebar-links">
+
+
+
+<div class="grid-item" onclick="location.href='vrat.html'">
+⏳<br>
+व्रत
+</div>
+
+
+
+<div class="grid-item" onclick="location.href='suvichar.html'">
+✨<br>
+सुविचार
+</div>
+
+
+
+<div class="grid-item" onclick="location.href='dairy.html'">
+📔<br>
+डायरी
+</div>
+
+
+
+<div class="grid-item" onclick="location.href='lokgeet.html'">
+🎶<br>
+लोक गीत
+</div>
+
+
+
+<div class="grid-item" onclick="location.href='horoscope.html'">
+🔮<br>
+राशिफल
+</div>
+
+
+
+<div class="grid-item" onclick="location.href='mantra.html'">
+📿<br>
+मंत्र जाप
+</div>
+
+
+
+<div class="grid-item" onclick="location.href='astro.html'">
+⏱️<br>
+Astro Clock
+</div>
+
+
+
+<!-- Panchang Separate Page -->
+
+<div class="grid-item" onclick="location.href='panchang.html'">
+📅<br>
+पंचांग
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div id="sidebarHandle" onclick="toggleSidebar()">
+
+<span>
+≡
+</span>
+
+</div>
+
+
+
+<div id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+
+
+
+
+<!-- ===============================
+NAVBAR
+================================ -->
+
+
+<header class="navbar">
+
+
+<marquee 
+class="marquee-box"
+id="mainMarquee">
+
+✨ भक्ति सेवा में आपका स्वागत है ...
+
+</marquee>
+
+
+
+
+<div class="menu-container">
+
+
+
+<button 
+class="menu-btn"
+onclick="toggleMenu()">
+
+☰
+
+</button>
+
+
+
+
+
+<div id="dropdown" class="dropdown-content">
+
+
+
+<a href="profile.html" id="menuProfile">
+
+👤 मेरी प्रोफाइल
+
+</a>
+
+
+
+
+<a href="#" id="menuThemes" onclick="openThemeModal()">
+
+🎨 Themes
+
+</a>
+
+
+
+
+
+<a href="#" id="menuLang" onclick="showLangOptions(event)">
+
+🌐 Language
+
+</a>
+
+
+
+
+
+<div id="langList">
+
+
+
+<a href="#" onclick="setLang('Hindi')">
+
+हिन्दी
+
+</a>
+
+
+
+
+<a href="#" onclick="setLang('English')">
+
+English
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+<a href="about.html" id="menuAbout">
+
+ℹ️ About Us
+
+</a>
+
+
+
+
+
+<a href="#" id="menuShare" onclick="shareApp()">
+
+📤 Share App
+
+</a>
+
+
+
+
+
+<a href="about.html" id="menuContact">
+
+📞 Contact Us
+
+</a>
+
+
+
+
+
+<a href="donation.html" id="menuDonation">
+
+🙏 Donation
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+<!-- ===============================
+MAIN CONTENT
+================================ -->
+
+
+<main class="content">
+
+
+
+
+<!-- ===============================
+GOD IMAGE SCROLLER
+================================ -->
+
+
+
+<div class="god-scroll-container">
+
+
+<div class="god-wrapper">
+
+
+
+
+
+<div class="god-item"
+onclick="document.getElementById('fileInput').click()">
+
+
+
+<div class="upload-circle">
+
++
+
+</div>
+
+
+
+<span>
+
+जोड़ें
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+<input 
+type="file"
+id="fileInput"
+accept="image/jpeg,image/png,image/webp"
+hidden
+onchange="uploadUserImage(event)">
+
+<!-- ===============================
+GOD IMAGES LIST
+================================ -->
+
+
+<div class="god-item">
+
+<img 
+src="assets/rada.jpg"
+loading="lazy"
+decoding="async"
+alt="Krishna">
+
+<span>
+कृष्णा
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/ganesh.jpg"
+loading="lazy"
+decoding="async"
+alt="Ganesh">
+
+<span>
+गणेश
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/ram.jpg"
+loading="lazy"
+decoding="async"
+alt="Ram">
+
+<span>
+राम
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/hanuman.jpg"
+loading="lazy"
+decoding="async"
+alt="Hanuman">
+
+<span>
+हनुमान
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/shiv.jpg"
+loading="lazy"
+decoding="async"
+alt="Shiv">
+
+<span>
+शिव
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/durga.jpg"
+loading="lazy"
+decoding="async"
+alt="Durga">
+
+<span>
+दुर्गा
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/laxmi.jpg"
+loading="lazy"
+decoding="async"
+alt="Laxmi">
+
+<span>
+लक्ष्मी
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/vishnu.jpg"
+loading="lazy"
+decoding="async"
+alt="Vishnu">
+
+<span>
+विष्णु
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/indra.jpg"
+loading="lazy"
+decoding="async"
+alt="Indra">
+
+<span>
+इंद्र
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/surya.jpg"
+loading="lazy"
+decoding="async"
+alt="Surya">
+
+<span>
+सूर्य
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/chandra.jpg"
+loading="lazy"
+decoding="async"
+alt="Chandra">
+
+<span>
+चंद्र
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/sarswati.jpg"
+loading="lazy"
+decoding="async"
+alt="Sarswati">
+
+<span>
+सरस्वती
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/santoshi.jpg"
+loading="lazy"
+decoding="async"
+alt="Santoshi">
+
+<span>
+संतोषी
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/shani.jpg"
+loading="lazy"
+decoding="async"
+alt="Shani">
+
+<span>
+शनि
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/khatu.jpg"
+loading="lazy"
+decoding="async"
+alt="Khatu">
+
+<span>
+खाटू श्याम
+</span>
+
+</div>
+
+
+
+<div class="god-item">
+
+<img 
+src="assets/jin.jpg"
+loading="lazy"
+decoding="async"
+alt="Jin">
+
+<span>
+जीण माता
+</span>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- ===============================
+FLIP CARD
+================================ -->
+
+
+<div id="flipCard" class="flip-card">
+
+
+<div class="flip-card-inner" id="flipInner">
+
+
+
+
+
+<div class="flip-card-front" onclick="flipCard()">
+
+
+
+<img 
+src="assets/img1.jpg"
+id="heroImg"
+loading="eager"
+decoding="async"
+alt="Bhakti Image">
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="flip-card-back">
+
+
+
+<div class="menu-grid">
+
+
+
+<button onclick="location.href='details.html?type=aarti'">
+
+🙏 आरती
+
+</button>
+
+
+
+<button onclick="location.href='details.html?type=katha'">
+
+📖 कथा
+
+</button>
+
+
+
+<button onclick="location.href='details.html?type=mantra'">
+
+🕉️ मंत्र
+
+</button>
+
+
+
+<button onclick="location.href='details.html?type=chalisa'">
+
+📜 चालीसा
+
+</button>
+
+
+
+<button onclick="location.href='details.html?type=stuti'">
+
+📿 स्तुति
+
+</button>
+
+
+
+<button onclick="location.href='details.html?type=bhajan'">
+
+🎵 भजन
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<button 
+class="back-btn"
+onclick="flipCard()">
+
+
+🔙 वापस
+
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ===============================
+BOTTOM UPDATE
+================================ -->
+
+
+<marquee 
+class="bottom-marquee"
+id="bottomMarquee"
+scrollamount="4">
+
+
+📢 अपडेट: नई आरती और मंत्र जोड़े गए! ✨
+
+
+</marquee>
+
+
+
+
+
+
+<!-- ===============================
+AARTI BUTTON
+================================ -->
+
+
+<div class="aarti-wrapper">
+
+
+
+<button 
+class="aarti-btn"
+onclick="location.href='temple.html'">
+
+
+🙏 आरती करें
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<!-- ===============================
+PANCHANG HOME BUTTON
+================================ -->
+
+<div class="home-feature-card"
+onclick="location.href='panchang.html'">
+
+
+<div class="feature-icon">
+📅
+</div>
+
+
+<div class="feature-text">
+
+<h3>
+आज का पंचांग
+</h3>
+
+<p>
+तिथि, नक्षत्र, योग, व्रत और शुभ मुहूर्त देखें
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ===============================
+ABOUT CARD
+================================ -->
+
+
+<section class="about-card">
+
+
+
+<h1 id="aboutTitle">
+
+🙏 भक्ति सेवा | Bhakti Sewa
+
+</h1>
+
+
+
+<h3 id="aboutSubtitle">
+
+आपका अपना डिजिटल मन्दिर
+
+</h3>
+
+
+
+
+<p id="aboutText">
+
+सनातन धर्म की पावन ऊर्जा और ज्ञान को आप तक पहुँचाना ही हमारा संकल्प है।
+आरती, कथा और मंत्र के माध्यम से हम आपको अपनी संस्कृति से जोड़ते हैं।
+
+</p>
+
+
+
+
+<p id="aboutCommit">
+
+✨ हमारी प्रतिबद्धता:
+प्रतिदिन नई भक्ति सामग्री उपलब्ध कराना।
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ===============================
+THEME MODAL
+================================ -->
+
+
+<div 
+id="themeModal"
+class="modal">
+
+
+
+<div class="modal-content">
+
+
+
+<span 
+class="close"
+onclick="closeModal()">
+
+&times;
+
+</span>
+
+
+
+
+<h3>
+
+Select Theme
+
+</h3>
+
+
+
+
+<div 
+id="themeGrid"
+class="theme-grid">
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ===============================
+JOURNEY SECTION
+================================ -->
+
+
+<section class="journey-card">
+
+
+
+<h2>
+
+🌟 हमारा सफर और आपका साथ
+
+</h2>
+
+
+
+<hr>
+
+
+
+
+<h4>
+
+🚩 ऐप बनाने का सफर और चुनौतियां
+
+</h4>
+
+
+
+
+<p>
+
+डिजिटल समय में अपनी संस्कृति और परंपराओं को आगे बढ़ाने के उद्देश्य से
+भक्ति सेवा ऐप बनाया गया है।
+
+</p>
+
+
+
+
+<h4>
+
+✨ ऐप की प्रमुख विशेषताएं
+
+</h4>
+
+
+
+<ul>
+
+
+<li>
+आरती, कथा, मंत्र और डिजिटल मंदिर
+</li>
+
+
+<li>
+लोकगीत और व्रत त्यौहार
+</li>
+
+
+<li>
+पंचांग, राशिफल और Astro Clock
+</li>
+
+
+</ul>
+
+
+
+
+
+<h4>
+
+🔒 प्राइवेसी और सुरक्षा
+
+</h4>
+
+
+
+
+<p>
+
+आपकी डायरी और व्यक्तिगत इमेज केवल आपके डिवाइस में सुरक्षित रहती हैं।
+
+</p>
+
+
+
+
+<h4>
+
+🙏 सहयोग
+
+</h4>
+
+
+
+
+<p>
+
+ऐप को बेहतर बनाने के लिए आपका सहयोग महत्वपूर्ण है।
+
+</p>
+
+
+
+
+<button 
+onclick="location.href='donation.html'">
+
+
+❤️ दिल से सहयोग करें
+
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ===============================
+DISCLAIMER
+================================ -->
+
+
+<div class="disclaimer">
+
+
+<b>
+
+डिस्क्लेमर / Disclaimer:
+
+</b>
+
+
+<br>
+
+
+यह एक निजी भक्ति सेवा ऐप है।
+यह किसी सरकारी संस्था या आधिकारिक मंदिर समिति का प्रतिनिधित्व नहीं करता।
+
+
+</div>
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+<!-- ===============================
+SCRIPTS
+================================ -->
+
+
+<script src="data.js" defer></script>
+
+<script src="settings.js" defer></script>
+
+<script src="script.js" defer></script>
+
+
+
+</body>
+
+</html>

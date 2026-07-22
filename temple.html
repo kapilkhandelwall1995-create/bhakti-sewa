@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>डिजिटल मन्दिर | दर्शन</title>
+    <style>
+        body, html { 
+            margin: 0; padding: 0; background: #1a1a1a; 
+            overflow: hidden; height: 100%; touch-action: none; 
+            font-family: sans-serif; 
+        }
+        #mainTemple { position: relative; width: 100vw; height: 100vh; }
+        
+        #welcomeOverlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; border: 5px solid #FFD700; 
+            box-sizing: border-box; z-index: 40; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+
+        .welcome-card { 
+            background: #000; padding: 25px; border-radius: 20px; 
+            border: 2px solid #FFD700; text-align: center; width: 80%; 
+        }
+
+        #startBtn { 
+            padding: 15px; background: #FFD700; color: #000; border: none; 
+            border-radius: 10px; font-weight: bold; cursor: pointer; 
+            width: 100%; text-transform: uppercase; 
+        }
+
+        #aartiMarqueeBox { 
+            position: absolute; bottom: 125px; width: 90%; right: 0.5%; 
+            background: #000; border: 1px solid #FFD700; color: #FFD700; 
+            padding: 15px; border-radius: 10px; font-weight: bold; 
+            z-index: 25; box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); 
+        }
+        
+        #curtainOverlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: 35; background: #000; transition: opacity 3s ease; display: none; 
+        }
+        #curtainOverlay img { width: 100%; height: 100%; object-fit: cover; }
+
+        #displayBox { 
+            position: absolute; top: 5%; width: 100%; text-align: center; 
+            z-index: 15; opacity: 0; transition: opacity 0.5s ease; 
+        }
+        .marquee-text { 
+            background: rgba(0, 0, 0, 0.8); color: #FFD700; padding: 8px 15px; 
+            font-size: 16px; font-weight: bold; border-radius: 20px; 
+            border: 1px solid #FFD700; display: inline-block; 
+        }
+        
+        .temple-img { 
+            width: 90%; height: 70%; object-fit: contain; position: absolute; 
+            z-index: 1; top: 40%; left: 50%; transform: translate(-50%, -50%); 
+            transition: all 4s ease; 
+        }
+
+        .star-particle {
+            position: fixed !important;
+            width: 4px !important;  
+            height: 4px !important;
+            background-color: #FFF;
+            border-radius: 50% !important;
+            box-shadow: 0 0 8px 2px #FFD700, 0 0 15px 4px #FF4500; 
+            z-index: 99999 !important;
+            pointer-events: none !important;
+        }
+
+        .temple-frame { 
+            position: absolute; width: 155%; height: 85%; pointer-events: none; 
+            z-index: 2; object-fit: fill; top: 38%; left: 50%; 
+            transform: translate(-50%, -50%); 
+        }
+        
+        #btnCard { 
+            position: absolute; bottom: 0; width: 100%; background: #000; 
+            padding: 15px 10px; box-sizing: border-box; display: grid; 
+            grid-template-columns: repeat(3, 1fr); gap: 10px; z-index: 20; 
+            border-top: 3px solid #FFD700; 
+        }
+        .action-btn { 
+            padding: 10px 5px; background: #222; border: 1px solid #FFD700; 
+            border-radius: 5px; font-size: 14px; font-weight: bold; 
+            color: #FFD700; cursor: pointer; 
+        }
+        
+        .thali-hidden { display: none; }
+        .thali-active {
+            display: block; position: absolute; z-index: 5;
+            width: 150px; height: 150px;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            animation: rotateThali 3s linear infinite;
+        }
+
+        @keyframes rotateThali {
+            0% { transform: translate(-50%, -50%) rotate(0deg) translateY(-100px) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) translateY(-100px) rotate(-360deg); }
+        }
+
+        .petal {
+            position: fixed; width: 9px; height: 30px;
+            background-image: url('assets/pti.png');
+            background-size: contain; background-repeat: no-repeat;
+            z-index: 9999; pointer-events: none;
+            animation: gravityFall 3s ease-in forwards;
+        }
+
+        @keyframes gravityFall {
+            0% { bottom: 120px; left: 50%; opacity: 0; transform: translate(-50%, 0) scale(0.5) rotate(0deg); }
+            10% { opacity: 1; }
+            40% { bottom: 85%; transform: translate(calc(-50% + var(--x)), 0) scale(1) rotate(180deg); }
+            100% { bottom: -50px; transform: translate(calc(-50% + var(--x)), 0) scale(1) rotate(360deg); opacity: 0; }
+        }
+
+        #topBell {
+            position: fixed; top: 0; left: 0; width: 100%; height: 220px;
+            object-fit: contain; z-index: 1000; pointer-events: none; display: none;
+        }
+
+        .smoke-effect {
+            position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%);
+            width: 1000px; height: auto; z-index: 3; pointer-events: none;
+            mix-blend-mode: lighten; opacity: 1; transition: all 0.5s ease;
+        }
+
+        #leftDiya {
+            position: absolute !important; bottom: 25% !important; left: 10% !important; 
+            width: 40px !important; height: auto !important; z-index: 10 !important; 
+            pointer-events: none !important; image-rendering: crisp-edges;
+        }
+
+        #rightDiya {
+            position: absolute !important; bottom: 25% !important; right: 10% !important; 
+            width: 40px !important; height: auto !important; z-index: 10 !important; 
+            pointer-events: none !important; image-rendering: crisp-edges;
+        }
+
+        .dhup-effect {
+            position: absolute; bottom: 24%; left: 50%; transform: translateX(-50%);
+            width: 50px; z-index: 4; pointer-events: none;
+        }
+
+        #blessingModal {
+            display: none; position: absolute; top: 50% !important; left: 50% !important;
+            transform: translate(-50%, -50%) !important; width: 80%; z-index: 999999 !important;
+            text-align: center; background: rgba(0, 0, 0, 0.6) !important;
+            backdrop-filter: blur(5px); border: 2px solid #FFD700; padding: 20px;
+            border-radius: 15px; color: #FFD700; font-size: 18px; font-weight: bold;
+            transition: opacity 0.5s; pointer-events: none;
+        }
+
+        .blessing-star {
+            position: fixed; width: 4px; height: 4px; background: #FFD700;
+            border-radius: 50%; z-index: 999999; pointer-events: none;
+            animation: starFall 2s linear forwards;
+        }
+
+        @keyframes starFall {
+            0% { transform: translateY(-10px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcomeOverlay">
+        <div class="welcome-card">
+            <h1 style="color: #FFD700; font-size: 28px; margin-bottom: 20px; text-shadow: 2px 2px 4px #000;">भक्ति सेवा</h1>
+            <p style="color: #FFD700; font-size: 14px; line-height: 1.5;">
+                <b>भक्ति सेवा डिजिटल मन्दिर</b> में आपका स्वागत है। <br>पट्ट हटाए पर दबाए और<br>
+                अपने मनपसंद भगवान की <br>आरती करने के लिए स्क्रीन को दाएं या बाए करें। <br>
+                इस डिजिटल मन्दिर को और मजबूत <br>बनाने के लिए, <br>कृपया अपनी श्रद्धा अनुसार <br>सहयोग अर्पित करें।
+            </p>
+            <button id="startBtn" onclick="startDarshan()">पट हटाये।</button>
+        </div>
+    </div>
+
+    <marquee id="aartiMarqueeBox">✨ भगवान के दर्शन करें और आरती/शंख/घंटी बजाएं...</marquee>
+
+    <div id="curtainOverlay"><img src="assets/ptt.gif" alt="Gates"></div>
+
+    <div id="mainTemple">
+        <!-- आशीर्वाद पॉपअप -->
+        <div id="blessingModal">
+            <p id="blessingText"></p>
+        </div>
+
+        <div id="displayBox"><div class="marquee-text" id="godMarquee"></div></div>
+        
+        <img src="" id="templeHeroImg" class="temple-img" alt="भगवान">
+        <img src="assets/frm.png" class="temple-frame" alt="Frame">
+        <img src="assets/thali.png" id="aartiThali" class="thali-hidden" alt="Aarti Thali">
+        <img src="assets/smoke.gif" id="godSmoke" class="smoke-effect" alt="Smoke">
+        
+        <!-- धुएं के साथ दो दीये -->
+        <img src="assets/diya.gif" id="leftDiya" class="diya-effect" style="left: 25%;" alt="Diya">
+        <img src="assets/dhup.png" id="godDhup" class="dhup-effect" alt="Dhupbatti">
+        <img src="assets/diya.gif" id="rightDiya" class="diya-effect" style="right: 25%;" alt="Diya">
+
+        <!-- घंटा GIF -->
+        <img src="assets/ganti.gif" id="topBell" alt="Bell" />
+        
+        <div id="btnCard">
+            <button class="action-btn" onclick="playSound('shankh')">शंख</button>
+            <button class="action-btn" onclick="playAarti()">आरती</button>
+            <button class="action-btn" onclick="playSound('ghanti')">घंटी</button>
+            <button class="action-btn" onclick="zoomDarshan()">दर्शन</button>
+            <button class="action-btn" onclick="window.location.href='donation.html'">चढ़ावा</button>
+            <button class="action-btn" onclick="giveBlessing()">आशीर्वाद</button>
+        </div>
+    </div>
+
+    <audio id="shankhAudio" src="assets/sankh.mp3"></audio>
+    <audio id="aartiAudio" src="assets/aarti.mp3"></audio>
+    <audio id="ghantiAudio" src="assets/ganti.mp3"></audio>
+    <audio id="darshanAudio" src="assets/jaykara.mp3"></audio>
+
+    <script>
+        const godImages = [
+            { src: 'assets/ram.jpg', name: 'भगवान श्री राम', slogan: 'जय श्री राम!', aarti: 'श्री राम चंद्र कृपालु भज मन हरण भव भय दारुणम। नवकंज लोचन कंज मुख कर कंज पद कंजारुणम॥ कंदर्प अगणित अमित छवि नवनील नीरज सुंदरम। पट पीत मानहु तड़ित रुचि शुचि नौमि जनक सुतावरम॥ भजु दीनबंधु दिनेश दानव दैत्यवंश निकंदनम। रघुनंद आनंदकंद कौशलचंद दशरथ नंदनम॥' },
+            { src: 'assets/rada.jpg', name: 'राधा कृष्ण', slogan: 'जय श्री राधे कृष्ण!', aarti: 'आरती कुंज बिहारी की, श्री गिरधर कृष्ण मुरारी की। गले में बैजंती माला, बजावे मुरली प्यारी की। आरती कुंज बिहारी की... श्रीनंदन के आनंद नंदन, मोर मुकुट कर वेणु-विराजन। कुंडल मणिकणिका दर्शन, निछावर छवि बलिहारी की। आरती कुंज बिहारी की... कनक धरा मुख कांति सुहाई, देखि विमोहिन सुर मुनि आई। राधा कृष्ण की जोड़ी सुहाई, छवि देखि ललिता दुख हारी की। आरती कुंज बिहारी की...' },
+            { src: 'assets/hanuman.jpg', name: 'हनुमान जी', slogan: 'जय बजरंग बली!', aarti: 'आरती कीजै हनुमान लला की, दुष्ट दलन रघुनाथ कला की। जाके बल से गिरिवर कांपै, रोग दोष जाके निकट न झांपै॥ अंजनि पुत्र महाबल दाई, संतन के प्रभु सदा सहाई। दे बीरा रघुनाथ पठाए, लंका जारि सिया सुधि लाए॥ लंका सो कोट समुद्र सी खाई, जात पवनसुत बार न लाई। लंका जारि असुर संहारे, सियाराम जी के काज सवारे॥ लक्ष्मण मूर्छित पड़े सकारे, आनि संजीवन प्राण उबारे। पैठि पाताल तोरि जम-कारे, अहिरावण की भुजा उखारे॥ बाएं भुजा असुर दल मारे, दाहिने भुजा संत जन तारे। सुर नर मुनि जन आरती उतारें, जय जय जय हनुमान उचारें॥' },
+            { src: 'assets/ganesh.jpg', name: 'गणेश जी', slogan: 'गणपति बप्पा मोरया!', aarti: 'जय गणेश, जय गणेश, जय गणेश देवा। माता जाकी पार्वती, पिता महादेवा॥ लडुअन का भोग लगे, सन्त करें सेवा। जय गणेश, जय गणेश, जय गणेश देवा॥ एक दंत दयावंत, चार भुजा धारी। मस्तक सिंदूर सोहे, मूसे की सवारी॥ पान चढ़े, फूल चढ़े, और चढ़े मेवा। जय गणेश, जय गणेश, जय गणेश देवा॥ दीनन की लाज राखो, शंभु सुत वारी। कामना को पूरा करो, जग बलिहारी॥ जय गणेश, जय गणेश, जय गणेश देवा॥' },
+            { src: 'assets/shiv.jpg', name: 'शिव जी', slogan: 'ॐ नमः शिवाय!', aarti: 'ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा। ब्रह्मा, विष्णु, सदाशिव, अर्द्धांगी धारा॥ ॐ जय शिव ओंकारा॥ एकानन चतुरानन पंचानन राजे। हंसासन गरुड़ासन वृषवाहन साजे॥ ॐ जय शिव ओंकारा॥ दो भुज चार चतुर्भुज दसभुज अति सोहे। त्रिगुण रूप निरखते त्रिभुवन जन मोहे॥ ॐ जय शिव ओंकारा॥ अक्षमाला वनमाला रुण्डमाला धारी। चंदन मृगमद सोहे भाले शशिधारी॥ ॐ जय शिव ओंकारा॥ श्वेताम्बर पीताम्बर बाघाम्बर अंगे। सनकादिक ब्रह्मादिक भूतादिक संगे॥ ॐ जय शिव ओंकारा॥ कर के मध्य कमंडलु चक्र त्रिशूलधारी। सुखकारी दुखहारी जगपालनकारी॥ ॐ जय शिव ओंकारा॥' },
+            { src: 'assets/vishnu.jpg', name: 'विष्णु जी', slogan: 'जय श्री हरि विष्णु!', aarti: 'ॐ जय जगदीश हरे, स्वामी जय जगदीश हरे। भक्त जनों के संकट, दास जनों के संकट, क्षण में दूर करे॥ ॐ जय जगदीश हरे॥ जो ध्यावे फल पावे, दुख बिनसे मन का। सुख संपत्ति घर आवे, कष्ट मिटे तन का॥ ॐ जय जगदीश हरे॥ मात-पिता तुम मेरे, शरण गहूं किसकी। तुम बिन और न दूजा, आस करूं मैं जिसकी॥ ॐ जय जगदीश हरे॥ तुम पूरण परमात्मा, तुम अन्तर्यामी। पारब्रह्म परमेश्वर, तुम सबके स्वामी॥ ॐ जय जगदीश हरे॥ तुम करुणा के सागर, तुम पालनकर्ता। मैं मूरख खल कामी, कृपा करो भर्ता॥ ॐ जय जगदीश हरे॥' },
+            { src: 'assets/surya.jpg', name: 'सूर्य देव', slogan: 'जय सूर्य देव!', aarti: 'ॐ जय सूर्य भगवान, जय हो दिनकर भगवान। जगत के नेत्र स्वरूपा, तुम हो प्रकाश की खान॥ ॐ जय सूर्य भगवान॥ सारथी अरुण हैं प्रभु तुम, सात घोड़ों की सवारी। श्वेत कमल पर विराजे, अद्भुत है छवि तुम्हारी॥ ॐ जय सूर्य भगवान॥ मनुष्यों के तुम भाग्यविधाता, रोग-शोक मिटाते। श्रद्धा से जो कोई ध्यावे, मनवांछित फल पाते॥ ॐ जय सूर्य भगवान॥ तुम ही ऊर्जा के स्रोत हो, तुम ही जीवन दाता। ब्रह्मा, विष्णु, महेश तुम ही, इस सृष्टि के विधाता॥ ॐ जय सूर्य भगवान॥' },
+            { src: 'assets/chandra.jpg', name: 'चंद्र देव', slogan: 'जय चंद्र देव!', aarti: 'आरती चंद्र देव की कीजै, मन में भक्ति भाव लीजै। अमृत की वर्षा करने वाले, शीतल ज्योति से जग को भरने वाले। नक्षत्रों के स्वामी तुम ही, घट-घट के अंतर्यामी तुम ही। पूर्णिमा का रूप तुम्हारा, भक्त जनों का तुम हो सहारा। कष्ट मिटाओ, सुख बरसाओ, जीवन में खुशहाली लाओ। आरती चंद्र देव की कीजै, मन में भक्ति भाव लीजै।' },
+            { src: 'assets/agni.jpg', name: 'अग्नि देव', slogan: 'जय अग्नि देव!', aarti: 'जय अग्नि देव, जय अग्नि देव, यज्ञ की शक्ति, हे देव। ऋषियों के मुख में तुम रहते, वेद मंत्र सब तुमसे बहते। तुम हो पावन, तुम हो शुद्धि, देते हो ज्ञान और बुद्धी। भस्म करो अज्ञान के काले, दीप जलाओ जीवन के उजाले। अग्नि स्वरूप, जगत के दाता, सृष्टि के तुम कर्म विधाता। जय अग्नि देव, जय अग्नि देव।' },
+            { src: 'assets/laxmi.jpg', name: 'लक्ष्मी माता', slogan: 'जय माँ लक्ष्मी!', aarti: 'ओम जय लक्ष्मी माता, मैया जय लक्ष्मी माता। तुमको निशदिन सेवत, हर विष्णु विधाता॥ उमा, रमा, ब्रह्माणी, तुम ही जग-माता। सूर्य-चंद्रमा ध्यावत, नारद ऋषि गाता॥ दुर्गा रूप निरंजनी, सुख सम्पत्ति दाता। जो कोई तुमको ध्यावत, ऋद्धि-सिद्धि धन पाता॥ तुम पाताल निवासिनि, तुम ही शुभदाता। कर्म-प्रभाव-प्रकाशिनी, भवनिधि की त्राता॥ जिस घर में तुम रहतीं, तहँ सब सद्गुण आता। सब संभव हो जाता, मन नहीं घबराता॥ तुम बिन यज्ञ न होते, वस्त्र न कोई पाता। खान-पान का वैभव, सब तुमसे आता॥' },
+            { src: 'assets/durga.jpg', name: 'दुर्गा माता', slogan: 'जय माता दी!', aarti: 'अम्बे तू है जगदम्बे काली, जय दुर्गे खप्पर वाली, तेरे ही गुण गावें भारती, ओ मैया हम सब उतारें तेरी आरती। तेरे भक्त जनों पर माता, भीड़ पड़ी है भारी, दानव दल पर टूट पड़ो माँ, करके सिंह सवारी। सौ-सौ सिंहों से भी बलशाली, है अष्ट भुजाएँ वाली, दुष्टों को तू ही दण्ड देती, हे माँ दुर्गे, हे माँ काली। प्रेम सहित जो ज्योति जलाए, उसका संकट टालो, प्रेम भक्ति से जो भी गावे, उसको दर्शन दे fix दो, अम्बे तू है जगदम्बे काली।' },
+            { src: 'assets/santoshi.jpg', name: 'संतोषी माता', slogan: 'जय संतोषी माँ!', aarti: 'जय संतोषी माता, मैया जय संतोषी माता। संतोषी माँ की आरती, जो कोई जन गावे, सुख-सम्पत्ति पावे, दुःख सब मिट जावे। तुम हो आदि भवानी, जग की पालनहारी, भक्तों के मन की तुम, हो आस पुजहारी। शुक्रवार का व्रत है प्यारा, जो विधि-वत करता, उसका जीवन है माँ, दुखों से मुक्त होता। जय संतोषी माता, मैया जय संतोषी माता।' },
+            { src: 'assets/shani.jpg', name: 'शनि देव', slogan: 'जय शनि देव!', aarti: 'जय जय श्री शनि देव, भक्तन हितकारी। सूर्य पुत्र प्रभु छाया के स्वामी, कष्ट हरो हे शनि देव अन्तर्यामी। श्याम वर्ण जिनका अति मनभावन, नीलम रत्न से होता है पावन। कर्मों का फल तुम ही देते हो, न्याय के प्रभु तुम main कहलाते हो। जो भी करे तेरी सच्ची भक्ति, उसे मिले प्रभु असीम शक्ति। जय जय श्री शनि देव, भक्तन हितकारी।' },
+            { src: 'assets/indra.jpg', name: 'इंद्र देव', slogan: 'जय इंद्र देव!', aarti: 'आरती इंद्र देव की कीजै, सुर-पति की महिमा निशदिन लीजै। वज्र हाथ में जिनके सोहे, स्वर्ग लोक का जो सुख मोहे। वर्षा करने वाले स्वामी, तुम हो जगत के रक्षक नामी। दैत्य-असुर का जो भय लाते, भक्त जनों को अभय बनाते। देवराज तुम हो प्रभु प्यारे, शरण में आए हम सब तुम्हारे। आरती इंद्र देव की कीजै, सुर-पति की महिमा निशदिन लीजै।' },
+            { src: 'assets/jin.jpg', name: 'जीण माता', slogan: 'जय जीण भवानी!', aarti: 'ओम जय जीण भवानी, मैया जय जीण भवानी। रेवासा के धाम में तेरा, सुंदर है दरबार, भक्त खड़े हैं द्वार पे तेरे, करने को जय-जयकार। तुम हो शक्ति स्वरूपा माता, संकट तुम ही टारो, जो भी आए शरण में तेरी, उसको पार उतारो। सिंह सवारी करती माता, हाथ में खड्ग साजे, तेरे नाम की गूंज से मैया, त्रिभुवन सारा गाजे। ओम जय जीण भवानी, मैया जय जीण भवानी।' },
+            { src: 'assets/khatu.jpg', name: 'खाटू श्याम जी', slogan: 'जय श्री श्याम!', aarti: 'जय श्री श्याम हरे, बाबा जय श्री श्याम हरे। भक्त जनों के संकट, पल भर में तुम टारे। खाटू नगरी के तुम राजा, लीले चढ़े असवार, शीश का दानी तुमको कहते, महिमा अपरम्पार। हारे का तुम सहारा बाबा, सब दुख दूर करो, प्रेम सहित जो तुमको ध्यावे, भव से पार करो। जय श्री श्याम हरे, बाबा जय श्री श्याम हरे।' },
+            { src: 'assets/brm.jpg', name: 'ब्रह्मा जी', slogan: 'जय ब्रह्मा देव!', aarti: 'ओम जय ब्रह्मा देवा, स्वामी जय ब्रह्मा देवा। तुम हो सृष्टि के कर्ता, पालन तुम ही करते, वेदों के हो ज्ञाता तुम ही, सब दुःख हरते। चार मुखों से वेद बखाना, ज्ञान का स्रोत तुम ही, चतुरानन कहलाते स्वामी, सृजन का आधार तुम ही। सृष्टि के रचियता तुम हो, तुम ही आधार, शरण पड़े हम बालक तेरे, करना बेड़ा पार। ओम जय ब्रह्मा देवा, स्वामी जय ब्रह्मा देवा।' },
+            { src: 'assets/kali.jpg', name: 'काली माता', slogan: 'जय माँ काली!', aarti: 'मंगल की सेवा सुन मेरी देवा, हाथ जोड़ तेरे द्वार खड़े। पान चढ़ाऊं और चढ़ाऊं मेवा, हाथ जोड़ तेरे द्वार खड़े। मैया काली, दुख हरने वाली, अज्ञानता का नाश करो, अपने बच्चों पर माता, सदा ही अपना वास करो। विकट रूप तेरा, तू ही है काली, दुष्टों का संहार करे, ज्योत जले घर-घर में मैया, पापों का तू ही नाश करे। मंगल की सेवा सुन मेरी देवा, हाथ जोड़ तेरे द्वार खड़े।' },
+            { src: 'assets/vish.jpg', name: 'विश्वकर्मा जी', slogan: 'जय विश्वकर्मा जी!', aarti: 'आरती विश्वकर्मा जी की कीजै, सृजन शक्ति की ज्योति लीजै। तुम हो शिल्पी जगत के स्वामी, सृष्टि के कण-कण के अंतर्यामी। यंत्र-तंत्र सब तुमसे चलते, निर्माण कार्य तुमसे ही पलते। तुम हो कर्म के दाता प्रभुवर, कौशल के तुम हो आधार, जो भी ध्यावे तुमको बाबा, पाए वह निज कार्य में सार। आरती विश्वकर्मा जी की कीजै, सृजन शक्ति की ज्योति लीजै।' },
+            { src: 'assets/baba.jpg', name: 'भैरव बाबा', slogan: 'जय भैरव बाबा!', aarti: 'जय भैरव देवा, प्रभु जय भैरव देवा। काशी के कोतवाल तुम ही, रक्षा करते देवा। त्रिनेत्र धारी तुम हो बाबा, हाथ में सोहे डमरू, दुष्टों के भय के तुम स्वामी, भक्त रहें बेफिक्र। कुत्ता वाहन तेरा प्यारा, तुम ही पाप मिटाते, जो भी ध्यावे तुमको बाबा, सब सुख वे हैं पाते। जय भैरव देवा, प्रभु जय भैरव देवा।' },
+            { src: 'assets/sai.jpg', name: 'साईं बाबा', slogan: 'सबका मालिक एक!', aarti: 'आरती साईं बाबा की कीजै, श्रद्धा-सबूरी का फल लीजै। तुम हो शिरडी के वासी बाबा, सबका मालिक एक कहाया, दुखी जनों के दुःख को हरकर, प्रेम का मार्ग सबको दिखाया। उदी की महिमा बड़ी निराली, सब व्याधियों को दूर करे, तुम बिन कोई न अपना बाबा, सब संकट तुम चूर करे। आरती साईं बाबा की कीजै, श्रद्धा-सबूरी का फल लीजै।' }
+        ];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById('templeHeroImg');
+        let wakeLock = null;
+        let petalInterval = null;
+
+        function toggleGhanti(show) {
+            const bell = document.getElementById('topBell');
+            if (bell) {
+                bell.style.display = show ? 'block' : 'none';
+            }
+        }
+
+        function startDarshan() {
+            document.getElementById('welcomeOverlay').style.display = 'none';
+            const curtain = document.getElementById('curtainOverlay');
+            curtain.style.display = 'block';
+            playSound('shankh');
+            setTimeout(() => { 
+                curtain.style.opacity = "0"; 
+                setTimeout(() => { curtain.style.display = 'none'; }, 2000); 
+            }, 500);
+            imgElement.src = godImages[0].src;
+            imgElement.style.opacity = "1";
+        }
+
+        function playSound(type) {
+            const audio = document.getElementById(type + 'Audio');
+            audio.currentTime = 0;
+            audio.play();
+
+            if (type === 'ghanti') {
+                toggleGhanti(true); 
+                setTimeout(() => toggleGhanti(false), 5000); 
+            }
+        }
+
+        async function playAarti() {
+            const audio = document.getElementById('aartiAudio');
+            const thali = document.getElementById('aartiThali');
+            const marquee = document.getElementById('aartiMarqueeBox');
+
+            audio.pause();
+            audio.currentTime = 0;
+            thali.className = "thali-hidden";
+            
+            const oldPetals = document.querySelectorAll('.petal');
+            oldPetals.forEach(p => p.remove());
+            if (petalInterval) clearInterval(petalInterval);
+
+            try {
+                if ('wakeLock' in navigator) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                }
+            } catch (err) { console.warn("Wake Lock error: ", err); }
+
+            audio.play();
+            toggleGhanti(true); 
+            marquee.innerText = "🎵 आरती: " + godImages[currentIndex].aarti;
+            thali.className = "thali-active";
+
+            petalInterval = setInterval(() => {
+                for (let i = 0; i < 50; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    const randomX = (Math.random() - 0.5) * 400;
+                    const randomDelay = Math.random() * 0.8;
+                    petal.style.setProperty('--x', `${randomX}px`);
+                    petal.style.animationDelay = `${randomDelay}s`;
+                    petal.style.zIndex = "9999";
+                    document.body.appendChild(petal);
+                    setTimeout(() => petal.remove(), 3000);
+                }
+            }, 5000);
+
+            audio.onended = function() {
+                thali.className = "thali-hidden";
+                marquee.innerText = "✨ भगवान के दर्शन करें...";
+                clearInterval(petalInterval);
+                toggleGhanti(false); 
+                
+                const finalCleanup = document.querySelectorAll('.petal');
+                finalCleanup.forEach(p => p.remove());
+
+                if (wakeLock !== null) {
+                    wakeLock.release().then(() => { wakeLock = null; });
+                }
+            };
+        }
+
+        function zoomDarshan() {
+            const img = document.getElementById('templeHeroImg');
+            const audio = document.getElementById('darshanAudio');
+            const smoke = document.getElementById('godSmoke'); 
+            const leftDiya = document.getElementById('leftDiya');
+            const rightDiya = document.getElementById('rightDiya');
+
+            if (!audio) return;
+
+            audio.currentTime = 0;
+            audio.play();
+
+            img.style.transition = "transform 1s ease-in-out";
+            img.style.transform = "translate(-50%, -50%) scale(1.3)";
+
+            if (smoke) {
+                smoke.style.opacity = "1";
+                smoke.style.width = "800px"; 
+                smoke.style.filter = "brightness(1.5) contrast(1.2)"; 
+            }
+            if (leftDiya && rightDiya) {
+                leftDiya.style.transform = "scale(1.2)";
+                rightDiya.style.transform = "scale(1.2)";
+                leftDiya.style.filter = "brightness(2)";
+                rightDiya.style.filter = "brightness(2)";
+            }
+
+            const rect = img.getBoundingClientRect();
+            const centerX = rect.left + (rect.width / 2);
+            const topY = rect.top + (rect.height * 0.25); 
+
+            const particleInterval = setInterval(() => {
+                for (let j = 0; j < 5; j++) {
+                    const star = document.createElement('div');
+                    star.style.position = 'fixed';
+                    star.style.width = '6px';
+                    star.style.height = '6px';
+                    star.style.backgroundColor = '#FFF';
+                    star.style.borderRadius = '50%';
+                    star.style.boxShadow = '0 0 12px 3px #FFD700, 0 0 25px 5px #FF4500';
+                    star.style.zIndex = '99999';
+                    star.style.pointerEvents = 'none';
+                    star.style.left = centerX + 'px';
+                    star.style.top = topY + 'px';
+                    
+                    document.body.appendChild(star);
+
+                    const angle = 0.2 + Math.random() * 2.6; 
+                    const velocity = 350 + Math.random() * 250; 
+                    
+                    star.animate([
+                        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                        { transform: `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px) scale(0)` , opacity: 0 }
+                    ], {
+                        duration: 2500,
+                        easing: 'linear'
+                    });
+
+                    setTimeout(() => star.remove(), 2500);
+                }
+            }, 80); 
+
+            audio.onended = () => {
+                clearInterval(particleInterval); 
+                img.style.transform = "translate(-50%, -50%) scale(1)";
+                
+                if (smoke) {
+                    smoke.style.opacity = "0.7";
+                    smoke.style.width = "600px";
+                    smoke.style.filter = "none";
+                }
+                if (leftDiya && rightDiya) {
+                    leftDiya.style.transform = "scale(1)";
+                    rightDiya.style.transform = "scale(1)";
+                    leftDiya.style.filter = "brightness(1)";
+                    rightDiya.style.filter = "brightness(1)";
+                }
+            };
+        }
+
+        let startX = 0;
+        window.addEventListener('touchstart', e => { 
+            startX = e.touches[0].clientX; 
+        }, { passive: true });
+
+        window.addEventListener('touchend', e => {
+            let endX = e.changedTouches[0].clientX;
+            let diff = startX - endX;
+            
+            if (Math.abs(diff) > 50) { 
+                if (diff > 0) changeGod(1); 
+                else changeGod(-1);         
+            }
+        }, { passive: true });
+
+        function changeGod(dir) {
+            const imgElement = document.getElementById('templeHeroImg');
+            imgElement.style.opacity = "0";
+            setTimeout(() => {
+                currentIndex = (currentIndex + dir + godImages.length) % godImages.length;
+                imgElement.src = godImages[currentIndex].src;
+                imgElement.style.opacity = "1";
+                document.getElementById('aartiMarqueeBox').innerText = "✨ " + godImages[currentIndex].name + " के दर्शन करें...";
+            }, 300);
+        }
+
+        const blessingsData = {
+            "भगवान श्री राम": ["राम नाम का सुमिरन करो, सब कष्ट मिट जाएंगे।", "धैर्य और मर्यादा ही तुम्हारा सबसे बड़ा बल है।", "विजयी भव! सत्य की हमेशा जीत होती है।"],
+            "राधा कृष्ण": ["प्रेम ही ईश्वर है, मन में प्रेम भाव रखो।", "तुम्हारी हर उलझन का हल मेरी मुरली की तान में है।", "सदा मुस्कुराते रहो, मेरी कृपा तुम पर है।"],
+            "हनुमान जी": ["संकट कटै मिटै सब पीरा, जो सुमिरै हनुमत बलबीरा!", "डर को त्याग दो, मैं तुम्हारे साथ हूँ।", "बल, बुद्धि और विद्या का आशीर्वाद सदा तुम्हारे साथ है।"],
+            "गणेश जी": ["तुम्हारे सभी विघ्न दूर होंगे, कार्य सिद्धि का आशीर्वाद।", "बुद्धि का सही उपयोग करो, सफलता कदम चूमेगी।"],
+            "शिव जी": ["ॐ नमः शिवाय! मन शांत रखो, सब ठीक होगा।", "महादेव की कृपा से तुम्हारा कल्याण हो।"],
+            "विष्णु जी": ["सत्य के मार्ग पर चलो, लक्ष्मी और नारायण की कृपा बनी रहेगी।", "तुम्हारे घर में सुख-समृद्धि का वास हो।"],
+            "सूर्य देव": ["तेज और ऊर्जा से भरपूर रहो, उन्नति तुम्हारा मार्ग देखेगी।", "जैसे सूर्य प्रकाश फैलाता है, वैसे ही तुम्हारा यश फैले।"],
+            "चंद्र देव": ["मन को शीतलता और स्थिरता प्रदान करो।", "जीवन में सुखद परिवर्तन का समय आ गया है।"],
+            "अग्नि देव": ["तुम्हारे भीतर का प्रकाश और संकल्प बढ़े।", "जीवन में बुराइयों का नाश हो।"],
+            "लक्ष्मी माता": ["तुम्हारे घर में धन-धान्य की कभी कमी न हो।", "स्वच्छ मन में ही लक्ष्मी का वास होता है।"],
+            "दुर्गा माता": ["शक्ति और साहस का आशीर्वाद। तुम किसी से कम नहीं।", "बुराई पर अच्छाई की विजय हो।"],
+            "संतोषी माता": ["मन में संतोष रखो, यही सच्ची खुशी है।", "तुम्हारी सभी मनोकामनाएं पूर्ण हों।"],
+            "शनि देव": ["कर्म ही प्रधान है, अच्छे कर्म करो फल मीठा मिलेगा।", "कठिन समय बीत जाएगा, धैर्य रखो।"],
+            "इंद्र देव": ["जीवन में ऐश्वर्य और शांति बनी रहे।"],
+            "जीण माता": ["मेरी शक्ति सदा तुम्हारे साथ है, भय कैसा!", "तुम्हारी रक्षा का भार मैंने ले रखा है, निडर रहो।"],
+            "खाटू श्याम जी": ["हार मत मानो, हारे का सहारा मैं हूँ।", "तुम आगे बढ़ो, मैं पीछे खड़ा हूँ।"],
+            "ब्रह्मा जी": ["ज्ञान और विवेक की शक्ति तुम्हे प्राप्त हो।"],
+            "काली माता": ["तुम्हारे भय का नाश हो, तुम निर्भय हो।"],
+            "विश्वकर्मा जी": ["तुम्हारी कला और मेहनत को नई पहचान मिले।"],
+            "भैरव बाबा": ["तुम्हारी रक्षा का भार मुझ पर है।"],
+            "साईं बाबा": ["सबका मालिक एक है। श्रद्धा और सबूरी रखो।"]
+        };
+
+        function giveBlessing() {
+            const modal = document.getElementById('blessingModal');
+            const text = document.getElementById('blessingText');
+            const currentGodName = godImages[currentIndex].name;
+            
+            const messages = blessingsData[currentGodName] || ["सदा खुश रहो, मेरी कृपा तुम पर बनी रहे।"];
+            text.innerText = messages[Math.floor(Math.random() * messages.length)];
+            
+            modal.style.display = 'block';
+            modal.style.opacity = "0";
+            setTimeout(() => { modal.style.opacity = "1"; }, 50);
+
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('div');
+                star.className = 'blessing-star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = '-10px';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(star);
+                
+                setTimeout(() => star.remove(), 2500);
+            }
+            
+            setTimeout(() => {
+                modal.style.opacity = "0";
+                setTimeout(() => { modal.style.display = 'none'; }, 500);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

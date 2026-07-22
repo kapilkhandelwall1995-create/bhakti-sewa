@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>व्रत कथा | भक्ति सेवा</title>
+
+
+<style>
+
+:root{
+
+--gold:#FFD700;
+--dark:#050505;
+--card:#111;
+
+}
+
+
+*{
+
+box-sizing:border-box;
+
+}
+
+
+body{
+
+margin:0;
+
+background:
+
+radial-gradient(circle,#3b2900,#000);
+
+color:white;
+
+font-family:
+
+"Segoe UI",sans-serif;
+
+}
+
+
+
+/* HEADER */
+
+
+.header{
+
+padding:20px;
+
+text-align:center;
+
+background:#000;
+
+border-bottom:2px solid var(--gold);
+
+position:sticky;
+
+top:0;
+
+z-index:20;
+
+}
+
+
+.header h1{
+
+margin:0;
+
+color:var(--gold);
+
+font-size:25px;
+
+}
+
+
+
+
+/* SEARCH */
+
+
+.search{
+
+padding:15px;
+
+}
+
+
+.search input{
+
+width:100%;
+
+padding:15px 20px;
+
+border-radius:30px;
+
+border:2px solid var(--gold);
+
+background:#111;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+
+
+
+/* LIST */
+
+
+.container{
+
+padding:15px;
+
+}
+
+
+
+.vrat-card{
+
+background:
+
+linear-gradient(145deg,#181800,#000);
+
+
+border:1px solid var(--gold);
+
+border-radius:18px;
+
+padding:18px;
+
+margin-bottom:15px;
+
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+
+box-shadow:
+
+0 0 15px #5c4700;
+
+
+cursor:pointer;
+
+transition:.3s;
+
+
+}
+
+
+
+.vrat-card:active{
+
+transform:scale(.96);
+
+}
+
+
+
+.vrat-name{
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+
+
+.arrow{
+
+font-size:25px;
+
+color:var(--gold);
+
+}
+
+
+
+
+
+/* MODAL */
+
+
+.modal{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+
+background:#000;
+
+z-index:999;
+
+overflow:auto;
+
+
+}
+
+
+
+.modal-box{
+
+padding:20px;
+
+}
+
+
+
+.close{
+
+float:right;
+
+background:var(--gold);
+
+color:#000;
+
+border:0;
+
+border-radius:50%;
+
+width:35px;
+
+height:35px;
+
+font-size:18px;
+
+}
+
+
+
+
+.vrat-title{
+
+clear:both;
+
+text-align:center;
+
+padding-top:20px;
+
+color:var(--gold);
+
+font-size:24px;
+
+}
+
+
+
+
+
+/* OPTION BUTTON */
+
+
+.option{
+
+width:100%;
+
+margin-top:15px;
+
+padding:16px;
+
+
+background:
+
+linear-gradient(90deg,#251d00,#050505);
+
+
+border:
+
+1px solid var(--gold);
+
+
+border-radius:15px;
+
+
+color:white;
+
+font-size:17px;
+
+font-weight:bold;
+
+
+text-align:left;
+
+
+}
+
+
+
+.option span{
+
+color:var(--gold);
+
+}
+
+
+
+
+
+.content{
+
+display:none;
+
+margin-top:5px;
+
+padding:18px;
+
+
+background:#111;
+
+
+border:1px solid #444;
+
+
+border-radius:15px;
+
+
+line-height:1.8;
+
+
+white-space:pre-line;
+
+
+color:#eee;
+
+
+}
+
+
+
+
+
+.back{
+
+
+margin-top:25px;
+
+width:100%;
+
+padding:15px;
+
+
+background:var(--gold);
+
+color:#000;
+
+
+border:0;
+
+border-radius:20px;
+
+
+font-weight:bold;
+
+font-size:17px;
+
+
+}
+
+
+
+.home{
+
+
+display:block;
+
+margin:20px;
+
+padding:15px;
+
+
+text-align:center;
+
+
+background:#111;
+
+color:var(--gold);
+
+
+border:1px solid var(--gold);
+
+border-radius:20px;
+
+
+text-decoration:none;
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="header">
+
+<h1>
+🙏 हिन्दू धर्म के प्रमुख व्रत
+</h1>
+
+</div>
+
+
+
+
+<div class="search">
+
+<input id="searchBox"
+placeholder="🔍 व्रत खोजें...">
+
+
+</div>
+
+
+
+
+<div class="container" id="vratList">
+
+</div>
+
+
+
+
+<a class="home" href="index.html">
+
+🏠 होम पेज
+
+</a>
+
+
+
+
+
+<!-- DETAIL POPUP -->
+
+
+<div class="modal" id="modal">
+
+
+<div class="modal-box">
+
+
+<button class="close" onclick="closeModal()">
+
+✖
+
+</button>
+
+
+
+<h2 class="vrat-title" id="title">
+
+</h2>
+
+
+
+<button class="option"
+onclick="showBox('katha')">
+
+📜 <span>व्रत कथा</span>
+
+</button>
+
+
+<div class="content" id="katha"></div>
+
+
+
+
+
+<button class="option"
+onclick="showBox('vidhi')">
+
+🪔 <span>पूजा विधि</span>
+
+</button>
+
+
+<div class="content" id="vidhi"></div>
+
+
+
+<button class="option"
+onclick="showBox('samagri')">
+
+🧺 <span>पूजा सामग्री</span>
+
+</button>
+
+
+<div class="content" id="samagri"></div>
+
+
+
+<button class="option"
+onclick="showBox('mahatva')">
+
+🙏 <span>व्रत का महत्व</span>
+
+</button>
+
+
+<div class="content" id="mahatva"></div>
+
+
+
+<button class="back"
+onclick="closeModal()">
+
+🔙 वापस
+
+</button>
+
+
+
+</div>
+
+</div>
+
+
+
+<script src="data.js"></script>
+<script>
+
+
+// =====================================
+// VRAT MODULE JAVASCRIPT
+// =====================================
+
+
+console.log("🙏 Vrat Page Loaded");
+
+
+
+const list = document.getElementById("vratList");
+
+const searchBox = document.getElementById("searchBox");
+
+
+
+let currentData = [];
+
+
+
+
+// ===============================
+// LOAD VRAT LIST
+// ===============================
+
+
+function loadVratList(data){
+
+
+list.innerHTML="";
+
+
+currentData=data;
+
+
+
+if(!data || data.length===0){
+
+list.innerHTML=`
+
+<div style="
+text-align:center;
+color:#FFD700;
+padding:30px;
+font-size:18px;
+">
+
+🙏 अभी व्रत डेटा उपलब्ध नहीं है
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+data.forEach((vrat,index)=>{
+
+
+let card=document.createElement("div");
+
+
+card.className="vrat-card";
+
+
+card.innerHTML=`
+
+<div class="vrat-name">
+
+${vrat.name}
+
+</div>
+
+
+<div class="arrow">
+
+➡️
+
+</div>
+
+`;
+
+
+
+card.onclick=function(){
+
+openVrat(index);
+
+};
+
+
+
+list.appendChild(card);
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+// ===============================
+// OPEN VRAT DETAIL
+// ===============================
+
+
+function openVrat(index){
+
+
+let vrat=currentData[index];
+
+
+
+document.getElementById("title")
+.innerText=vrat.name;
+
+
+
+document.getElementById("katha")
+.innerText=vrat.katha || "जानकारी उपलब्ध नहीं है";
+
+
+
+document.getElementById("vidhi")
+.innerText=vrat.vidhi || "जानकारी उपलब्ध नहीं है";
+
+
+
+document.getElementById("samagri")
+.innerText=vrat.samagri || "जानकारी उपलब्ध नहीं है";
+
+
+
+document.getElementById("mahatva")
+.innerText=vrat.mahatva || "जानकारी उपलब्ध नहीं है";
+
+
+
+
+
+// सभी section बंद
+
+document.querySelectorAll(".content")
+.forEach(box=>{
+
+box.style.display="none";
+
+});
+
+
+
+document.getElementById("modal")
+.style.display="block";
+
+
+
+window.scrollTo(0,0);
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// CLOSE MODAL
+// ===============================
+
+
+function closeModal(){
+
+
+document.getElementById("modal")
+.style.display="none";
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// ACCORDION
+// ===============================
+
+
+function showBox(id){
+
+
+let box=document.getElementById(id);
+
+
+
+if(box.style.display==="block"){
+
+
+box.style.display="none";
+
+
+}
+
+else{
+
+
+document.querySelectorAll(".content")
+.forEach(item=>{
+
+item.style.display="none";
+
+});
+
+
+box.style.display="block";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// SEARCH
+// ===============================
+
+
+searchBox.addEventListener("input",function(){
+
+
+
+let value=this.value
+.toLowerCase()
+.trim();
+
+
+
+
+let result=allVrats.filter(vrat=>{
+
+
+return vrat.name
+.toLowerCase()
+.includes(value);
+
+
+});
+
+
+
+loadVratList(result);
+
+
+
+});
+
+
+
+
+
+
+
+// ===============================
+// START APP
+// ===============================
+
+
+
+if(typeof allVrats !== "undefined"){
+
+
+loadVratList(allVrats);
+
+
+}
+
+else{
+
+
+console.error(
+"❌ allVrats data.js में नहीं मिला"
+);
+
+
+}
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

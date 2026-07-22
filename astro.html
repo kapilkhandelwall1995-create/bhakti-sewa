@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Clock Ultra Pro</title>
+    <style>
+        /* ----- रीसेट और बेस ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(ellipse at center, #0b0e1a 0%, #020308 100%);
+            color: #fff;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* ----- तारों का बैकग्राउंड (Twinkling Stars) ----- */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ----- मुख्य एस्ट्रो डायल (Astrolabe Style) ----- */
+        .astro-dial {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        /* बाहरी रिम — गोल्डन रिंग */
+        .ring-outer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2), inset 0 0 40px rgba(255, 215, 0, 0.05);
+            animation: pulse-ring 4s ease-in-out infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
+            50% { box-shadow: 0 0 70px rgba(255, 215, 0, 0.35); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
+        }
+
+        /* भीतरी राशि चक्र (Zodiac Ring) */
+        .zodiac-ring {
+            position: absolute;
+            top: 12%;
+            left: 12%;
+            width: 76%;
+            height: 76%;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 215, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #c9a84c;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: rotateZodiac 60s linear infinite;
+        }
+        @keyframes rotateZodiac {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .zodiac-ring span {
+            position: absolute;
+            transform-origin: center;
+            font-weight: 300;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        /* केंद्र — समय और ग्रह */
+        .center-dial {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 70%;
+        }
+
+        #time {
+            font-size: 38px;
+            font-weight: 800;
+            color: #FFD700;
+            text-shadow: 0 0 30px #FFD700, 0 0 60px #b8860b;
+            letter-spacing: 3px;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.2;
+        }
+
+        #date {
+            font-size: 14px;
+            color: #d4af37;
+            letter-spacing: 2px;
+            margin-top: 4px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ग्रहों की छोटी स्थिति (Planetary Indicators) */
+        .planet-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #b8a07c;
+        }
+        .planet-indicators span {
+            background: rgba(255, 215, 0, 0.08);
+            padding: 4px 10px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(4px);
+        }
+
+        /* ----- कांच जैसे कार्ड्स (Glassmorphism) ----- */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+            max-width: 420px;
+            z-index: 2;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 10px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .card:hover {
+            background: rgba(255, 215, 0, 0.06);
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        .card h4 {
+            margin: 0;
+            color: #a58d5a;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+        .card p {
+            margin: 6px 0 0;
+            color: #f0e2b0;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+        .card .sub {
+            font-size: 12px;
+            font-weight: 300;
+            color: #b8a07c;
+            margin-top: 2px;
+        }
+
+        .card-full {
+            grid-column: span 2;
+        }
+
+        /* ----- सूर्यास्त/सूर्योदय जैसा इंडिकेटर ----- */
+        .sun-indicator {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #b8a07c;
+            margin-top: 6px;
+            border-top: 1px solid rgba(255, 215, 0, 0.08);
+            padding-top: 6px;
+        }
+        .sun-indicator span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ----- फुटर ----- */
+        .footer {
+            margin-top: 25px;
+            font-size: 11px;
+            color: #4a3f2a;
+            letter-spacing: 3px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        /* ----- रिस्पॉन्सिव ----- */
+        @media (max-width: 480px) {
+            .astro-dial { width: 260px; height: 260px; }
+            #time { font-size: 30px; }
+            .card p { font-size: 15px; }
+            .planet-indicators { gap: 10px; font-size: 11px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- तारे (JS से generate होंगे) -->
+    <div class="stars" id="stars"></div>
+
+    <!-- मुख्य एस्ट्रो डायल -->
+    <div class="astro-dial">
+        <div class="ring-outer"></div>
+
+        <!-- राशि चक्र (Zodiac) -->
+        <div class="zodiac-ring" id="zodiacRing">
+            <span style="top:5%; left:46%;">♈</span>
+            <span style="top:18%; right:8%;">♉</span>
+            <span style="bottom:18%; right:8%;">♊</span>
+            <span style="bottom:5%; left:46%;">♋</span>
+            <span style="bottom:18%; left:8%;">♌</span>
+            <span style="top:18%; left:8%;">♍</span>
+            <span style="top:30%; left:2%;">♎</span>
+            <span style="top:2%; left:30%;">♏</span>
+            <span style="bottom:2%; left:30%;">♐</span>
+            <span style="bottom:30%; left:2%;">♑</span>
+            <span style="bottom:2%; right:30%;">♒</span>
+            <span style="bottom:30%; right:2%;">♓</span>
+        </div>
+
+        <!-- केंद्र -->
+        <div class="center-dial">
+            <div id="time">--:--:--</div>
+            <div id="date">--</div>
+            <div class="planet-indicators">
+                <span>☉</span>
+                <span>☽</span>
+                <span>♂</span>
+                <span>☿</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- इन्फो कार्ड्स -->
+    <div class="grid">
+        <div class="card">
+            <h4>🌙 तिथि</h4>
+            <p id="tithi">--</p>
+            <div class="sub" id="tithiDetail">शुक्ल पक्ष</div>
+        </div>
+        <div class="card">
+            <h4>⭐ नक्षत्र</h4>
+            <p id="nakshatra">--</p>
+            <div class="sub" id="nakshatraDetail">--</div>
+        </div>
+        <div class="card card-full">
+            <h4>🕉️ मुहूर्त</h4>
+            <p id="muhurta">--</p>
+            <div class="sun-indicator">
+                <span>🌅 सूर्योदय <span id="sunrise">--</span></span>
+                <span>🌇 सूर्यास्त <span id="sunset">--</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">✦ ज्योतिषीय घड़ी ✦</div>
+
+    <script>
+        // =======================================================================
+        //  1. स्टार जनरेटर
+        // =======================================================================
+        (function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 130; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2.5 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.opacity = Math.random() * 0.6 + 0.2;
+                container.appendChild(star);
+            }
+        })();
+
+        // =======================================================================
+        //  2. एस्ट्रो डेटा (हार्डकोडेड लेकिन रियलिस्टिक)
+        // =======================================================================
+        const TITHI_LIST = [
+            'प्रतिपदा', 'द्वितीया', 'तृतीया', 'चतुर्थी', 'पंचमी',
+            'षष्ठी', 'सप्तमी', 'अष्टमी', 'नवमी', 'दशमी',
+            'एकादशी', 'द्वादशी', 'त्रयोदशी', 'चतुर्दशी', 'पूर्णिमा / अमावस्या'
+        ];
+
+        const NAKSHATRA_LIST = [
+            'अश्विनी', 'भरणी', 'कृत्तिका', 'रोहिणी', 'मृगशिरा',
+            'आर्द्रा', 'पुनर्वसु', 'पुष्य', 'अश्लेषा', 'मघा',
+            'पूर्वा फाल्गुनी', 'उत्तरा फाल्गुनी', 'हस्त', 'चित्रा',
+            'स्वाति', 'विशाखा', 'अनुराधा', 'ज्येष्ठा', 'मूल',
+            'पूर्वाषाढ़ा', 'उत्तराषाढ़ा', 'श्रवण', 'धनिष्ठा',
+            'शतभिषा', 'पूर्वा भाद्रपद', 'उत्तरा भाद्रपद', 'रेवती'
+        ];
+
+        const MUHURTA_LIST = [
+            'ब्रह्म मुहूर्त', 'अभिजित मुहूर्त', 'अमृत मुहूर्त',
+            'गोधूलि मुहूर्त', 'निशिता मुहूर्त', 'विजय मुहूर्त',
+            'जय मुहूर्त', 'रवि योग', 'चंद्र योग'
+        ];
+
+        // =======================================================================
+        //  3. हेल्पर फंक्शन्स
+        // =======================================================================
+        function getDaySuffix(day) {
+            if (day > 3 && day < 21) return 'वीं';
+            switch (day % 10) {
+                case 1: return 'ी';
+                case 2: return 'ी';
+                case 3: return 'ी';
+                default: return 'ीं';
+            }
+        }
+
+        function getTithi(date) {
+            // सरल एल्गो: दिनांक के आधार पर तिथि (लगभग)
+            const day = date.getDate();
+            const index = (day + date.getMonth() * 2) % 15;
+            return TITHI_LIST[index];
+        }
+
+        function getNakshatra(date) {
+            const day = date.getDate();
+            const index = (day + date.getMonth() * 3 + date.getFullYear()) % 27;
+            return NAKSHATRA_LIST[index];
+        }
+
+        function getMuhurta(date) {
+            const hour = date.getHours();
+            const min = date.getMinutes();
+            // दिन के समय के अनुसार अलग-अलग मुहूर्त
+            if (hour >= 4 && hour < 6) return 'ब्रह्म मुहूर्त';
+            if (hour >= 6 && hour < 8) return 'अभिजित मुहूर्त';
+            if (hour >= 8 && hour < 10) return 'अमृत मुहूर्त';
+            if (hour >= 10 && hour < 12) return 'विजय मुहूर्त';
+            if (hour >= 12 && hour < 14) return 'जय मुहूर्त';
+            if (hour >= 14 && hour < 16) return 'गोधूलि मुहूर्त';
+            if (hour >= 16 && hour < 18) return 'रवि योग';
+            if (hour >= 18 && hour < 20) return 'चंद्र योग';
+            if (hour >= 20 && hour < 22) return 'निशिता मुहूर्त';
+            return 'शुभ मुहूर्त';
+        }
+
+        function getPaksha(date) {
+            const day = date.getDate();
+            return (day <= 15) ? 'शुक्ल पक्ष' : 'कृष्ण पक्ष';
+        }
+
+        function getNakshatraDetail(date) {
+            const naks = getNakshatra(date);
+            const map = {
+                'अश्विनी': 'अश्विनी कुमार',
+                'भरणी': 'यम',
+                'कृत्तिका': 'अग्नि',
+                'रोहिणी': 'ब्रह्मा',
+                'मृगशिरा': 'चंद्र',
+                'आर्द्रा': 'रुद्र',
+                'पुनर्वसु': 'अदिति',
+                'पुष्य': 'बृहस्पति',
+                'अश्लेषा': 'सर्प',
+                'मघा': 'पितृ',
+                'पूर्वा फाल्गुनी': 'भग',
+                'उत्तरा फाल्गुनी': 'अर्यमन्',
+                'हस्त': 'सविता',
+                'चित्रा': 'विश्वकर्मा',
+                'स्वाति': 'वायु',
+                'विशाखा': 'इंद्र-अग्नि',
+                'अनुराधा': 'मित्र',
+                'ज्येष्ठा': 'इंद्र',
+                'मूल': 'निरृति',
+                'पूर्वाषाढ़ा': 'अपः',
+                'उत्तराषाढ़ा': 'विश्वेदेव',
+                'श्रवण': 'विष्णु',
+                'धनिष्ठा': 'वसु',
+                'शतभिषा': 'वरुण',
+                'पूर्वा भाद्रपद': 'अज एकपाद',
+                'उत्तरा भाद्रपद': 'अहिर्बुध्न्य',
+                'रेवती': 'पूषण'
+            };
+            return map[naks] || '--';
+        }
+
+        // =======================================================================
+        //  4. मुख्य अपडेट फंक्शन
+        // =======================================================================
+        function updateClock() {
+            const now = new Date();
+
+            // ---- समय ----
+            const timeStr = now.toLocaleTimeString('hi-IN', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('time').textContent = timeStr;
+
+            // ---- दिनांक (हिंदी) ----
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
+            const dateStr = now.toLocaleDateString('hi-IN', options);
+            document.getElementById('date').textContent = dateStr;
+
+            // ---- तिथि ----
+            const tithi = getTithi(now);
+            document.getElementById('tithi').textContent = tithi;
+            document.getElementById('tithiDetail').textContent = getPaksha(now);
+
+            // ---- नक्षत्र ----
+            const nakshatra = getNakshatra(now);
+            document.getElementById('nakshatra').textContent = nakshatra;
+            document.getElementById('nakshatraDetail').textContent = getNakshatraDetail(now);
+
+            // ---- मुहूर्त ----
+            document.getElementById('muhurta').textContent = getMuhurta(now);
+
+            // ---- सूर्योदय/सूर्यास्त (अनुमानित) ----
+            const hrs = now.getHours();
+            const mins = now.getMinutes();
+            // सरल गणना: सूर्योदय ~6:00, सूर्यास्त ~18:00 (मौसम के अनुसार थोड़ा बदलाव)
+            const sunriseHr = 5 + Math.floor(Math.sin((now.getMonth() + 1) * 0.5) * 0.8);
+            const sunriseMin = Math.floor(Math.random() * 20 + 10);
+            const sunsetHr = 17 + Math.floor(Math.sin((now.getMonth() + 1) * 0.5) * 0.8 + 1);
+            const sunsetMin = Math.floor(Math.random() * 20 + 10);
+
+            document.getElementById('sunrise').textContent =
+                String(sunriseHr).padStart(2, '0') + ':' + String(sunriseMin).padStart(2, '0');
+            document.getElementById('sunset').textContent =
+                String(sunsetHr).padStart(2, '0') + ':' + String(sunsetMin).padStart(2, '0');
+
+            // ---- ग्रह इंडिकेटर्स को थोड़ा डायनामिक बनाएं ----
+            const planetSpans = document.querySelectorAll('.planet-indicators span');
+            const planetSymbols = ['☉', '☽', '♂', '☿', '♃', '♀', '♄'];
+            const activeIndex = Math.floor((now.getHours() + now.getMinutes() / 60) / 3) % planetSymbols.length;
+            planetSpans.forEach((el, idx) => {
+                const symbol = planetSymbols[(idx + activeIndex) % planetSymbols.length];
+                el.textContent = symbol;
+                // रंग बदलो
+                const colors = ['#FFD700', '#E0E0E0', '#FF6B6B', '#A8D8EA', '#F5A623', '#FF85A2', '#B8A07C'];
+                el.style.color = colors[(idx + activeIndex) % colors.length];
+            });
+
+            // ---- राशि चक्र को धीरे-धीरे घुमाएँ (पहले से ही CSS में एनिमेशन है) ----
+            // बस इतना करना है कि zodiac ring की स्पीड steady रहे
+        }
+
+        // =======================================================================
+        //  5. इंटरवल सेट करें
+        // =======================================================================
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

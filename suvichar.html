@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>सुविचार स्टूडियो | प्रीमियम</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root { --bg-color: #0a0a0a; --gold: #FFD700; --card-bg: #1a1a1a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-color); color: var(--gold); font-family: sans-serif; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        .container { width: 90%; max-width: 400px; text-align: center; }
+        
+        #canvas { 
+            width: 100%; aspect-ratio: 1; background: var(--card-bg); border: 3px solid var(--gold); 
+            border-radius: 20px; display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; padding: 20px; position: relative; background-size: cover; 
+            background-position: center; transition: all 0.3s;
+        }
+        
+        textarea { 
+            width: 100%; height: 80%; background: none; border: none; color: #fff; 
+            text-align: center; font-size: 1.5rem; outline: none; resize: none; 
+            font-weight: bold; text-shadow: 2px 2px 4px #000;
+        }
+        
+        .watermark { position: absolute; bottom: 10px; right: 10px; font-size: 0.8rem; opacity: 0.7; color: var(--gold); font-weight: bold; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        
+        #editSection { display: none; background: #111; padding: 20px; border-radius: 20px; border: 1px solid var(--gold); }
+        button { padding: 12px; border-radius: 10px; border: 1px solid var(--gold); background: var(--card-bg); color: var(--gold); cursor: pointer; font-weight: bold; }
+        button:active { background: var(--gold); color: #000; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainSection">
+    <h1>🕉️ सुविचार स्टूडियो</h1>
+    <div id="canvas">
+        <textarea id="text">ॐ नमो भगवते वासुदेवाय</textarea>
+        <div class="watermark">BHAKTISEWA APP</div>
+    </div>
+    
+    <div class="grid">
+        <button onclick="getRandomQuote()">📝 सुविचार</button>
+        <button onclick="toggleEdit()">🎨 एडिट</button>
+        <button onclick="alert('वीडियो फीचर निर्माणाधीन है')">🎬 वीडियो</button>
+        <button onclick="copyReels()">🎞️ रील्स</button>
+        <button onclick="downloadImg()">⬇️ डाउनलोड</button>
+        <button onclick="share()" style="background:var(--gold); color:#000;">📤 शेयर</button>
+    </div>
+</div>
+
+<!-- Edit Mode -->
+<div class="container" id="editSection">
+    <h3>🛠️ एडिटिंग टूल्स</h3>
+    <div class="grid">
+        <input type="file" id="imgUpload" accept="image/*" onchange="uploadImg(event)" style="display:none;">
+        <button onclick="document.getElementById('imgUpload').click()">🖼️ बैकग्राउंड</button>
+        <button onclick="changeFrame()">🔳 फ्रेम बदलें</button>
+        <button onclick="changeFontStyle()">✍️ फॉन्ट स्टाइल</button>
+        <button onclick="toggleEdit()" style="background:var(--gold); color:#000;">✅ वापस</button>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const text = document.getElementById('text');
+
+    function toggleEdit() {
+        document.getElementById('mainSection').style.display = document.getElementById('mainSection').style.display === 'none' ? 'block' : 'none';
+        document.getElementById('editSection').style.display = document.getElementById('editSection').style.display === 'block' ? 'none' : 'block';
+    }
+
+    function uploadImg(e) {
+        const reader = new FileReader();
+        reader.onload = function(event) { canvas.style.backgroundImage = `url('${event.target.result}')`; }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    // फ्रेम बदलने का लॉजिक
+    let frameState = 0;
+    function changeFrame() {
+        frameState = (frameState + 1) % 3;
+        if(frameState === 0) canvas.style.borderRadius = "20px";
+        else if(frameState === 1) canvas.style.borderRadius = "50%";
+        else canvas.style.borderRadius = "0px";
+    }
+
+    // फॉन्ट स्टाइल बदलने का लॉजिक
+    let fontState = 0;
+    function changeFontStyle() {
+        const fonts = ['sans-serif', 'serif', 'cursive', 'monospace'];
+        fontState = (fontState + 1) % fonts.length;
+        text.style.fontFamily = fonts[fontState];
+    }
+
+    function getRandomQuote() {
+    const quotes = [
+        // भक्ति (1-20)
+        "ॐ नमो भगवते वासुदेवाय", "हरि अनंत हरि कथा अनंता", "राम नाम का सुमिरन कर ले", "भक्ति ही मुक्ति का मार्ग है", "ईश्वर कण-कण में विद्यमान है",
+        "राधे-राधे जपो चले आएंगे बिहारी", "कृष्ण की शरण में सुख है", "मन की शांति प्रभु की भक्ति में है", "सच्चे मन से पुकारो, वो सुनेंगे", "भक्ति में शक्ति है",
+        "शिव की ज्योति से नूर मिलता है", "हनुमान जी की कृपा सदा बनी रहे", "सच्ची भक्ति ही ईश्वर का दर्शन है", "राम का नाम ही भवसागर से तारता है", "भक्ति कोई कार्य नहीं, भाव है",
+        "गोपाल की शरण में कोई दुःख नहीं", "भजन करो मन लगाकर", "प्रभु के चरणों में ही स्वर्ग है", "भक्ति का मार्ग कठिन है पर सुखद है", "श्रद्धा ही भक्ति का आधार है",
+        // प्रेरणा (21-40)
+        "कर्म ही पूजा है", "उठो, जागो और लक्ष्य तक मत रुको", "सफलता का कोई शॉर्टकट नहीं होता", "मेहनत का फल मीठा होता है", "कल की चिंता छोड़, आज को सुधार",
+        "खुद पर विश्वास रखें", "नकारात्मकता को जीवन से दूर रखें", "लक्ष्य बड़ा हो तो मेहनत भी बड़ी चाहिए", "आपकी सोच ही आपकी दुनिया है", "असफलता सफलता का पहला कदम है",
+        "निरंतर प्रयास ही जीत दिलाता है", "समय का सही उपयोग करें", "अनुशासन ही सफलता की कुंजी है", "डर के आगे जीत है", "अपनी तुलना किसी और से न करें",
+        "सीखने की कोई उम्र नहीं होती", "विपरीत परिस्थितियों में ही धैर्य रखें", "जीतने वाले अलग काम नहीं करते", "लक्ष्य प्राप्ति के लिए अडिग रहें", "आप अपनी किस्मत खुद लिखते हैं",
+        // जीवन (41-60)
+        "जीवन एक अनमोल उपहार है", "सादा जीवन, उच्च विचार", "खुशियाँ बाँटने से बढ़ती हैं", "वर्तमान में जीना सीखें", "जीवन उतार-चढ़ाव का नाम है",
+        "सच्चा मित्र वही है जो मुसीबत में काम आए", "अहंकार पतन का कारण है", "दया ही सबसे बड़ा धर्म है", "दूसरों की मदद करना ही मानवता है", "क्षमा करना सीखें",
+        "वाणी में मधुरता रखें", "जीवन का उद्देश्य प्रेम है", "सादगी में ही सुंदरता है", "समय सबसे बड़ा मरहम है", "अच्छे कर्मों का फल अच्छा ही होता है",
+        "स्वस्थ शरीर में ही स्वस्थ मन होता है", "क्रोध पर विजय पाना ही बुद्धिमानी है", "जीवन को उत्सव की तरह जिएं", "रिश्तों को समय दें", "निस्वार्थ सेवा ही सबसे बड़ा दान है",
+        // सत्य और गीता (61-80)
+        "सत्यमेव जयते", "सत्य परेशान हो सकता है, पराजित नहीं", "गीता का ज्ञान जीवन का सार है", "मोह का त्याग ही शांति है", "जो हुआ अच्छा हुआ",
+        "जो हो रहा है अच्छा हो रहा है", "जो होगा वह भी अच्छा ही होगा", "परिवर्तन ही संसार का नियम है", "न तुम कुछ लेकर आए थे, न कुछ लेकर जाओगे", "आत्मा अजर और अमर है",
+        "क्रोध से भ्रम उत्पन्न होता है", "इंद्रियों पर विजय पाना जरूरी है", "फल की चिंता न करें, कर्म करें", "सत्य ही ईश्वर है", "ज्ञान ही सबसे बड़ा धन है",
+        "अहंकार को त्याग दें", "ईश्वर की इच्छा ही सर्वोपरि है", "अधर्म का नाश निश्चित है", "सत्य के पथ पर चलना कठिन है", "सत्य की विजय हमेशा होती है",
+        // धैर्य और अन्य (81-100)
+        "धैर्य ही सबसे बड़ी शक्ति है", "समय का पहिया हमेशा घूमता है", "धैर्य का फल मीठा होता है", "शांति ही जीवन का सार है", "उम्मीद कभी न छोड़ें",
+        "मुस्कुराहट ही सबसे बड़ा गहना है", "परिश्रम का कोई विकल्प नहीं", "अच्छे विचार ही अच्छे संस्कार हैं", "सकारात्मकता बढ़ाएं", "जीवन में संतुलन बनाए रखें",
+        "बीते कल को भूलकर आगे बढ़ें", "अपनी गलतियों से सीखें", "हर दिन एक नई शुरुआत है", "प्रेम ही संसार का आधार है", "ईमानदारी ही सर्वोत्तम नीति है",
+        "सब्र का फल हमेशा मीठा होता है", "सीखना बंद मत करें", "अनुशासन ही जीवन का आधार है", "परिश्रम ही सफलता की सीढ़ी है", "प्रभु की इच्छा में ही हमारी इच्छा है"
+    ];
+    
+    text.value = quotes[Math.floor(Math.random() * quotes.length)];
+}
+
+
+    function downloadImg() {
+        html2canvas(canvas).then(c => {
+            const link = document.createElement('a');
+            link.download = 'suvichar.png';
+            link.href = c.toDataURL();
+            link.click();
+        });
+    }
+
+    function share() { window.open(`https://wa.me/?text=${encodeURIComponent(text.value)}`, '_blank'); }
+    function copyReels() { navigator.clipboard.writeText(text.value + "\n\n#सुविचार #भक्ति"); alert('टेक्स्ट कॉपी हुआ!'); }
+</script>
+</body>
+</html>

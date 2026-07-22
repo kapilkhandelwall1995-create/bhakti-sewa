@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Security Policy (CSP) for better protection -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https: 'unsafe-inline';">
+    <title>Bhakti Sewa · Pro Max</title>
+    <style>
+        /* ===== RESET & GLOBAL ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gold: #F5B342;
+            --gold-light: #FFD966;
+            --gold-glow: rgba(245, 179, 66, 0.5);
+            --bg-dark: #0a0a0f;
+            --card-bg: rgba(18, 18, 28, 0.75);
+            --glass-border: rgba(255, 215, 0, 0.18);
+            --text-primary: #f0ece4;
+            --text-secondary: #b8b0a6;
+        }
+        body {
+            background: var(--bg-dark);
+            background-image: radial-gradient(circle at 20% 30%, #1e1a2b 0%, #0a0a0f 80%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px 16px;
+            color: var(--text-primary);
+            margin: 0;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ===== BACK BUTTON ===== */
+        .back-btn {
+            align-self: flex-start;
+            margin-bottom: 24px;
+            background: rgba(255, 215, 0, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            color: var(--gold-light);
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+        .back-btn:hover {
+            background: var(--gold);
+            color: #0a0a0f;
+            border-color: var(--gold);
+            box-shadow: 0 0 35px var(--gold-glow);
+            transform: scale(1.02);
+        }
+
+        /* ===== MAIN CARD ===== */
+        .about-card {
+            width: 100%;
+            max-width: 440px;
+            height: 80vh;
+            max-height: 720px;
+            background: var(--card-bg);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            border-radius: 48px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255, 215, 0, 0.05), inset 0 1px 0 rgba(255, 215, 0, 0.08);
+            padding: 28px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(245, 179, 66, 0.03), transparent 60%);
+            pointer-events: none;
+        }
+
+        /* ===== TABS ===== */
+        .tab-container {
+            display: flex; gap: 8px; margin-bottom: 20px; width: 100%; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2;
+        }
+        .tab-btn {
+            background: rgba(20, 20, 30, 0.4);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            padding: 8px 22px; border-radius: 60px; cursor: pointer; font-size: 14px; font-weight: 500; letter-spacing: 0.4px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(4px);
+        }
+        .tab-btn.active {
+            background: linear-gradient(145deg, var(--gold), #d49b2e);
+            color: #0a0a0f; border-color: var(--gold); font-weight: 600; box-shadow: 0 8px 30px var(--gold-glow); transform: scale(1.02);
+        }
+        .tab-btn:hover:not(.active) { background: rgba(255, 215, 0, 0.07); border-color: rgba(255, 215, 0, 0.25); color: #fff; }
+
+        /* ===== LOGO ===== */
+        .logo-wrap { position: relative; margin-bottom: 14px; }
+        .logo {
+            width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--gold);
+            box-shadow: 0 0 40px rgba(245, 179, 66, 0.2), 0 0 0 1px rgba(255, 215, 0, 0.1); background: #14141e; transition: transform 0.4s ease;
+        }
+        .logo:hover { transform: scale(1.02); }
+        .logo-ring {
+            position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid transparent; border-top-color: var(--gold);
+            border-right-color: rgba(245, 179, 66, 0.2); animation: spinRing 10s linear infinite; pointer-events: none;
+        }
+        @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ===== SCROLL AREA ===== */
+        .scroll-area {
+            overflow-y: auto; width: 100%; flex: 1 1 auto; padding-right: 4px; text-align: center;
+            scrollbar-width: thin; scrollbar-color: var(--gold) transparent; position: relative; z-index: 2;
+        }
+        .scroll-area::-webkit-scrollbar { width: 4px; }
+        .scroll-area::-webkit-scrollbar-track { background: transparent; }
+        .scroll-area::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 20px; }
+
+        h1 {
+            font-size: 26px; font-weight: 700; background: linear-gradient(135deg, #fff 20%, var(--gold-light) 80%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.3px; margin: 0 0 8px 0; line-height: 1.2;
+        }
+        .content-text { font-size: 15.5px; line-height: 1.75; color: var(--text-secondary); text-align: left; padding: 0 2px; }
+        .content-text p { margin-bottom: 16px; }
+        .content-text strong { color: var(--gold-light); font-weight: 600; -webkit-text-fill-color: var(--gold-light); }
+
+        /* ===== ACTION LINKS ===== */
+        .action-link {
+            display: block; background: rgba(255, 215, 0, 0.04); color: var(--gold-light); margin: 12px 0; text-decoration: none;
+            font-weight: 500; border: 1px solid rgba(255, 215, 0, 0.1); padding: 14px 18px; border-radius: 20px; transition: all 0.25s ease;
+            font-size: 15px; text-align: center; backdrop-filter: blur(4px); letter-spacing: 0.2px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .action-link:hover { background: rgba(255, 215, 0, 0.09); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 25px rgba(245, 179, 66, 0.05); }
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+        .social-grid .action-link { margin: 0; padding: 12px 6px; font-size: 14px; }
+
+        .dev-avatar { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 14px; font-weight: 400; }
+        .dev-avatar img { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gold); object-fit: cover; background: #1a1a26; box-shadow: 0 0 20px rgba(245, 179, 66, 0.1); }
+
+        /* ===== SHARE BUTTON ===== */
+        .share-btn {
+            background: linear-gradient(145deg, var(--gold), #c9922a); border: none; color: #0a0a0f; font-weight: 700; padding: 16px 20px;
+            border-radius: 60px; width: 100%; font-size: 17px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(245, 179, 66, 0.2);
+            letter-spacing: 0.5px; margin: 12px 0 4px;
+        }
+        .share-btn:hover { transform: scale(1.02); box-shadow: 0 12px 45px rgba(245, 179, 66, 0.35); background: linear-gradient(145deg, #ffd966, #d49b2e); }
+
+        /* ===== VERSION ===== */
+        .version-tag { font-size: 11px; letter-spacing: 2px; color: rgba(255, 215, 0, 0.3); margin-top: 12px; border-top: 1px solid rgba(255, 215, 0, 0.05); padding-top: 12px; width: 70%; text-align: center; text-transform: uppercase; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) { .about-card { padding: 20px 16px; border-radius: 36px; height: 82vh; max-height: 680px; } .tab-btn { font-size: 13px; padding: 6px 16px; } h1 { font-size: 22px; } .logo { width: 80px; height: 80px; } .content-text { font-size: 14.5px; } }
+        @media (max-width: 400px) { .about-card { padding: 16px 12px; border-radius: 28px; } .tab-container { gap: 4px; } .tab-btn { font-size: 12px; padding: 5px 12px; } }
+    </style>
+</head>
+<body>
+
+    <button class="back-btn" id="homeBtn">← होम</button>
+
+    <div class="about-card">
+        <!-- Tabs -->
+        <div class="tab-container" id="tabContainer">
+            <button class="tab-btn active" data-tab="about">About</button>
+            <button class="tab-btn" data-tab="contact">Contact</button>
+            <button class="tab-btn" data-tab="share">Share</button>
+        </div>
+
+        <!-- Logo with animated ring -->
+        <div class="logo-wrap">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='%2312121e' stroke='%23F5B342' stroke-width='2.5'/%3E%3Ctext x='50' y='60' font-size='44' text-anchor='middle' fill='%23F5B342' font-family='system-ui'%3E🪷%3C/text%3E%3C/svg%3E"
+                 alt="Bhakti Sewa" class="logo" id="logoImg">
+            <div class="logo-ring"></div>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="scroll-area" id="scrollArea">
+            <h1 id="titleText">🙏 भक्ति सेवा</h1>
+            <div id="aboutContent" class="content-text">Loading...</div>
+        </div>
+
+        <div class="version-tag">✦ Pro Max v1.0 ✦</div>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Theme initialization
+        const savedGold = localStorage.getItem('appThemeColor') || '#F5B342';
+        document.documentElement.style.setProperty('--gold', savedGold);
+        document.documentElement.style.setProperty('--gold-light', savedGold + 'dd');
+        document.documentElement.style.setProperty('--gold-glow', savedGold + '66');
+
+        const titleEl = document.getElementById('titleText');
+        const contentEl = document.getElementById('aboutContent');
+        const tabContainer = document.getElementById('tabContainer');
+        const logo = document.getElementById('logoImg');
+        const homeBtn = document.getElementById('homeBtn');
+
+        function getLang() {
+            return localStorage.getItem('appLang') || 'Hindi';
+        }
+
+        // Home button routing (Secure event listener instead of inline onclick)
+        homeBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+
+        // ---- FULL ORIGINAL CONTENT ----
+        const contentMap = {
+            about: {
+                Hindi: {
+                    title: '🙏 भक्ति सेवा',
+                    html: `
+                        <p><strong>भक्ति सेवा</strong> — यह केवल एक ऐप नहीं, बल्कि आपके हाथ में एक दिव्य डिजिटल मंदिर है। <br>हमारा लक्ष्य सनातन धर्म की पवन ऊर्जा, प्राचीन ज्ञान और भक्ति के अमृत को आधुनिक तकनीक से आप तक पहुँचाना है。</p>
+                        <p>चाहे आरती हो, भजन, या आध्यात्मिक कथाएँ — हम आपकी भक्ति यात्रा को सरल, सुगम और आनंदमय बनाने के लिए समर्पित हैं। <br>आपकी आस्था, हमारी प्रतिबद्धता।</p>
+                    `
+                },
+                English: {
+                    title: '🙏 Bhakti Sewa',
+                    html: `
+                        <p><strong>Bhakti Sewa</strong> — more than an app, it's a divine digital temple in your pocket. <br>We bring the sacred energy, timeless wisdom, and soulful melodies of Sanatan Dharma to you through modern technology.</p>
+                        <p>From Aartis and Bhajans to spiritual stories — we are committed to making your devotional journey simple, accessible, and blissful. <br>Your faith, our pledge.</p>
+                    `
+                }
+            },
+                        contact: {
+                Hindi: {
+                    title: '📞 संपर्क करें',
+                    html: `
+                        <a href='https://wa.me/918824901073' class='action-link'>💬 WhatsApp सहायता</a>
+                        <a href='mailto:kapilkhandelwall.1995@gmail.com' class='action-link'>📧 ईमेल करें</a>
+                        <div class='social-grid'>
+                            <a href='https://instagram.com/bhaktisagar.app' class='action-link'>📸 Instagram</a>
+                            <a href='https://youtube.com/@BhaktiSagarkapil' class='action-link'>▶️ YouTube</a>
+                            <a href='https://www.facebook.com/share/1DLvHCKCFX/' class='action-link' style='grid-column: span 2;'>📘 Facebook</a>
+                        </div>
+                        <div class='dev-avatar'>
+                            <span>👨‍💻 डेवलपर</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23181828' stroke='%23F5B342' stroke-width='1.5'/%3E%3Ctext x='20' y='26' font-size='22' text-anchor='middle' fill='%23F5B342'%3E🕉️%3C/text%3E%3C/svg%3E" alt="dev">
+                        </div>
+                    `
+                },
+                English: {
+                    title: '📞 Contact Us',
+                    html: `
+                        <a href='https://wa.me/918824901073' class='action-link'>💬 WhatsApp Support</a>
+                        <a href='mailto:kapilkhandelwall1995@gmail.com' class='action-link'>📧 Email Us</a>
+                        <div class='social-grid'>
+                            <a href='https://instagram.com/bhaktisagar.app' class='action-link'>📸 Instagram</a>
+                            <a href='https://youtube.com/@BhaktiSagarkapil' class='action-link'>▶️ YouTube</a>
+                            <a href='https://www.facebook.com/share/1DLvHCKCFX/' class='action-link' style='grid-column: span 2;'>📘 Facebook</a>
+                        </div>
+                        <div class='dev-avatar'>
+                            <span>👨‍💻 Developer</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23181828' stroke='%23F5B342' stroke-width='1.5'/%3E%3Ctext x='20' y='26' font-size='22' text-anchor='middle' fill='%23F5B342'%3E🕉️%3C/text%3E%3C/svg%3E" alt="dev">
+                        </div>
+                    `
+                }
+            },
+
+                        share: {
+                Hindi: {
+                    title: '📤 शेयर करें',
+                    // Notice: Removed inline onclick for security
+                    html: `
+                        <p style="text-align:center; margin-bottom:12px; color:var(--text-secondary);">अपने मित्रों को इस दिव्य अनुभव से जोड़ें</p>
+                        <button class="share-btn" id="btnShareApp">📲 अभी शेयर करें</button>
+                        <p style="font-size:13px; color:rgba(255,215,0,0.3); margin-top:14px;">या लिंक कॉपी करें</p>
+                        <a href="#" class="action-link" id="btnCopyLink" style="text-align:center;">🔗 कॉपी लिंक</a>
+                    `
+                },
+                English: {
+                    title: '📤 Share App',
+                    // Notice: Removed inline onclick for security
+                    html: `
+                        <p style="text-align:center; margin-bottom:12px; color:var(--text-secondary);">Share this divine experience with your friends</p>
+                        <button class="share-btn" id="btnShareApp">📲 Share Now</button>
+                        <p style="font-size:13px; color:rgba(255,215,0,0.3); margin-top:14px;">Or copy the link</p>
+                        <a href="#" class="action-link" id="btnCopyLink" style="text-align:center;">🔗 Copy Link</a>
+                    `
+                }
+            }
+        };
+
+        function renderTab(tabKey) {
+            const lang = getLang();
+            const langKey = (lang === 'English') ? 'English' : 'Hindi';
+            const data = contentMap[tabKey]?.[langKey];
+            if (!data) return;
+            
+            titleEl.innerText = data.title;
+            contentEl.innerHTML = data.html;
+
+            // Re-attach event listeners dynamically for the Share tab
+            if (tabKey === 'share') {
+                const btnShareApp = document.getElementById('btnShareApp');
+                const btnCopyLink = document.getElementById('btnCopyLink');
+                
+                if (btnShareApp) btnShareApp.addEventListener('click', shareAppLogic);
+                if (btnCopyLink) btnCopyLink.addEventListener('click', copyLinkLogic);
+            }
+        }
+
+        function setActiveTab(tabKey) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(btn => {
+                const isActive = btn.dataset.tab === tabKey;
+                btn.classList.toggle('active', isActive);
+            });
+            renderTab(tabKey);
+        }
+
+        // Tab click delegation
+        tabContainer.addEventListener('click', function(e) {
+            if(e.target.classList.contains('tab-btn')) {
+                setActiveTab(e.target.dataset.tab);
+            }
+        });
+
+        // ---- SECURE SHARE & COPY LOGIC ----
+        function shareAppLogic() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Bhakti Sewa Pro',
+                    text: '🙏 भक्ति सेवा — डिजिटल मंदिर / Digital Temple',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function copyLinkLogic(e) {
+            e.preventDefault();
+            copyToClipboard();
+        }
+
+        function copyToClipboard() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('✅ लिंक कॉपी हुआ! / Link copied!');
+                }).catch(() => fallbackCopyTextToClipboard());
+            } else {
+                fallbackCopyTextToClipboard();
+            }
+        }
+
+        function fallbackCopyTextToClipboard() {
+            const dummy = document.createElement('input');
+            dummy.value = window.location.href;
+            document.body.appendChild(dummy);
+            dummy.select();
+            try {
+                document.execCommand('copy');
+                alert('✅ लिंक कॉपी हुआ! / Link copied!');
+            } catch (err) {
+                alert('Copy failed!');
+            }
+            document.body.removeChild(dummy);
+        }
+
+        // ---- INIT ----
+        setActiveTab('about');
+
+        // Try to load custom logo from assets (fallback to inline handled by HTML default)
+        const testLogo = new Image();
+        testLogo.onload = function() { logo.src = 'assets/jin.jpg'; };
+        testLogo.onerror = function() { /* keep inline */ };
+        testLogo.src = 'assets/jin.jpg';
+
+        // Listen to storage changes (for language / theme sync across tabs)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'appLang' || e.key === 'appThemeColor') {
+                if (e.key === 'appThemeColor') {
+                    const c = e.newValue || '#F5B342';
+                    document.documentElement.style.setProperty('--gold', c);
+                    document.documentElement.style.setProperty('--gold-light', c + 'dd');
+                    document.documentElement.style.setProperty('--gold-glow', c + '66');
+                }
+                const activeBtn = document.querySelector('.tab-btn.active');
+                const active = activeBtn ? activeBtn.dataset.tab : 'about';
+                renderTab(active);
+            }
+        });
+    });
+</script>
+</body>
+</html>

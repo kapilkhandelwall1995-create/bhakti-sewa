@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bhakti Sewa - Donation</title>
+    <style>
+        :root { --gold: #FFD700; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .back-btn { align-self: flex-start; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; border-radius: 5px; margin-bottom: 20px; cursor: pointer; }
+        .donate-card { width: 90%; max-width: 400px; border: 2px solid var(--gold); border-radius: 20px; padding: 20px; background: #111; text-align: center; }
+        h1 { color: var(--gold); font-size: 20px; margin-bottom: 10px; }
+        .qr-code { width: 160px; height: 160px; border: 3px solid var(--gold); border-radius: 10px; margin: 10px 0; background: #fff; }
+        .upi-box { color: var(--gold); font-weight: bold; margin: 10px 0; font-size: 15px; }
+        .amount-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .amount-btn { background: #222; color: #fff; border: 1px solid var(--gold); padding: 10px 5px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .amount-btn:active { background: var(--gold); color: #000; }
+        .other-input { width: 100%; padding: 10px; box-sizing: border-box; background: #222; border: 1px solid var(--gold); color: #fff; border-radius: 10px; text-align: center; margin-bottom: 15px; }
+        .info-text { font-size: 12px; line-height: 1.6; color: #ccc; margin-top: 15px; text-align: justify; }
+        .security-box { margin-top: 20px; padding: 10px; border: 1px dashed var(--gold); border-radius: 10px; font-size: 11px; color: #fff; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <button class="back-btn" onclick="window.location.href='index.html'">🔙 होम / Home</button>
+
+    <div class="donate-card">
+        <h1>🙏 धर्म प्रसार में सहयोग</h1>
+        <h2 style="font-size: 16px; color: var(--gold);">Support for Spreading Dharma</h2>
+        
+        <img src="assets/qr_code.png" alt="UPI QR" class="qr-code">
+        <p style="font-size: 13px; color: #ccc;">स्कैन करके दान करें / Scan to Donate</p>
+        
+        <div class="upi-box">UPI ID: 8824901073@axl</div>
+
+        <div class="amount-grid">
+            <button class="amount-btn" onclick="donate(21)">₹21</button>
+            <button class="amount-btn" onclick="donate(51)">₹51</button>
+            <button class="amount-btn" onclick="donate(101)">₹101</button>
+            <button class="amount-btn" onclick="donate(251)">₹251</button>
+            <button class="amount-btn" onclick="donate(501)">₹501</button>
+            <button class="amount-btn" onclick="donate(1100)">₹1100</button>
+        </div>
+
+        <input type="number" id="otherAmount" class="other-input" placeholder="अन्य राशि लिखें / Other Amount">
+        <button class="amount-btn" style="width: 100%; background: var(--gold); color: #000;" onclick="donateCustom()">अभी दान करें / Donate Now</button>
+
+        <div class="security-box" id="sec-hindi" style="display: none;">
+            🛡️ <b>आपका ट्रांजैक्शन 100% सुरक्षित है:</b> हम पेमेंट के लिए सीधे UPI गेटवे का उपयोग करते हैं।<br><br>
+            ⚠️ <b>सुरक्षा सलाह:</b> किसी के साथ बैंक OTP शेयर न करें।
+        </div>
+        <div class="security-box" id="sec-english" style="display: none;">
+            🛡️ <b>Your Transaction is 100% Secured:</b> We use official UPI gateways.<br><br>
+            ⚠️ <b>Safety Advice:</b> Never share your bank OTP with anyone.
+        </div>
+
+        <div class="info-text">
+            <p id="hindi-text" style="display: none;"><strong>हिंदी:</strong> आपका सहयोग ऐप के सर्वर को सुगम बनाने में अमूल्य है।</p>
+            <p id="english-text" style="display: none;"><strong>English:</strong> Your contribution is invaluable in strengthening our app servers.</p>
+        </div>
+    </div>
+
+<script>
+    const upiId = "8824901073@axl"; 
+
+    function donate(amount) {
+        // Android WebView के लिए इंटेंट स्कीम का उपयोग करें
+        const intentUrl = `intent://pay?pa=${upiId}&pn=BhaktiSewa&am=${amount}&cu=INR&tn=DonationForBhaktiSewa#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+        
+        // एंड्रॉइड पर एप खोलने का प्रयास करें
+        window.location.href = intentUrl;
+    }
+
+    function donateCustom() {
+        const amount = document.getElementById('otherAmount').value;
+        if(amount > 0) {
+            donate(amount);
+        } else {
+            alert("कृपया सही राशि लिखें / Please enter a valid amount.");
+        }
+    }
+
+    window.onload = function() {
+        const savedTheme = localStorage.getItem('appThemeColor') || '#FFD700';
+        document.documentElement.style.setProperty('--gold', savedTheme);
+
+        const lang = localStorage.getItem("appLang") || "Hindi";
+        if (lang === "English") {
+            document.getElementById("english-text").style.display = "block";
+            document.getElementById("sec-english").style.display = "block";
+        } else {
+            document.getElementById("hindi-text").style.display = "block";
+            document.getElementById("sec-hindi").style.display = "block";
+        }
+    };
+</script>
+</body>
+</html>

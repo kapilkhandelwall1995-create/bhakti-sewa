@@ -1,0 +1,842 @@
+    <!DOCTYPE html>
+    <html lang="hi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+        <title>📔 दैनिक डायरी · भक्ति सेवा</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            }
+    
+            :root {
+                --gold: #FFD700;
+                --gold-light: #FFE484;
+                --gold-dark: #b8960f;
+                --bg-primary: #0a0806;
+                --bg-card: rgba(18, 15, 10, 0.92);
+                --bg-input: rgba(30, 25, 18, 0.6);
+                --text-primary: #f5efe0;
+                --text-muted: #b8aa8a;
+                --shadow-glow: 0 8px 40px rgba(255, 215, 0, 0.08);
+                --border-glow: rgba(255, 215, 0, 0.12);
+            }
+    
+            body {
+                background: var(--bg-primary);
+                background-image: 
+                    radial-gradient(ellipse at 20% 10%, #1f180a 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 90%, #1a1408 0%, transparent 50%),
+                    linear-gradient(180deg, #0a0806 0%, #050403 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 16px;
+            }
+    
+            .app {
+                max-width: 760px;
+                width: 100%;
+                background: var(--bg-card);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-radius: 48px;
+                border: 1px solid var(--border-glow);
+                box-shadow: var(--shadow-glow), 0 20px 60px rgba(0, 0, 0, 0.8);
+                padding: 28px 24px 32px;
+                position: relative;
+                overflow: hidden;
+            }
+    
+            .app::before {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), transparent 30%, transparent 70%, rgba(255, 215, 0, 0.03));
+                border-radius: 50px;
+                pointer-events: none;
+                z-index: 0;
+            }
+    
+            .app>* {
+                position: relative;
+                z-index: 1;
+            }
+    
+            /* HEADER */
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 12px;
+                padding-bottom: 18px;
+                border-bottom: 2px solid rgba(255, 215, 0, 0.06);
+                margin-bottom: 22px;
+            }
+    
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+    
+            .brand .icon {
+                font-size: 2rem;
+                color: var(--gold);
+                filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.2));
+            }
+    
+            .brand h1 {
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: 1px;
+                background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+    
+            .date-badge {
+                background: rgba(255, 215, 0, 0.06);
+                border: 1px solid rgba(255, 215, 0, 0.1);
+                border-radius: 40px;
+                padding: 6px 18px;
+                font-size: 0.8rem;
+                color: var(--gold);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                backdrop-filter: blur(4px);
+            }
+    
+            /* TABS */
+            .tabs {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 22px;
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 16px;
+                padding: 4px;
+                border: 1px solid rgba(255, 215, 0, 0.04);
+            }
+    
+            .tab-btn {
+                flex: 1;
+                padding: 10px 12px;
+                border: none;
+                border-radius: 12px;
+                background: transparent;
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+    
+            .tab-btn i {
+                font-size: 1rem;
+            }
+    
+            .tab-btn.active {
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.04));
+                color: var(--gold);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.04);
+            }
+    
+            .tab-btn:hover:not(.active) {
+                color: var(--text-primary);
+            }
+    
+            .tab-content {
+                display: none;
+                animation: fadeSlide 0.4s ease;
+            }
+    
+            .tab-content.active {
+                display: block;
+            }
+    
+            @keyframes fadeSlide {
+                0% { opacity: 0; transform: translateY(10px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+    
+            /* WRITE TAB */
+            .write-area {
+                background: var(--bg-input);
+                border-radius: 20px;
+                padding: 18px 18px 14px;
+                border: 1px solid rgba(255, 215, 0, 0.06);
+                transition: border-color 0.3s ease;
+            }
+    
+            .write-area:focus-within {
+                border-color: rgba(255, 215, 0, 0.2);
+            }
+    
+            .write-area textarea {
+                width: 100%;
+                min-height: 180px;
+                background: transparent;
+                border: none;
+                outline: none;
+                color: var(--text-primary);
+                font-size: 1rem;
+                line-height: 1.7;
+                resize: vertical;
+                padding: 4px;
+            }
+    
+            .write-area textarea::placeholder {
+                color: var(--text-muted);
+                opacity: 0.5;
+            }
+    
+            .write-area .char-count {
+                text-align: right;
+                color: var(--text-muted);
+                font-size: 0.75rem;
+                margin-top: 8px;
+                opacity: 0.6;
+            }
+    
+            .btn-group {
+                display: flex;
+                gap: 12px;
+                margin-top: 16px;
+                flex-wrap: wrap;
+            }
+    
+            .btn {
+                padding: 12px 28px;
+                border: none;
+                border-radius: 14px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex: 1;
+                justify-content: center;
+                min-width: 120px;
+            }
+    
+            .btn-primary {
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                color: #0a0806;
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.15);
+            }
+    
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(255, 215, 0, 0.25);
+            }
+    
+            .btn-primary:active {
+                transform: scale(0.97);
+            }
+    
+            .btn-secondary {
+                background: rgba(255, 215, 0, 0.06);
+                color: var(--text-muted);
+                border: 1px solid rgba(255, 215, 0, 0.06);
+            }
+    
+            .btn-secondary:hover {
+                background: rgba(255, 215, 0, 0.1);
+                color: var(--text-primary);
+            }
+    
+            .btn-danger {
+                background: rgba(255, 50, 50, 0.08);
+                color: #ff6b6b;
+                border: 1px solid rgba(255, 50, 50, 0.1);
+            }
+    
+            .btn-danger:hover {
+                background: rgba(255, 50, 50, 0.15);
+            }
+    
+            /* SAVED LIST TAB */
+            .stats-bar {
+                display: flex;
+                gap: 16px;
+                margin-bottom: 16px;
+                flex-wrap: wrap;
+            }
+    
+            .stat-item {
+                background: rgba(0, 0, 0, 0.2);
+                padding: 8px 18px;
+                border-radius: 40px;
+                border: 1px solid rgba(255, 215, 0, 0.04);
+                color: var(--text-muted);
+                font-size: 0.85rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+    
+            .stat-item i {
+                color: var(--gold);
+            }
+    
+            .stat-item span {
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+    
+            .notes-list {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                max-height: 420px;
+                overflow-y: auto;
+                padding-right: 4px;
+            }
+    
+            .notes-list::-webkit-scrollbar {
+                width: 4px;
+            }
+    
+            .notes-list::-webkit-scrollbar-track {
+                background: rgba(255, 215, 0, 0.02);
+                border-radius: 10px;
+            }
+    
+            .notes-list::-webkit-scrollbar-thumb {
+                background: var(--gold-dark);
+                border-radius: 10px;
+            }
+    
+            .note-item {
+                background: rgba(255, 215, 0, 0.02);
+                border: 1px solid rgba(255, 215, 0, 0.04);
+                border-radius: 16px;
+                padding: 16px 18px;
+                transition: all 0.3s ease;
+                animation: slideIn 0.3s ease;
+            }
+    
+            @keyframes slideIn {
+                0% { opacity: 0; transform: translateX(-10px); }
+                100% { opacity: 1; transform: translateX(0); }
+            }
+    
+            .note-item:hover {
+                border-color: rgba(255, 215, 0, 0.1);
+                background: rgba(255, 215, 0, 0.04);
+            }
+    
+            .note-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 12px;
+                margin-bottom: 8px;
+            }
+    
+            .note-date {
+                color: var(--gold);
+                font-size: 0.75rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+    
+            .note-actions {
+                display: flex;
+                gap: 8px;
+            }
+    
+            .note-actions button {
+                background: none;
+                border: none;
+                color: var(--text-muted);
+                cursor: pointer;
+                padding: 4px 8px;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+                font-size: 0.85rem;
+            }
+    
+            .note-actions .delete-btn:hover {
+                color: #ff6b6b;
+                background: rgba(255, 50, 50, 0.1);
+            }
+    
+            .note-actions .edit-btn:hover {
+                color: var(--gold);
+                background: rgba(255, 215, 0, 0.08);
+            }
+    
+            .note-text {
+                color: var(--text-primary);
+                font-size: 0.95rem;
+                line-height: 1.6;
+                white-space: pre-wrap;
+                word-break: break-word;
+                padding-right: 4px;
+            }
+    
+            .empty-state {
+                text-align: center;
+                padding: 50px 20px;
+                color: var(--text-muted);
+            }
+    
+            .empty-state i {
+                font-size: 3.5rem;
+                color: rgba(255, 215, 0, 0.06);
+                margin-bottom: 16px;
+                display: block;
+            }
+    
+            .empty-state p {
+                opacity: 0.6;
+                font-size: 0.95rem;
+            }
+    
+            /* TOAST */
+            .toast {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%) translateY(100px);
+                background: rgba(18, 15, 10, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 215, 0, 0.1);
+                padding: 14px 28px;
+                border-radius: 16px;
+                color: var(--text-primary);
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+                transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+                opacity: 0;
+                pointer-events: none;
+                z-index: 1000;
+            }
+    
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+    
+            .toast i {
+                color: var(--gold);
+                font-size: 1.2rem;
+            }
+    
+            .toast.success i { color: #4caf50; }
+            .toast.error i { color: #ff6b6b; }
+    
+            /* FOOTER */
+            .footer {
+                text-align: center;
+                margin-top: 22px;
+                padding-top: 16px;
+                border-top: 1px solid rgba(255, 215, 0, 0.03);
+                font-size: 0.65rem;
+                color: #5a4f3a;
+                letter-spacing: 1.2px;
+            }
+    
+            .footer i {
+                color: var(--gold-dark);
+                margin: 0 4px;
+                font-size: 0.4rem;
+            }
+    
+            /* RESPONSIVE */
+            @media (max-width: 540px) {
+                .app { padding: 18px 14px 22px; border-radius: 32px; }
+                .brand h1 { font-size: 1.1rem; }
+                .brand .icon { font-size: 1.6rem; }
+                .date-badge { font-size: 0.65rem; padding: 4px 12px; }
+                .tab-btn { font-size: 0.75rem; padding: 8px 10px; }
+                .tab-btn i { font-size: 0.8rem; }
+                .btn { padding: 10px 18px; font-size: 0.85rem; min-width: 80px; }
+                .write-area textarea { min-height: 140px; font-size: 0.9rem; }
+                .note-text { font-size: 0.88rem; }
+                .stat-item { font-size: 0.75rem; padding: 6px 14px; }
+            }
+    
+            @media (max-width: 400px) {
+                .btn-group { flex-direction: column; }
+                .btn { flex: none; }
+                .tabs { gap: 4px; }
+                .tab-btn { font-size: 0.7rem; padding: 6px 8px; }
+            }
+        </style>
+</head>
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="brand">
+            <i class="fas fa-book-open icon"></i>
+            <h1>दैनिक डायरी</h1>
+        </div>
+        <div class="date-badge">
+            <i class="fas fa-calendar-day"></i>
+            <span id="todayDate"></span>
+        </div>
+    </header>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="write">
+            <i class="fas fa-pen-fancy"></i> लिखें
+        </button>
+        <button class="tab-btn" data-tab="saved">
+            <i class="fas fa-list"></i> सेव्ड लिस्ट
+        </button>
+    </div>
+
+    <!-- TAB 1: WRITE -->
+    <div class="tab-content active" id="tab-write">
+        <div class="write-area">
+            <textarea id="noteInput" placeholder="आज क्या खास है? अपने विचार यहाँ लिखें..."></textarea>
+            <div class="char-count">
+                <span id="charCount">0</span> अक्षर
+            </div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="saveBtn">
+                <i class="fas fa-save"></i> सेव करें
+            </button>
+            <button class="btn btn-secondary" id="clearBtn">
+                <i class="fas fa-eraser"></i> साफ करें
+            </button>
+        </div>
+    </div>
+
+    <!-- TAB 2: SAVED LIST -->
+    <div class="tab-content" id="tab-saved">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <i class="fas fa-file-alt"></i>
+                कुल नोट्स: <span id="totalNotes">0</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-calendar"></i>
+                आज के: <span id="todayNotes">0</span>
+            </div>
+        </div>
+        <div class="notes-list" id="notesList">
+            <!-- Notes will be rendered here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-circle"></i> श्री गणेशाय नमः <i class="fas fa-circle"></i>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">सेव हो गया!</span>
+</div>
+
+<script>
+// ================================================================
+//  📔 COMPLETE DIARY APP - 100% WORKING
+// ================================================================
+
+// ----- DOM REFS -----
+const noteInput = document.getElementById('noteInput');
+const charCount = document.getElementById('charCount');
+const saveBtn = document.getElementById('saveBtn');
+const clearBtn = document.getElementById('clearBtn');
+const notesList = document.getElementById('notesList');
+const totalNotes = document.getElementById('totalNotes');
+const todayNotes = document.getElementById('todayNotes');
+const toast = document.getElementById('toast');
+const toastMessage = document.getElementById('toastMessage');
+const dateDisplay = document.getElementById('todayDate');
+
+// ----- TODAY'S DATE -----
+const today = new Date();
+const todayStr = today.toISOString().split('T')[0];
+dateDisplay.textContent = today.toLocaleDateString('hi-IN', { 
+    weekday: 'short', 
+    day: 'numeric', 
+    month: 'short' 
+});
+
+// ----- STORAGE KEY -----
+const STORAGE_KEY = 'diary_notes_bhakti';
+
+// ----- GET ALL NOTES -----
+function getNotes() {
+    try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+    } catch {
+        return [];
+    }
+}
+
+// ----- SAVE NOTES -----
+function saveNotes(notes) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+}
+
+// ----- TOAST -----
+let toastTimeout;
+
+function showToast(message, type = 'success') {
+    toast.className = 'toast';
+    toastMessage.textContent = message;
+    toast.querySelector('i').className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+    
+    clearTimeout(toastTimeout);
+    // Force reflow
+    void toast.offsetWidth;
+    toast.classList.add('show');
+    
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
+}
+
+// ----- RENDER NOTES -----
+function renderNotes() {
+    const notes = getNotes();
+    const list = notesList;
+    
+    if (notes.length === 0) {
+        list.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-book-open"></i>
+                <p>अभी कोई नोट नहीं है<br>नया नोट लिखें और सेव करें</p>
+            </div>
+        `;
+        totalNotes.textContent = '0';
+        todayNotes.textContent = '0';
+        return;
+    }
+
+    // Sort: newest first
+    const sorted = [...notes].reverse();
+    
+    // Today's count
+    const todayCount = notes.filter(n => n.date === todayStr).length;
+    todayNotes.textContent = todayCount;
+    totalNotes.textContent = notes.length;
+
+    list.innerHTML = sorted.map((note, index) => {
+        const realIndex = notes.length - 1 - index;
+        const dateObj = new Date(note.date);
+        const displayDate = dateObj.toLocaleDateString('hi-IN', { 
+            weekday: 'short', 
+            day: 'numeric', 
+            month: 'short',
+            year: 'numeric'
+        });
+        
+        return `
+            <div class="note-item" data-index="${realIndex}">
+                <div class="note-header">
+                    <div class="note-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        ${displayDate}
+                        ${note.date === todayStr ? ' <span style="color:var(--gold);font-size:0.7rem;">(आज)</span>' : ''}
+                    </div>
+                    <div class="note-actions">
+                        <button class="edit-btn" onclick="editNote(${realIndex})" title="एडिट करें">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="delete-btn" onclick="deleteNote(${realIndex})" title="डिलीट करें">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="note-text">${escapeHtml(note.text)}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ----- ESCAPE HTML -----
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ----- DELETE NOTE -----
+function deleteNote(index) {
+    if (!confirm('क्या आप यह नोट डिलीट करना चाहते हैं?')) return;
+    
+    const notes = getNotes();
+    if (index >= 0 && index < notes.length) {
+        notes.splice(index, 1);
+        saveNotes(notes);
+        renderNotes();
+        showToast('🗑️ नोट डिलीट हो गया', 'success');
+    }
+}
+
+// ----- EDIT NOTE -----
+function editNote(index) {
+    const notes = getNotes();
+    if (index >= 0 && index < notes.length) {
+        const note = notes[index];
+        noteInput.value = note.text;
+        updateCharCount();
+        
+        // Switch to write tab
+        switchTab('write');
+        
+        // Focus on input
+        noteInput.focus();
+        noteInput.setSelectionRange(noteInput.value.length, noteInput.value.length);
+        
+        // Store edit index
+        noteInput.dataset.editIndex = index;
+        saveBtn.innerHTML = '<i class="fas fa-pen"></i> अपडेट करें';
+        
+        showToast('✏️ नोट एडिट कर रहे हैं', 'success');
+    }
+}
+
+// ----- UPDATE CHAR COUNT -----
+function updateCharCount() {
+    const count = noteInput.value.length;
+    charCount.textContent = count;
+}
+
+// ----- SAVE NOTE -----
+function saveNote() {
+    const text = noteInput.value.trim();
+    
+    if (!text) {
+        showToast('⚠️ कृपया कुछ लिखें', 'error');
+        return;
+    }
+
+    const notes = getNotes();
+    const editIndex = noteInput.dataset.editIndex;
+    
+    if (editIndex !== undefined && editIndex !== '') {
+        // Update existing note
+        const idx = parseInt(editIndex);
+        if (idx >= 0 && idx < notes.length) {
+            notes[idx].text = text;
+            notes[idx].date = todayStr;
+            saveNotes(notes);
+            showToast('✅ नोट अपडेट हो गया', 'success');
+        }
+        delete noteInput.dataset.editIndex;
+        saveBtn.innerHTML = '<i class="fas fa-save"></i> सेव करें';
+    } else {
+        // New note
+        const newNote = {
+            text: text,
+            date: todayStr,
+            timestamp: Date.now()
+        };
+        notes.push(newNote);
+        saveNotes(notes);
+        showToast('✅ नोट सेव हो गया', 'success');
+    }
+    
+    noteInput.value = '';
+    updateCharCount();
+    renderNotes();
+}
+
+// ----- CLEAR INPUT -----
+function clearInput() {
+    if (noteInput.value.trim() && !confirm('क्या आप लिखा हुआ साफ करना चाहते हैं?')) {
+        return;
+    }
+    noteInput.value = '';
+    updateCharCount();
+    delete noteInput.dataset.editIndex;
+    saveBtn.innerHTML = '<i class="fas fa-save"></i> सेव करें';
+    noteInput.focus();
+}
+
+// ----- SWITCH TAB -----
+function switchTab(tabId) {
+    // Update tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+    });
+    
+    // Update content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === `tab-${tabId}`);
+    });
+    
+    // Refresh list if switching to saved
+    if (tabId === 'saved') {
+        renderNotes();
+    }
+}
+
+// ================================================================
+//  EVENT LISTENERS
+// ================================================================
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        switchTab(btn.dataset.tab);
+    });
+});
+
+// Character count
+noteInput.addEventListener('input', updateCharCount);
+
+// Save button
+saveBtn.addEventListener('click', saveNote);
+
+// Clear button
+clearBtn.addEventListener('click', clearInput);
+
+// Keyboard shortcut: Ctrl+S to save
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveNote();
+    }
+});
+
+// ================================================================
+//  INIT
+// ================================================================
+
+// Initial render
+renderNotes();
+updateCharCount();
+
+// Auto-save draft on page unload? No, user saves manually.
+
+console.log('📔 दैनिक डायरी लोड हो गई!');
+console.log(`📝 कुल नोट्स: ${getNotes().length}`);
+</script>
+
+</body>
+</html>

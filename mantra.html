@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Pro Max Mantra Jaap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --gold-glow: rgba(255, 215, 0, 0.6);
+            --dark: #0a0a0f;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+            color: #fff;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== पार्टिकल बैकग्राउंड ===== */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== मुख्य कंटेनर ===== */
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        /* ===== हेडर ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 300;
+            color: var(--gold);
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px var(--gold-glow);
+            text-transform: uppercase;
+        }
+        .header .sub {
+            font-size: 11px;
+            color: #665522;
+            letter-spacing: 4px;
+            margin-top: 4px;
+        }
+
+        /* ===== मंत्र ड्रॉपडाउन ===== */
+        .selector-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+        }
+        #mantraSelect {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23FFD700' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            transition: 0.3s;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        #mantraSelect:hover {
+            border-color: var(--gold);
+            background-color: rgba(255, 215, 0, 0.08);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+        #mantraSelect option {
+            background: #1a1a2e;
+            color: var(--gold);
+            padding: 10px;
+        }
+
+        /* ===== मंत्र डिस्प्ले ===== */
+        #mantraDisplay {
+            padding: 18px 30px;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 215, 0, 0.02);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            letter-spacing: 4px;
+            line-height: 1.4;
+            position: relative;
+        }
+        #mantraDisplay::before {
+            content: '〰️';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            font-size: 14px;
+            opacity: 0.3;
+        }
+        #mantraDisplay::after {
+            content: '〰️';
+            position: absolute;
+            bottom: -12px;
+            left: 20px;
+            font-size: 14px;
+            opacity: 0.3;
+        }
+        .blink-effect {
+            box-shadow: 0 0 60px var(--gold-glow), 0 0 120px rgba(255, 215, 0, 0.2);
+            transform: scale(1.03);
+            border-color: #fff;
+        }
+
+        /* ===== 108 माला (बेहतर) ===== */
+        .mala-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 10px 0;
+        }
+        .mala-circle {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 215, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: malaPulse 6s ease-in-out infinite;
+        }
+        @keyframes malaPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.02);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.05);
+            }
+        }
+
+        .bead {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: default;
+        }
+        .bead.active {
+            background: var(--gold);
+            box-shadow: 0 0 25px var(--gold-glow), 0 0 60px rgba(255, 215, 0, 0.2);
+            border-color: #fff;
+            transform: scale(1.6);
+        }
+        .bead.special {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.3);
+            width: 18px;
+            height: 18px;
+        }
+        .bead.special.active {
+            background: #FF6B6B;
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.6);
+            border-color: #fff;
+        }
+
+        /* ===== सेंटर मेरू ===== */
+        .meru {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #3a2a0a, #1a1000);
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--gold);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
+            font-weight: bold;
+            letter-spacing: 1px;
+            z-index: 2;
+            user-select: none;
+        }
+
+        /* ===== काउंटर ===== */
+        .counter-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 350px;
+        }
+        .counter {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 0 0 40px var(--gold-glow);
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+            min-width: 80px;
+            text-align: center;
+        }
+        .counter-label {
+            font-size: 12px;
+            color: #665522;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .counter-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== प्रोग्रेस रिंग ===== */
+        .progress-ring {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: conic-gradient(var(--gold) var(--progress, 0%), rgba(255, 215, 0, 0.05) 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .progress-ring .inner {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #0a0a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* ===== बटन ===== */
+        .jaap-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            background: radial-gradient(circle at 40% 35%, #1a1a00, #000);
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .jaap-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.05), transparent, rgba(255, 215, 0, 0.05), transparent);
+            animation: spinGlow 10s linear infinite;
+        }
+        @keyframes spinGlow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .jaap-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 80px rgba(255, 215, 0, 0.15);
+            border-color: #fff;
+        }
+        .jaap-btn:active {
+            transform: scale(0.92);
+        }
+        .jaap-btn .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            animation: rippleAnim 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            to {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+
+        /* ===== स्टैट्स ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 5px;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.05);
+            border-radius: 16px;
+            padding: 12px 8px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .stat-card .num {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .stat-card .label {
+            font-size: 9px;
+            color: #665522;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .stat-card.highlight {
+            border-color: rgba(255, 215, 0, 0.15);
+            background: rgba(255, 215, 0, 0.03);
+        }
+
+        /* ===== फुटर ===== */
+        .footer {
+            margin-top: 15px;
+            font-size: 10px;
+            color: #332a15;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* ===== रिस्पॉन्सिव ===== */
+        @media (max-width: 480px) {
+            .mala-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+            .bead {
+                width: 10px;
+                height: 10px;
+            }
+            .bead.special {
+                width: 14px;
+                height: 14px;
+            }
+            .meru {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            .counter {
+                font-size: 48px;
+            }
+            .jaap-btn {
+                width: 110px;
+                height: 110px;
+                font-size: 16px;
+            }
+            #mantraDisplay {
+                font-size: 20px;
+                padding: 14px 20px;
+                min-height: 65px;
+            }
+            .stats {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .header h1 {
+                font-size: 17px;
+                letter-spacing: 5px;
+            }
+        }
+        @media (max-width: 380px) {
+            .mala-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+            .bead {
+                width: 8px;
+                height: 8px;
+            }
+            .bead.special {
+                width: 11px;
+                height: 11px;
+            }
+            .meru {
+                width: 28px;
+                height: 28px;
+                font-size: 10px;
+            }
+            .counter {
+                font-size: 36px;
+            }
+            .jaap-btn {
+                width: 90px;
+                height: 90px;
+                font-size: 13px;
+            }
+            #mantraDisplay {
+                font-size: 16px;
+                padding: 10px 14px;
+                min-height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== पार्टिकल कैनवास ===== -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <!-- हेडर -->
+        <div class="header">
+            <h1>✦ मंत्र जाप ✦</h1>
+            <div class="sub">— 108 माला —</div>
+        </div>
+
+        <!-- ड्रॉपडाउन -->
+        <div class="selector-wrapper">
+            <select id="mantraSelect" onchange="updateMantra()">
+                <option value="ॐ नमः शिवाय">🔱 भगवान शिव</option>
+                <option value="ॐ नमो भगवते वासुदेवाय">🟡 श्री कृष्ण</option>
+                <option value="ॐ श्री गणेशाय नमः">🐘 श्री गणेश</option>
+                <option value="ॐ श्रीराम जय राम जय जय राम">🏹 श्री राम</option>
+                <option value="ॐ हनुमते नमः">🙏 हनुमान जी</option>
+                <option value="ॐ दुं दुर्गायै नमः">🔴 माता दुर्गा</option>
+                <option value="ॐ श्री महालक्ष्म्यै नमः">💰 माता लक्ष्मी</option>
+                <option value="ॐ विष्णवे नमः">🟦 भगवान विष्णु</option>
+                <option value="ॐ इंद्राय नमः">⚡ इंद्र देव</option>
+                <option value="ॐ सूर्याय नमः">☀️ सूर्य देव</option>
+                <option value="ॐ चंद्राय नमः">🌙 चंद्र देव</option>
+                <option value="ॐ ऐं सरस्वत्यै नमः">🎵 माता सरस्वती</option>
+                <option value="ॐ संतोषी मात्रे नमः">🌸 संतोषी माता</option>
+                <option value="ॐ शं शनैश्चराय नमः">🪐 शनि देव</option>
+                <option value="ॐ खाटू श्याम देवाय नमः">🎨 खाटू श्याम</option>
+                <option value="ॐ जीणाय नमः">🔥 जीण माता</option>
+            </select>
+        </div>
+
+        <!-- मंत्र डिस्प्ले -->
+        <div id="mantraDisplay">ॐ नमः शिवाय</div>
+
+        <!-- 108 माला -->
+        <div class="mala-wrapper">
+            <div class="mala-circle" id="mala"></div>
+            <div class="meru" id="meruText">108</div>
+        </div>
+
+        <!-- काउंटर + प्रोग्रेस -->
+        <div class="counter-area">
+            <div class="counter-wrap">
+                <div class="counter-label">जाप</div>
+                <div class="counter" id="count">0</div>
+            </div>
+            <div class="progress-ring" id="progressRing">
+                <div class="inner" id="progressText">0%</div>
+            </div>
+        </div>
+
+        <!-- जाप बटन -->
+        <button class="jaap-btn" onclick="jaap()" id="jaapBtn">
+            <span style="position:relative;z-index:1;">जाप</span>
+        </button>
+
+        <!-- स्टैट्स -->
+        <div class="stats">
+            <div class="stat-card highlight">
+                <div class="num" id="totalJaps">0</div>
+                <div class="label">कुल जाप</div>
+            </div>
+            <div class="stat-card">
+                <div class="num" id="completedMalas">0</div>
+                <div class="label">पूर्ण मालाएँ</div>
+            </div>
+            <div class="stat-card">
+                <div class="num" id="currentMala">0</div>
+                <div class="label">वर्तमान माला</div>
+            </div>
+        </div>
+
+        <div class="footer">🕉️ ॐ शांति ॐ 🕉️</div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  1. पार्टिकल सिस्टम (शांत, सुंदर)
+        // ============================================================
+        (function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            const particles = [];
+            const COUNT = 70;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h;
+                    this.r = Math.random() * 1.8 + 0.5;
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.alpha = Math.random() * 0.4 + 0.1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > w) this.vx *= -1;
+                    if (this.y < 0 || this.y > h) this.vy *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < COUNT; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                // कनेक्शन
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255, 215, 0, ${0.04 * (1 - dist / 120)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        })();
+
+        // ============================================================
+        //  2. माला बनाना
+        // ============================================================
+        const  malaContainer = document.getElementById('mala');
+        const BEADS = 108;
+        const RADIUS_RATIO = 0.88; // माला का दायरा
+
+        function getMalaRadius() {
+            const rect = malaContainer.getBoundingClientRect();
+            return rect.width * 0.5 * RADIUS_RATIO;
+        }
+
+        function buildMala() {
+            malaContainer.innerHTML = '';
+            const radius = getMalaRadius();
+            const centerX = malaContainer.offsetWidth / 2;
+            const centerY = malaContainer.offsetHeight / 2;
+
+            for (let i = 0; i < BEADS; i++) {
+                const bead = document.createElement('div');
+                bead.className = 'bead';
+                // हर 27वाँ मनका विशेष (गुरु मनका)
+                if ((i + 1) % 27 === 0 && i !== 0) {
+                    bead.classList.add('special');
+                }
+                const angle = (i / BEADS) * 360 - 90;
+                const rad = (angle * Math.PI) / 180;
+                const x = centerX + radius * Math.cos(rad) - 7;
+                const y = centerY + radius * Math.sin(rad) - 7;
+                bead.style.left = x + 'px';
+                bead.style.top = y + 'px';
+                bead.dataset.index = i;
+                malaContainer.appendChild(bead);
+            }
+            // मेरू (बीच में) पहले से है
+        }
+
+        // रीसाइज़ पर माला रिबिल्ड
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const active = document.querySelectorAll('.bead.active').length;
+                buildMala();
+                // पुनः active restore
+                const beads = document.querySelectorAll('.bead');
+                for (let i = 0; i < active && i < beads.length; i++) {
+                    beads[i].classList.add('active');
+                }
+            }, 300);
+        });
+
+        // ============================================================
+        //  3. मुख्य लॉजिक
+        // ============================================================
+        let count = 0;
+        let totalJaps = 0;
+        let completedMalas = 0;
+        let currentMalaCount = 0;
+        let isAnimating = false;
+
+        const mantraDisplay = document.getElementById('mantraDisplay');
+        const countEl = document.getElementById('count');
+        const totalJapsEl = document.getElementById('totalJaps');
+        const completedMalasEl = document.getElementById('completedMalas');
+        const currentMalaEl = document.getElementById('currentMala');
+        const progressRing = document.getElementById('progressRing');
+        const progressText = document.getElementById('progressText');
+        const meruText = document.getElementById('meruText');
+        const jaapBtn = document.getElementById('jaapBtn');
+
+        function updateMantra() {
+            const sel = document.getElementById('mantraSelect');
+            mantraDisplay.innerText = sel.value;
+            resetJaap();
+        }
+
+        function resetJaap() {
+            count = 0;
+            currentMalaCount = 0;
+            updateUI();
+            document.querySelectorAll('.bead').forEach(b => b.classList.remove('active'));
+            // मेरू रीसेट
+            meruText.textContent = '108';
+        }
+
+        function updateUI() {
+            countEl.textContent = count;
+            totalJapsEl.textContent = totalJaps;
+            completedMalasEl.textContent = completedMalas;
+            currentMalaEl.textContent = currentMalaCount;
+
+            const progress = (count / 108) * 100;
+            progressRing.style.setProperty('--progress', progress + '%');
+            progressText.textContent = Math.round(progress) + '%';
+
+            // मेरू पर शेष
+            const remaining = 108 - count;
+            meruText.textContent = remaining > 0 ? remaining : '108';
+
+            // कंपन
+            if (count > 0 && count % 27 === 0) {
+                meruText.style.color = '#FF6B6B';
+                setTimeout(() => { meruText.style.color = ''; }, 300);
+            }
+        }
+
+        function jaap() {
+            if (isAnimating) return;
+
+            if (count < 108) {
+                isAnimating = true;
+
+                // ब्लिंक इफेक्ट
+                mantraDisplay.classList.add('blink-effect');
+                setTimeout(() => mantraDisplay.classList.remove('blink-effect'), 250);
+
+                // मनका एक्टिवेट
+                const beads = document.querySelectorAll('.bead');
+                if (count < beads.length) {
+                    beads[count].classList.add('active');
+                    // स्पेशल इफेक्ट
+                    if (beads[count].classList.contains('special')) {
+                        mantraDisplay.style.color = '#FF6B6B';
+                        setTimeout(() => { mantraDisplay.style.color = ''; }, 300);
+                    }
+                }
+
+                count++;
+                totalJaps++;
+                currentMalaCount++;
+                updateUI();
+
+                // कंपन
+                if (navigator.vibrate) navigator.vibrate(20);
+
+                // रिपल इफेक्ट बटन पर
+                const btn = jaapBtn;
+                const rect = btn.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                btn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+
+                // हर 27 पर विशेष प्रभाव
+                if (count % 27 === 0 && count !== 108) {
+                    mantraDisplay.style.boxShadow = '0 0 80px rgba(255,107,107,0.5)';
+                    setTimeout(() => { mantraDisplay.style.boxShadow = ''; }, 400);
+                }
+
+                isAnimating = false;
+
+            } else {
+                // 108 पूर्ण
+                completedMalas++;
+                currentMalaCount = 0;
+                // फ्लैश इफेक्ट
+                mantraDisplay.style.boxShadow = '0 0 100px rgba(255,215,0,0.8)';
+                mantraDisplay.style.borderColor = '#fff';
+                setTimeout(() => {
+                    mantraDisplay.style.boxShadow = '';
+                    mantraDisplay.style.borderColor = '';
+                }, 600);
+
+                // सभी मनके फ्लैश
+                document.querySelectorAll('.bead').forEach(b => {
+                    b.style.transition = '0.1s';
+                    b.style.background = 'var(--gold)';
+                    setTimeout(() => {
+                        b.style.background = '';
+                        b.style.transition = '';
+                    }, 300);
+                });
+
+                // कंपन (लंबा)
+                if (navigator.vibrate) navigator.vibrate([50, 50, 50, 50, 50]);
+
+                // रीसेट
+                count = 0;
+                document.querySelectorAll('.bead').forEach(b => b.classList.remove('active'));
+                updateUI();
+
+                // माला पूर्ण हुई का संदेश
+                meruText.textContent = '✨';
+                setTimeout(() => { meruText.textContent = '108'; }, 1500);
+            }
+        }
+
+        // ============================================================
+        //  4. इनिशियलाइज़
+        // ============================================================
+        setTimeout(() => {
+            buildMala();
+            updateUI();
+        }, 100);
+
+        // कीबोर्ड सपोर्ट (स्पेस बार)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ' || e.key === 'Space') {
+                e.preventDefault();
+                jaap();
+            }
+        });
+
+        // डबल टैप प्रोटेक्शन
+        let lastTap = 0;
+        document.addEventListener('touchstart', (e) => {
+            const now = Date.now();
+            if (now - lastTap < 300) e.preventDefault();
+            lastTap = now;
+        }, { passive: false });
+    </script>
+</body>
+</html>
