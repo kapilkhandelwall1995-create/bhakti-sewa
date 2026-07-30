@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <!-- Play Store & Mobile First Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <!-- Android Status Bar Color -->
+    <meta name="theme-color" content="#ff9933">
+    
+    <title data-i18n="app_title">Bhakti Sewa - आपका अपना डिजिटल मंदिर</title>
+    
+    <!-- Preconnect for faster YouTube loading -->
+    <link rel="preconnect" href="https://www.youtube-nocookie.com">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ====================================================================
+         01. SPLASH SCREEN
+         ==================================================================== -->
+    <div id="splashScreen" class="splash-screen" aria-hidden="true">
+        <img src="assets/icon.png" class="logo" alt="Bhakti Sewa Logo" loading="lazy">
+        <h1 data-i18n="splash_title">भक्ति सेवा</h1>
+        <p data-i18n="splash_subtitle">आपका अपना डिजिटल मंदिर</p>
+    </div>
+
+
+    <!-- ====================================================================
+         02. ALL SYSTEM MODALS (Part A - Core Settings & Policy Modals)
+         ==================================================================== -->
+    
+    <!-- Notification Modal -->
+    <div id="notificationModal" class="modal hidden" role="dialog" aria-labelledby="notificationModalTitle" aria-modal="true">
+        <div class="modal-content">
+            <button id="closeNotifModalBtn" class="close-modal" aria-label="Close Notification Modal">&times;</button>
+            <h3 id="notificationModalTitle" data-i18n="notif_title">🔔 नोटिफिकेशन सेटिंग्स</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin: 10px 0 20px 0;" data-i18n="notif_desc">दैनिक दर्शन, सुबह के मंत्र और त्यौहारों की सूचनाएं प्राप्त करें।</p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                <span style="font-size: 14px; font-weight: bold; color: var(--text-color);" data-i18n="notif_daily">दैनिक सूचनाएं (Daily Alerts)</span>
+                <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                    <input type="checkbox" id="notifToggle" style="opacity: 0; width: 0; height: 0;">
+                    <span id="notifSlider" style="position: absolute; cursor: pointer; inset: 0; background-color: #ccc; transition: .4s; border-radius: 24px;"></span>
+                </label>
+            </div>
+            
+            <button id="saveNotifBtn" class="ultra-pro-btn" style="min-height: 44px; font-size: 15px;" data-i18n="btn_save">सेटिंग्स सेव करें</button>
+        </div>
+    </div>
+
+    <!-- Update Notification Modal -->
+    <div id="updateAlertModal" class="modal hidden" role="dialog" aria-labelledby="updateModalTitle" aria-modal="true">
+        <div class="modal-content" style="border: 2px solid var(--primary-color);">
+            <button id="closeUpdateModalBtn" class="close-modal" aria-label="Close">&times;</button>
+            <span style="font-size: 35px;">✨</span>
+            <h3 id="updateModalTitle" style="color: var(--primary-color); margin: 10px 0;" data-i18n="update_title">नया व्रत एवं पावन अपडेट!</h3>
+            <p id="updateAlertText" style="font-size: 14px; color: var(--text-color); line-height: 1.6; margin-bottom: 20px;" data-i18n="update_desc">भक्ति सेवा ऐप में आज का नया व्रत और विशेष आरती सामग्री जोड़ दी गई है। अभी दर्शन करें! 🙏</p>
+            <button id="viewUpdateBtn" class="ultra-pro-btn" style="min-height: 44px; font-size: 15px;" data-i18n="btn_view_now">अभी देखें</button>
+        </div>
+    </div>
+
+    <!-- Theme Selection Modal -->
+    <div id="themeModal" class="modal hidden" role="dialog" aria-labelledby="themeModalTitle" aria-modal="true">
+        <div class="modal-content">
+            <button id="closeThemeModalBtn" class="close-modal" aria-label="Close Theme Modal">&times;</button>
+            <h3 id="themeModalTitle" data-i18n="theme_title">✨ भक्तिमय थीम चुनें</h3>
+            <div class="theme-grid">
+                <button class="theme-box" data-theme="divine-saffron" style="background: #fff5eb; color: #d97706; border: 1px solid #fcd34d;" data-i18n="t_saffron">दिव्य भगवा</button>
+                <button class="theme-box" data-theme="temple-red" style="background: #fff1f2; color: #be123c; border: 1px solid #fda4af;" data-i18n="t_red">मंदिर सिंदूरी</button>
+                <button class="theme-box" data-theme="golden-temple" style="background: #fefce8; color: #854d0e; border: 1px solid #fde047;" data-i18n="t_gold">स्वर्ण पीला</button>
+                <button class="theme-box" data-theme="tulsi-green" style="background: #f0fdf4; color: #15803d; border: 1px solid #86efac;" data-i18n="t_green">तुलसी हरा</button>
+                <button class="theme-box" data-theme="ganga-blue" style="background: #f0f9ff; color: #0369a1; border: 1px solid #7dd3fc;" data-i18n="t_blue">गंगा नीला</button>
+                <button class="theme-box" data-theme="pujan-purple" style="background: #faf5ff; color: #7e22ce; border: 1px solid #d8b4fe;" data-i18n="t_purple">पूजन बैंगनी</button>
+                <button class="theme-box" data-theme="chandan-orange" style="background: #fff7ed; color: #c2410c; border: 1px solid #fdba74;" data-i18n="t_orange">चंदन केसरी</button>
+                <button class="theme-box" data-theme="lotus-pink" style="background: #fdf2f8; color: #be185d; border: 1px solid #f472b6;" data-i18n="t_pink">कमल गुलाबी</button>
+                <button class="theme-box" data-theme="shanti-white" style="background: #f8fafc; color: #334155; border: 1px solid #cbd5e1;" data-i18n="t_white">शांति श्वेत</button>
+                <button class="theme-box" data-theme="bhakti-gold" style="background: #fef3c7; color: #78350f; border: 1px solid #f59e0b;" data-i18n="t_bhakti">भक्ति स्वर्ण</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden" role="dialog" aria-labelledby="settingsModalTitle" aria-modal="true">
+        <div class="modal-content" style="border-top: 4px solid var(--primary-color);">
+            <button id="closeSettingsModalBtn" class="close-modal" aria-label="Close">&times;</button>
+            <h3 id="settingsModalTitle" style="color: var(--primary-color); margin-bottom: 20px; font-size: 22px;" data-i18n="settings_title">⚙️ सेटिंग्स</h3>
+            
+            <div class="setting-item">
+                <span style="font-weight: 600; color: var(--text-color);" data-i18n="settings_text_size">📝 अक्षर का आकार</span>
+                <div class="text-size-controls">
+                    <button id="textSizeNormal" class="size-btn active" data-i18n="btn_small">छोटा</button>
+                    <button id="textSizeLarge" class="size-btn" data-i18n="btn_large">बड़ा</button>
+                </div>
+            </div>
+            
+            <hr class="menu-divider" style="margin: 15px 0;">
+            
+            <div class="setting-item">
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-weight: 600; color: var(--text-color);" data-i18n="settings_cache">🧹 ऐप का कचरा साफ करें</span>
+                    <span style="font-size: 12px; color: gray;" data-i18n="settings_cache_hint">(अगर ऐप धीमा चले तो इसे दबाएं)</span>
+                </div>
+                <button id="clearCacheBtn" class="action-btn" data-i18n="btn_clear">साफ़ करें</button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px dashed #ccc;">
+                <p style="font-size: 12px; color: gray; margin: 0;">Bhakti Sewa App</p>
+                <p style="font-size: 11px; color: #a1a1aa; margin: 0;">Version 1.0.0 (Ultra Pro Max)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div id="contactModal" class="modal hidden" role="dialog" aria-labelledby="contactModalTitle" aria-modal="true">
+        <div class="modal-content" style="border-top: 4px solid #25D366; text-align: center;">
+            <button id="closeContactModalBtn" class="close-modal" aria-label="Close">&times;</button>
+            <h3 id="contactModalTitle" style="color: var(--text-color); margin-bottom: 5px; font-size: 22px;" data-i18n="contact_title">📞 संपर्क करें</h3>
+            <p style="font-size: 13px; color: gray; margin-bottom: 15px;" data-i18n="contact_subtitle">भक्ति सेवा परिवार से जुड़ें और अपने सुझाव साझा करें!</p>
+            
+            <div class="contact-grid">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/918824901017?text=जय%20श्री%20राम!%20मैं%20भक्ति%20सेवा%20ऐप%20से%20आया%20हूँ।" target="_blank" class="contact-card whatsapp">
+                    <span class="c-icon">💬</span><span class="c-text">WhatsApp</span>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/bhaktisagar.app?igsh=MXVwa205aDFrZGY3cQ==" target="_blank" class="contact-card instagram">
+                    <span class="c-icon">📸</span><span class="c-text">Instagram</span>
+                </a>
+                <!-- YouTube -->
+                <a href="https://youtube.com/@bhaktisagarkapil?si=X4QUd36NtAtEiw75" target="_blank" class="contact-card youtube">
+                    <span class="c-icon">▶️</span><span class="c-text">YouTube</span>
+                </a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1cdxKhTX29/" target="_blank" class="contact-card facebook">
+                    <span class="c-icon">👥</span><span class="c-text">Facebook</span>
+                </a>
+                <!-- Email -->
+                <a href="mailto:kapilkhandelwall.1995@gmail.com" target="_blank" class="contact-card email">
+                    <span class="c-icon">📧</span><span class="c-text">Email</span>
+                </a>
+            </div>
+            
+            <div class="contact-disclaimer" style="margin-top: 20px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; text-align: left;">
+                <p style="font-size: 12px; color: #475569; line-height: 1.5; margin: 0;" data-i18n="contact_disclaimer">
+                    <strong>🙏 निवेदन:</strong> अगर आपके पास कोई नया भजन, व्रत कथा या जानकारी है जिसे आप ऐप में जोड़ना चाहते हैं, या आपको ऐप में कोई तकनीकी समस्या आ रही है, तो बेझिझक ऊपर दिए गए किसी भी माध्यम से हमसे संपर्क करें।
+                </p>
+            </div>
+            
+            <div style="margin-top: 15px; font-size: 12px; color: #94a3b8; text-align: center;">
+                Designed & Developed by <br>
+                <span style="font-weight: bold; color: var(--primary-color); font-size: 14px;">Kapil Khandelwal</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About App Modal -->
+    <div id="aboutModal" class="modal hidden" role="dialog" aria-labelledby="aboutModalTitle" aria-modal="true">
+        <div class="modal-content about-modal-wrapper">
+            <button id="closeAboutModalBtn" class="close-modal" aria-label="Close">&times;</button>
+            <div class="about-header-area">
+                <div class="about-header-icon">🪔</div>
+                <h3 id="aboutModalTitle" class="about-title" data-i18n="about_title">भक्ति सेवा</h3>
+                <p class="about-subtitle" data-i18n="about_subtitle">डिजिटल मंदिर - Digital Sanctuary of Devotion</p>
+            </div>
+            <div class="about-desc-box">
+                <p class="about-desc-text" data-i18n="about_desc">🙏 <strong>भक्ति सेवा</strong> एक पवित्र डिजिटल मंच है, जिसे आपकी दैनिक आध्यात्मिक यात्रा को सरल बनाने के लिए बनाया गया है। हमारा मुख्य उद्देश्य पारंपरिक सनातन संस्कृति और आधुनिक तकनीक को जोड़ना है, जहाँ आपको सभी प्रसिद्ध धामों के दर्शन, दैनिक आरती, और पंचांग की जानकारी एक ही स्थान पर मिल सके। यह ऐप पूरी श्रद्धा और समर्पण के साथ सनातन परिवार की सेवा के लिए समर्पित है। ✨</p>
+            </div>
+            <div class="about-details-box">
+                <span>📦 Version: <strong>1.0.0</strong></span>
+                <span>🛡️ Platform: <strong>Android / Web</strong></span>
+            </div>
+            <div class="about-footer">
+                <p class="about-footer-title">Designed & Developed with ❤️ by</p>
+                <span class="developer-name">Kapil Khandelwal</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal hidden" role="dialog" aria-labelledby="privacyModalTitle" aria-modal="true">
+        <div class="modal-content privacy-modal-wrapper">
+            <button id="closePrivacyModalBtn" class="close-modal" aria-label="Close">&times;</button>
+            <div class="privacy-header">
+                <div class="privacy-icon">🔒</div>
+                <h3 id="privacyModalTitle" class="privacy-title" data-i18n="privacy_title">प्राइवेसी पॉलिसी</h3>
+                <p class="privacy-subtitle">PRIVACY & TERMS OF SERVICE</p>
+            </div>
+            <div class="privacy-content-scroll">
+                <div class="privacy-summary-box">
+                    <p data-i18n="privacy_summary"><strong>🙏 हमारा वादा:</strong> भक्ति सेवा ऐप आपका कोई भी निजी डेटा (जैसे नाम, नंबर, लोकेशन) अपने सर्वर पर सेव नहीं करता है। आपका डेटा आपके ही फोन में पूरी तरह सुरक्षित रहता है।</p>
+                </div>
+                <div class="privacy-legal-text">
+                    <h4>1. Data Collection & Storage</h4>
+                    <p>Bhakti Sewa does not collect, store, or transmit any personally identifiable information (PII). App preferences (such as themes and notifications) are strictly stored locally on your device.</p>
+                    <h4>2. Third-Party Services</h4>
+                    <p>Our application utilizes third-party services like YouTube APIs to stream Bhajans and Aartis. By using these features, you acknowledge and agree to YouTube's Terms of Service and Privacy Policy.</p>
+                    <h4>3. Permissions Requested</h4>
+                    <p>The app only requests standard permissions, such as Internet Access, which is necessary to fetch live temple content and panchang updates.</p>
+                    <h4>4. Data Security</h4>
+                    <p>Since we do not collect personal data, your information cannot be breached from our end.</p>
+                    <h4>5. Contact Developer</h4>
+                    <p>If you have any questions, please reach out to the developer, <strong>Kapil Khandelwal</strong>, via the "Contact Us" section.</p>
+                    <p class="privacy-date"><em>Last Updated: July 2026</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ====================================================================
+         02. ALL SYSTEM MODALS (Part B - Devotional Feature Modals)
+         ==================================================================== -->
+
+    <!-- Gau Sewa Modal -->
+    <div id="gauSewaModal" class="modal hidden" role="dialog" aria-labelledby="gauModalTitle" aria-modal="true">
+        <div class="modal-content gau-modal-wrapper">
+            <button id="closeGauSewaBtn" class="close-modal" aria-label="Close">&times;</button>
+            <div class="gau-header">
+                <span class="gau-icon">🐄</span>
+                <h3 id="gauModalTitle" class="gau-title" data-i18n="gau_title">गौ सेवा व अन्नदान</h3>
+                <p class="gau-shloka">"गावो विश्वस्य मातरः"</p>
+            </div>
+            <div class="gau-benefits-box">
+                <h4 class="benefits-title" data-i18n="gau_benefits_title">✨ जीवन में गौ दान के लाभ:</h4>
+                <ul class="benefits-list" data-i18n="gau_benefits_list">
+                    <li><strong>नवग्रह शांति:</strong> गौ सेवा से कुंडली के दोष और नवग्रह शांत होते हैं।</li>
+                    <li><strong>सुख-समृद्धि:</strong> घर में बरकत आती है और आर्थिक परेशानियां दूर होती हैं।</li>
+                    <li><strong>संकट मोचन:</strong> अकाल मृत्यु, पितृ दोष और सभी प्रकार के कष्टों से रक्षा होती है।</li>
+                </ul>
+            </div>
+            <div class="gau-disclaimer">
+                <p data-i18n="gau_disclaimer">🙏 <strong>निवेदन:</strong> आपका दान सीधे गौ माता के चारे और सेवा में लगाया जाएगा.</p>
+            </div>
+            <div class="gau-donate-box">
+                <a href="upi://pay?pa=dummy@upi&pn=ShriKrishnaGaushala&cu=INR" class="gau-donate-btn" target="_blank" data-i18n="gau_donate_btn">✨ UPI से दान करें ✨</a>
+            </div>
+            <div class="gau-verification-box">
+                <div class="badge-info-box">
+                    <p data-i18n="gau_badge_info">🏆 <strong>सम्मान:</strong> दान के बाद नीचे Transaction ID दर्ज करें। आपकी प्रोफाइल पर हमेशा के लिए <strong>⭐ गौ सेवक</strong> का गोल्डन बैज लगा दिया जाएगा!</p>
+                </div>
+                <input type="text" id="transactionIdInput" class="trans-input" placeholder="जैसे: T2607... या UTR नंबर" data-i18n-placeholder="gau_input_placeholder" />
+                <button id="submitTransIdBtn" class="verify-btn" data-i18n="btn_submit">सबमिट करें</button>
+            </div>
+            <div id="gauSuccessMsg" class="gau-success hidden" data-i18n="gau_success_msg">
+                🎉 <strong>धन्यवाद!</strong> गौ माता के प्रति आपके समर्पण के लिए आपकी प्रोफाइल पर <strong>⭐ गौ सेवक</strong> का विशेष बैज लगा दिया गया है!
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Mantra Jaap Modal -->
+    <div id="jaapModal" class="modal hidden" role="dialog" aria-labelledby="jaapModalTitle" aria-modal="true">
+        <div class="modal-content jaap-modal-wrapper">
+            <button id="closeJaapBtn" class="close-modal" aria-label="Close">&times;</button>
+            <div class="jaap-header">
+                <h3 id="jaapModalTitle" class="jaap-title" data-i18n="jaap_title">डिजिटल मंत्र जाप</h3>
+                <p class="jaap-subtitle" data-i18n="jaap_subtitle">अपनी दैनिक साधना पूरी करें</p>
+            </div>
+            <div class="mantra-selector-box">
+                <label for="mantraSelect" class="mantra-label" data-i18n="jaap_select_label">अपना मंत्र चुनें:</label>
+                <select id="mantraSelect" class="mantra-select">
+                    <option value="om_namah_shivay" data-i18n="mantra_shiv">ॐ नमः शिवाय (शिव जी)</option>
+                    <option value="gayatri" data-i18n="mantra_gayatri">ॐ भूर्भुवः स्वः (गायत्री मंत्र)</option>
+                    <option value="hare_krishna" data-i18n="mantra_krishna">हरे राम हरे कृष्ण (विष्णु जी)</option>
+                    <option value="om_ganpataye" data-i18n="mantra_ganesh">ॐ गं गणपतये नमः (गणेश जी)</option>
+                </select>
+            </div>
+            <div class="jaap-counter-area">
+                <div class="jaap-progress-text">
+                    <span id="currentCount">0</span> / 108
+                </div>
+                <button id="jaapTapBtn" class="jaap-tap-button">
+                    <span class="tap-text" data-i18n="jaap_tap_btn">टैप करें</span>
+                </button>
+            </div>
+            <div class="jaap-controls">
+                <button id="resetJaapBtn" class="jaap-reset-btn" data-i18n="jaap_reset_btn">🔄 रिसेट (0)</button>
+                <div class="jaap-stats">
+                    <span data-i18n="jaap_total_text">आज की कुल माला:</span> <strong id="totalMalaCount">0</strong>
+                </div>
+            </div>
+            <div id="jaapSuccessMsg" class="jaap-success hidden" data-i18n="jaap_success_msg">
+                🔔 <strong>जय हो!</strong> आपकी 1 माला (108 जाप) पूरी हो गई है!
+            </div>
+        </div>
+    </div>
+
+    <!-- Aarti Modal -->
+    <div id="aartiModal" class="aarti-modal">
+        <div class="aarti-modal-content">
+            <div class="aarti-header">
+                <h2 data-i18n="aarti_main_title">📖 आरती व चालीसा</h2>
+                <button id="closeAartiBtn" class="close-aarti-btn">✕</button>
+            </div>
+            <div id="aartiListPage"><div id="aartiList"></div></div>
+            <div id="aartiReaderPage" style="display:none;">
+                <div class="reader-toolbar">
+                    <button id="backBtn" data-i18n="btn_back">← वापस</button>
+                    <div class="font-tools"><button id="fontMinus">A-</button><button id="fontPlus">A+</button></div>
+                </div>
+                <h3 id="readerTitle"></h3>
+                <div id="readerContent"></div>
+                <button id="playVoiceBtn" data-i18n="btn_listen">🎙️ सुनें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vrat Katha Modal -->
+    <div id="vratModal" class="vrat-modal" style="display:none;">
+        <div class="vrat-modal-content">
+            <div class="vrat-header">
+                <h2 data-i18n="vrat_main_title">📜 संपूर्ण व्रत कथाएँ</h2>
+                <button id="closeVratBtn" class="close-vrat-btn">✕</button>
+            </div>
+            <div id="vratListPage"><div id="vratList"></div></div>
+            <div id="vratReaderPage" style="display:none;">
+                <div class="reader-toolbar">
+                    <button id="backVratBtn" data-i18n="btn_back">← वापस</button>
+                    <div class="font-tools"><button id="vratFontMinus">A-</button><button id="vratFontPlus">A+</button></div>
+                </div>
+                <h3 id="vratReaderTitle"></h3>
+                <div id="vratReaderContent"></div>
+                <button id="playVratVoiceBtn" data-i18n="btn_listen_dadi">🎙️ सुनें (दादी माँ की आवाज़)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bhajan & Mantra Modal (Reading Content) -->
+    <div id="bhajanModal" class="bhajan-modal" style="display:none;">
+        <div class="bhajan-modal-content">
+            <div class="bhajan-header">
+                <h2 data-i18n="bhajan_main_title">🎵 भजन (लिरिक्स)</h2>
+                <button id="closeBhajanBtn" class="close-bhajan-btn">✕</button>
+            </div>
+            <div id="bhajanListPage"><div id="bhajanList"></div></div>
+            <div id="bhajanReaderPage" style="display:none;">
+                <div class="reader-toolbar">
+                    <button id="backBhajanBtn" data-i18n="btn_back">← वापस</button>
+                    <div class="font-tools"><button id="bhajanFontMinus">A-</button><button id="bhajanFontPlus">A+</button></div>
+                </div>
+                <h3 id="bhajanReaderTitle"></h3>
+                <div id="bhajanReaderContent"></div>
+                <button id="playBhajanVoiceBtn" data-i18n="btn_listen">🎙️ सुनें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Rashifal Modal (Grid UI) -->
+    <div id="rashifalModal" class="rashifal-modal" style="display:none;">
+        <div class="rashifal-modal-content">
+            <div class="rashifal-header">
+                <h2 data-i18n="rashifal_main_title">🔮 दैनिक राशिफल</h2>
+                <button id="closeRashifalBtn" class="close-rashifal-btn">✕</button>
+            </div>
+            <div class="playstore-disclaimer"><span data-i18n="rashifal_disclaimer">✨ यह फलादेश सामान्य ज्योतिषीय गणनाओं और मान्यताओं पर आधारित है।</span></div>
+            <div id="rashifalListPage"><div id="rashifalGrid" class="rashifal-grid"></div></div>
+            <div id="rashifalReaderPage" style="display:none;">
+                <div class="reader-toolbar">
+                    <button id="backRashifalBtn" data-i18n="btn_back">← वापस</button>
+                    <button id="shareRashifalBtn" class="share-whatsapp-btn" data-i18n="btn_share_wa">💬 शेयर करें</button>
+                </div>
+                <div class="rashifal-reader-header">
+                    <div class="zodiac-big-icon" id="rZodiacIcon"></div>
+                    <h3 id="rZodiacName"></h3>
+                    <p id="rTodayDate" class="zodiac-date"></p>
+                </div>
+                <div id="rashifalReaderContent" class="rashifal-categories"></div>
+                <div class="lucky-box">
+                    <div class="lucky-item"><span data-i18n="lucky_color">🎨 शुभ रंग:</span> <strong id="rLuckyColor"></strong></div>
+                    <div class="lucky-item"><span data-i18n="lucky_number">🔢 शुभ अंक:</span> <strong id="rLuckyNumber"></strong></div>
+                </div>
+                <button id="playRashifalVoiceBtn" data-i18n="btn_listen_dadi">🎙️ सुनें (दादी माँ की आवाज़)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dharma Quiz Modal (KBC Style) -->
+    <div id="quizModal" class="quiz-modal" style="display:none;">
+        <div class="quiz-modal-content">
+            <div class="quiz-header">
+                <h2 data-i18n="quiz_main_title">🎯 धर्म प्रश्नोत्तरी</h2>
+                <button id="closeQuizBtn" class="close-quiz-btn">✕</button>
+            </div>
+            <div id="quizStartPage" class="quiz-page-container">
+                <div class="quiz-welcome">
+                    <div class="quiz-icon-big">🕉️</div>
+                    <h3 data-i18n="quiz_welcome_title">अपने ज्ञान को परखें</h3>
+                    <p data-i18n="quiz_welcome_desc">रामायण, महाभारत और वेदों से जुड़े रोचक सवालों के जवाब दें और अपना स्कोर बढ़ाएं।</p>
+                    <button id="startQuizBtn" class="quiz-primary-btn" data-i18n="btn_start_quiz">▶️ क्विज़ शुरू करें</button>
+                </div>
+            </div>
+            <div id="quizPlayPage" class="quiz-page-container" style="display:none;">
+                <div class="quiz-top-bar">
+                    <span id="qCount" class="q-badge" data-i18n="quiz_q_count">प्रश्न: 1/5</span>
+                    <span id="qScore" class="q-badge score-badge" data-i18n="quiz_score">स्कोर: 0</span>
+                </div>
+                <div class="question-box"><h3 id="questionText">सवाल यहाँ आएगा?</h3></div>
+                <div class="options-box" id="optionsBox"></div>
+                <div id="explanationBox" class="explanation-box" style="display:none;"></div>
+                <button id="nextQuestionBtn" class="quiz-next-btn" style="display:none;" data-i18n="btn_next_q">अगला प्रश्न ➔</button>
+            </div>
+            <div id="quizResultPage" class="quiz-page-container" style="display:none;">
+                <div class="quiz-result-box">
+                    <div id="resultEmoji" class="quiz-icon-big">🏆</div>
+                    <h3 id="resultTitle" data-i18n="quiz_result_title">अद्भुत खेल!</h3>
+                    <p id="resultText" data-i18n="quiz_final_score">आपका स्कोर: 5/5</p>
+                    <button id="restartQuizBtn" class="quiz-primary-btn" data-i18n="btn_restart_quiz">🔄 फिर से खेलें</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔔 Ringtone Modal -->
+    <div id="ringtoneModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: #fff; width: 90%; max-width: 450px; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; max-height: 80vh;">
+            <div style="background: #166534; color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; font-size: 18px;" id="ringtoneModalTitle" data-i18n="ringtone_title">🔔 रिंगटोन सूची</h3>
+                <button id="closeRingtoneModal" style="background: none; border: none; color: #fff; font-size: 22px; cursor: pointer;">&times;</button>
+            </div>
+            <div id="ringtoneListContainer" style="padding: 15px; overflow-y: auto; flex-grow: 1;"></div>
+        </div>
+    </div>
+
+    <!-- 🙏 Master Darshan Modal (6 Options) -->
+    <div id="darshanModal" class="darshan-modal" style="display:none;">
+        <div class="darshan-modal-content">
+            <div class="darshan-header">
+                <h2 id="darshanTitle" data-i18n="darshan_main_title">🙏 श्री शिव दर्शन</h2>
+                <button id="closeDarshanBtn" class="close-darshan-btn">✕</button>
+            </div>
+            <p class="darshan-subtitle" data-i18n="darshan_subtitle">इस पावन धाम की समस्त सामग्री चुनें</p>
+            <div class="darshan-grid">
+                <div class="d-btn" id="btnDarshanAarti"><span class="d-icon">🪔</span><span class="d-text" data-i18n="d_btn_aarti">आरती</span></div>
+                <div class="d-btn" id="btnDarshanKatha"><span class="d-icon">📖</span><span class="d-text" data-i18n="d_btn_katha">कथा</span></div>
+                <div class="d-btn" id="btnDarshanRingtone"><span class="d-icon">🔔</span><span class="d-text" data-i18n="d_btn_ringtone">रिंगटोन</span></div>
+                <div class="d-btn" id="btnDarshanBhajan"><span class="d-icon">🎶</span><span class="d-text" data-i18n="d_btn_bhajan">भजन</span></div>
+                <div class="d-btn" id="btnDarshanStatus"><span class="d-icon">📱</span><span class="d-text" data-i18n="d_btn_status">स्टेटस</span></div>
+                <div class="d-btn" id="btnDarshanWallpaper"><span class="d-icon">🖼️</span><span class="d-text" data-i18n="d_btn_wallpaper">वॉलपेपर</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🖼️ Ultra Pro Wallpaper Gallery Container -->
+    <div id="wallpaperGalleryContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f8f9fa; z-index: 1000; overflow-y: scroll;">
+        <div class="gallery-header"><button id="closeGalleryBtn" class="pro-close-btn" data-i18n="btn_back_gallery">✕ पीछे जाएँ</button></div>
+        <div id="galleryContent" class="pinterest-gallery"></div>
+    </div>
+
+    <!-- 🔍 Full Screen Viewer (Pro Max) -->
+    <div id="fullScreenViewer" class="fullscreen-viewer">
+        <div class="viewer-top-bar"><button id="closeViewerBtn" class="icon-btn">✕</button></div>
+        <img id="fullScreenImage" src="" alt="Full Screen Wallpaper">
+        <div id="viewerWatermark" class="watermark-text viewer-watermark">© Bhakti Sewa</div>
+        <div class="viewer-bottom-bar">
+            <button id="viewerLikeBtn" class="pro-action-btn">🤍 Like</button>
+            <button id="viewerDownloadBtn" class="pro-action-btn">⬇️ Download</button>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         03. MAIN APP WRAPPER, HEADER & SIDEBAR
+         ==================================================================== -->
+    <div id="appContainer" class="hidden">
+
+        <!-- Header Section -->
+        <header class="app-header">
+            <!-- Modern Ticker Running Text -->
+            <div class="running-text-box" aria-label="Daily Blessings Ticker">
+                <div class="ticker-track">
+                    <span>
+                        🌸 डिजिटल मंदिर में आप सभी भक्तों का हार्दिक स्वागत है! 🛕 घर बैठे प्रसिद्ध मंदिरों के मुफ्त दर्शन, डिजिटल पूजा, आरती और व्रत कथाओं का आनंद लें | 🔔 नए अपडेट्स और रोजाना दिव्य दर्शन के लिए हमें YouTube, Instagram और Facebook पर Follow & Subscribe करके सपोर्ट करें! 🙏 जय श्री राम | ॐ नमः शिवाय | जय माता दी | आपका दिन शुभ और मंगलमय हो! &nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span>
+                        🌸 डिजिटल मंदिर में आप सभी भक्तों का हार्दिक स्वागत है! 🛕 घर बैठे प्रसिद्ध मंदिरों के मुफ्त दर्शन, डिजिटल पूजा, आरती और व्रत कथाओं का आनंद लें | 🔔 नए अपडेट्स और रोजाना दिव्य दर्शन के लिए हमें YouTube, Instagram और Facebook पर Follow & Subscribe करके सपोर्ट करें! 🙏 जय श्री राम | ॐ नमः शिवाय | जय माता दी | आपका दिन शुभ और मंगलमय हो! &nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                </div>
+            </div>
+            
+            <!-- 🌙 Dark Mode Toggle Button -->
+            <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                <span id="themeIcon" aria-hidden="true">🌙</span>
+            </button>
+
+            <!-- 3-Dot Drop-down Menu Button -->
+            <div class="dropdown-container">
+                <button id="dropdownBtn" class="dropdown-btn" aria-label="Open Menu" aria-haspopup="true" aria-expanded="false">
+                    &#8942;
+                </button>
+                
+                <!-- Dropdown Menu Box -->
+                <div id="customDropdown" class="dropdown-content" role="menu">
+                    <a href="#" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">🔔</span> <span data-i18n="menu_notif">नोटिफिकेशन्स</span></a>
+                    <a href="#" id="langToggleBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">🌐</span> <span data-i18n="menu_lang">भाषा (Language)</span></a>
+                    <hr class="menu-divider">
+                    <a href="#" id="shareAppBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">🔗</span> <span data-i18n="menu_share">ऐप शेयर करें</span></a>
+                    <a href="#" id="rateUsBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">⭐</span> <span data-i18n="menu_rate">हमें रेट करें</span></a>
+                    <hr class="menu-divider">
+                    <a href="#" id="openThemeBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">🎨</span> <span data-i18n="menu_theme">थीम</span></a>
+                    <a href="#" id="openSettingsBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">⚙️</span> <span data-i18n="menu_settings">सेटिंग्स</span></a>
+                    <a href="#" id="openContactBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">📞</span> <span data-i18n="menu_contact">संपर्क करें</span></a>
+                    <a href="#" id="openAboutBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">ℹ️</span> <span data-i18n="menu_about">ऐप के बारे बारे</span></a>
+                    <a href="#" id="openPrivacyBtn" class="dropdown-item" role="menuitem"><span class="menu-icon" aria-hidden="true">🔒</span> <span data-i18n="menu_privacy">प्राइवेसी पॉलिसी</span></a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar / Drawer -->
+        <div id="overlay" class="overlay" aria-hidden="true"></div>
+        <nav id="sidebar" class="sidebar" aria-label="Main Navigation">
+            <div id="sidebarHandle" class="sidebar-handle" role="button" aria-label="Toggle Sidebar">
+                <span id="handleIcon" aria-hidden="true">&#10095;</span>
+            </div>
+            <button id="closeSidebarBtn" class="close-btn" aria-label="Close Sidebar">&times;</button>
+            <h3 data-i18n="sidebar_title">🙏 भक्ति सेवा मेनू</h3>
+            
+            <a href="#" id="openGauSewaBtn" class="dropdown-item" role="menuitem">
+                <span class="menu-icon" aria-hidden="true">🐄</span> <span data-i18n="sidebar_gau">गौ सेवा व दान</span> <span class="badge-punya" data-i18n="badge_punya">पुण्य</span>
+            </a>
+            <a href="#" id="openJaapBtn" class="dropdown-item" role="menuitem">
+                <span class="menu-icon" aria-hidden="true">📿</span> <span data-i18n="sidebar_jaap">डिजिटल मंत्र जाप</span> <span class="badge-new">New</span>
+            </a>
+            <a href="javascript:void(0);" id="openAartiBtn" class="dropdown-item">
+                <span class="menu-icon">📖</span> <span data-i18n="sidebar_aarti">आरती व चालीसा</span>
+            </a>
+            <a href="#" id="openVratBtn" class="dropdown-item"><span class="menu-icon">📜</span> <span data-i18n="sidebar_vrat">व्रत कथाएँ</span></a>
+            <a href="#" id="openBhajanBtn" class="dropdown-item"><span class="menu-icon">🎵</span> <span data-i18n="sidebar_bhajan">भजन</span></a>
+            <a href="#" id="openRashifalBtn" class="dropdown-item"><span class="menu-icon">🔮</span> <span data-i18n="sidebar_rashifal">दैनिक राशिफल</span></a>
+            <a href="#" id="openQuizBtn" class="dropdown-item"><span class="menu-icon">🎯</span> <span data-i18n="sidebar_quiz">धर्म प्रश्नोत्तरी</span></a>
+        </nav>
+        <!-- ====================================================================
+             04. SPA CONTAINER (Home, Bhajan, Reels, Profile)
+             ==================================================================== -->
+        <div id="app-container">
+            
+            <!-- 🏠 HOME VIEW SECTION -->
+            <div id="home-view" class="view-section active-view">
+                
+                <!-- 🕉️ Horizontal God Icons Scroll -->
+                <div class="god-scroll-wrapper">
+                    <div class="god-scroll-track" id="godScrollTrack">
+                        <div class="god-item" data-god="गणेश जी"><img src="assets/ganesh.png" alt="Ganesh Ji" class="god-img"><span class="god-name" data-i18n="god_ganesh">गणेश जी</span></div>
+                        <div class="god-item" data-god="शिव जी"><img src="assets/shiv.png" alt="Shiv Ji" class="god-img"><span class="god-name" data-i18n="god_shiv">शिव जी</span></div>
+                        <div class="god-item" data-god="श्री राम"><img src="assets/ram.png" alt="Shri Ram" class="god-img"><span class="god-name" data-i18n="god_ram">श्री राम</span></div>
+                        <div class="god-item" data-god="कृष्ण जी"><img src="assets/rada.png" alt="Krishna Ji" class="god-img"><span class="god-name" data-i18n="god_krishna">कृष्ण जी</span></div>
+                        <div class="god-item" data-god="हनुमान जी"><img src="assets/hanuman.png" alt="Hanuman Ji" class="god-img"><span class="god-name" data-i18n="god_hanuman">हनुमान जी</span></div>
+                        <div class="god-item" data-god="दुर्गा माँ"><img src="assets/durga.png" alt="Durga Maa" class="god-img"><span class="god-name" data-i18n="god_durga">दुर्गा माँ</span></div>
+                        <div class="god-item" data-god="विष्णु जी"><img src="assets/vishnu.png" alt="Vishnu Ji" class="god-img"><span class="god-name" data-i18n="god_vishnu">विष्णु जी</span></div>
+                        <div class="god-item" data-god="लक्ष्मी जी"><img src="assets/laxmi.png" alt="Laxmi Ji" class="god-img"><span class="god-name" data-i18n="god_laxmi">लक्ष्मी जी</span></div>
+                        <div class="god-item" data-god="सरस्वती माता"><img src="assets/sarswati.png" alt="Saraswati Maa" class="god-img"><span class="god-name" data-i18n="god_saraswati">सरस्वती</span></div>
+                        <div class="god-item" data-god="साईं बाबा"><img src="assets/sai.png" alt="Sai Baba" class="god-img"><span class="god-name" data-i18n="god_sai">साई बाबा</span></div>
+                        <div class="god-item" data-god="शनि देव"><img src="assets/shani.png" alt="Shani Dev" class="god-img"><span class="god-name" data-i18n="god_shani">शनि देव</span></div>
+                        <div class="god-item" data-god="काली माता"><img src="assets/kali.png" alt="Kali Mata" class="god-img"><span class="god-name" data-i18n="god_kali">काली माता</span></div>
+                        <div class="god-item" data-god="तिरुपति बालाजी"><img src="assets/tiru.png" alt="Tirupati Balaji" class="god-img"><span class="god-name" data-i18n="god_tirupati">तिरुपति बालाजी</span></div>
+                        <div class="god-item" data-god="खाटू श्याम"><img src="assets/khatu.png" alt="Khatu Shyam" class="god-img"><span class="god-name" data-i18n="god_khatu">खाटू श्याम</span></div>
+                        <div class="god-item" data-god="सूर्य देव"><img src="assets/surya.png" alt="Surya Dev" class="god-img"><span class="god-name" data-i18n="god_surya">सूर्य देव</span></div>
+                    </div>
+                </div>
+
+                <!-- Full Screen God Image Loop Section -->
+                <section class="image-loop-section" aria-label="Divine Image Slideshow">
+                    <div class="loop-container">
+                        <img src="assets/img/ram.png" class="loop-img active" alt="Shri Ram Divine View" loading="lazy">
+                        <img src="assets/img/ganesh.png" class="loop-img" alt="Shri Ganesh Divine View" loading="lazy">
+                        <img src="assets/img/rada.png" class="loop-img" alt="Radha Krishna Divine View" loading="lazy">
+                        <img src="assets/img/shiv.png" class="loop-img" alt="Lord Shiva Divine View" loading="lazy">
+                        <img src="assets/img/hanuman.png" class="loop-img" alt="Lord Hanuman Divine View" loading="lazy">
+                        <img src="assets/img/durga.png" class="loop-img" alt="Maa Durga Divine View" loading="lazy">
+                        <img src="assets/img/laxminarayan.png" class="loop-img" alt="Lord laxminarayan Divine View" loading="lazy">
+                        <img src="assets/img/sani.png" class="loop-img" alt="Shani Dev Divine View" loading="lazy">
+                        <img src="assets/img/vishnu.png" class="loop-img" alt="Lord Vishnu Divine View" loading="lazy">
+                        <img src="assets/img/khatu.png" class="loop-img" alt="Khatu Shyam Divine View" loading="lazy">
+                        <img src="assets/img/jin.png" class="loop-img" alt="Jain Divine View" loading="lazy">
+                        <img src="assets/img/sai.png" class="loop-img" alt="Sai Baba Divine View" loading="lazy">
+                        <img src="assets/img/tru.png" class="loop-img" alt="Tirupati Balaji Divine View" loading="lazy">
+                    </div>
+                </section>
+
+                <!-- Non-stop Running News Ticker -->
+                <div class="running-news-container">
+                    <div class="news-badge-box">
+                        <span class="news-blink-dot"></span>
+                        <span class="news-badge-text">APP FEATURES</span>
+                    </div>
+                    <div class="running-text-wrap">
+                        <div class="running-text-track">
+                            <span>
+                                ✨ 100% मुफ़्त डिजिटल भक्ति अनुभव! 🛕 घर बैठे प्रसिद्ध मंदिरों के डिजिटल दर्शन और पूजा करें | 📖 सभी व्रत कथाएं, आरती और चालीसा सुनें | 🔔 दैनिक शुभ मुहूर्त, पंचांग व राशिफल प्राप्त करें | 🌸 अपने पसंदीदा मंदिर का संपूर्ण इतिहास पढ़ें... बिल्कुल फ्री! &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span>
+                                ✨ 100% मुफ़्त डिजिटल भक्ति अनुभव! 🛕 घर बैठे प्रसिद्ध मंदिरों के डिजिटल दर्शन और पूजा करें | 📖 सभी व्रत कथाएं, आरती और चालीसा सुनें | 🔔 दैनिक शुभ मुहूर्त, पंचांग व राशिफल प्राप्त करें | 🌸 अपने पसंदीदा मंदिर का संपूर्ण इतिहास पढ़ें... बिल्कुल फ्री! &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🌟 Ultra Pro Max Mandir Button Section -->
+                <section class="mandir-action-section" style="padding: 20px 15px 5px 15px; display: flex; justify-content: center; align-items: center; background: var(--bg-main);">
+                    <button id="openMandirBtn" class="ultra-pro-btn" aria-label="Explore Temples">
+                        <span class="btn-icon" aria-hidden="true">🛕</span>
+                        <span class="btn-text" data-i18n="btn_mandir_open"> डिजिटल मंदिर </span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </section>
+
+
+                <!-- PANCHANG BUTTON SECTION -->
+                <section class="panchang-section">
+                    <button id="panchangBtn" class="ultra-panchang-btn" aria-label="Open Today's Panchang">
+                        <div class="panchang-icon-ring"><span class="p-icon" aria-hidden="true">🗓️</span></div>
+                        <div class="panchang-text-content">
+                            <span class="p-title" data-i18n="panchang_title">आज का हिन्दू पंचांग</span>
+                            <span class="p-subtitle" data-i18n="panchang_sub">शुभ मुहूर्त, तिथि, नक्षत्र और राहुकाल</span>
+                        </div>
+                        <div class="panchang-arrow" aria-hidden="true">➔</div>
+                    </button>
+                </section>
+
+                <!-- PANCHANG POPUP MODAL -->
+                <div id="panchangModal" class="panchang-modal">
+                    <div class="panchang-card">
+                        <span class="close-panchang-btn" id="closePanchangBtn">&times;</span>
+                        <div class="panchang-card-header">
+                            <span class="p-header-icon">🗓️</span>
+                            <div><h2 data-i18n="panchang_title">आज का हिन्दू पंचांग</h2><p data-i18n="panchang_sub">शुभ मुहूर्त, तिथि, नक्षत्र और राहुकाल</p></div>
+                            <div class="p-header-arrow">➔</div>
+                        </div>
+                        <div class="panchang-card-body">
+                            <div class="p-date-section">
+                                <h3 id="pDate">🗓️ -- जुलाई ----</h3><p id="pDay">---- (Day)</p><div class="p-badge" id="pVrat">⭐ ----</div>
+                            </div>
+                            <div class="p-divider"></div>
+                            <div class="p-grid">
+                                <div class="p-box"><span class="p-box-title">🌅 सूर्योदय</span><strong id="pSunrise">--:-- AM</strong></div>
+                                <div class="p-box"><span class="p-box-title">🌇 सूर्यास्त</span><strong id="pSunset">--:-- PM</strong></div>
+                                <div class="p-box"><span class="p-box-title">📅 तिथि</span><strong id="pTithi">----</strong></div>
+                                <div class="p-box"><span class="p-box-title">✨ नक्षत्र</span><strong id="pNakshatra">----</strong></div>
+                            </div>
+                            <div class="p-full-box"><span class="p-box-title">🧘 योग</span><strong id="pYog">----</strong></div>
+                            <div class="p-full-box green-bg"><div class="p-box-title green-text">🟢 शुभ मुहूर्त</div><div class="p-time-text green-text" id="pShubh">--:-- PM - --:-- PM (अभिजित)</div></div>
+                            <div class="p-full-box red-bg"><div class="p-box-title red-text">🔴 राहुकाल</div><div class="p-time-text red-text" id="pRahu">--:-- PM - --:-- PM</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Mantra Section -->
+                <section class="daily-mantra-section" aria-label="Daily Mantra">
+                    <div class="mantra-card">
+                        <span class="card-badge">आज का मंत्र</span>
+                        <span class="quote-icon" aria-hidden="true">❝</span>
+                        <p class="mantra-text" id="dailyMantraText">Loading...</p>
+                        <p class="mantra-meaning"><span id="dailyMantraMeaning">Loading...</span><br><small id="dailyMantraSource">-</small></p>
+                    </div>
+                </section>
+
+                <!-- Daily Suvichar Section -->
+                <section class="daily-suvichar-section" aria-label="Daily Suvichar">
+                    <div class="mantra-card">
+                        <span class="card-badge">आज का सुविचार</span>
+                        <span class="quote-icon" aria-hidden="true">❝</span>
+                        <p class="mantra-text" id="dailySuvicharText">Loading...</p>
+                        <p class="mantra-meaning"><span id="dailySuvicharMeaning">Loading...</span><br><small id="dailySuvicharSource">-</small></p>
+                    </div>
+                </section>
+
+                <!-- Live Aarti Section -->
+                <section class="live-aarti-section" aria-labelledby="liveAartiTitle">
+                    <div class="section-header-row"><h3 id="liveAartiTitle" class="section-title" data-i18n="live_aarti_title">🔴 लाइव आरती व दर्शन</h3></div>
+                    <div class="aarti-scroll-container">
+                        <a href="https://www.youtube.com/watch?v=8B-qH9M2VR4" target="_blank" class="aarti-card">
+                            <div class="aarti-img-box" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://img.youtube.com/vi/8B-qH9M2VR4/hqdefault.jpg') center/cover;"><span class="live-badge">LIVE</span></div>
+                            <span class="aarti-name" data-i18n="live_mahakal">श्री महाकाल</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=eVVZiksNkB0" target="_blank" class="aarti-card">
+                            <div class="aarti-img-box" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://img.youtube.com/vi/eVVZiksNkB0/hqdefault.jpg') center/cover;"><span class="live-badge">LIVE</span></div>
+                            <span class="aarti-name" data-i18n="live_kashi">काशी विश्वनाथ</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=lFX8-TxCLmM" target="_blank" class="aarti-card">
+                            <div class="aarti-img-box" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://img.youtube.com/vi/lFX8-TxCLmM/hqdefault.jpg') center/cover;"><span class="live-badge">LIVE</span></div>
+                            <span class="aarti-name" data-i18n="live_khatu">खाटू श्याम जी</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- App Intro Section -->
+                <section class="app-intro-section" aria-label="App Introduction">
+                    <div class="intro-card-glow">
+                        <div class="intro-badge" data-i18n="intro_badge">✨ डिजिटल सनातन मंच</div>
+                        <h2 class="intro-title" data-i18n="intro_title">भक्ति सेवा में आपका स्वागत है</h2>
+                        <p class="intro-desc" data-i18n="intro_desc">घर बैठे देश के सभी प्रसिद्ध पवित्र धामों के दिव्य दर्शन, संपूर्ण आरती संग्रह, और लाइव धार्मिक अपडेट्स का आनंद लें। यह ऐप आपकी दैनिक पूजा और आध्यात्मिक यात्रा को सरल और मंगलमय बनाने के लिए समर्पित है।</p>
+                        <div class="intro-features-pill">
+                            <span data-i18n="intro_f1">🪔 100% शुद्ध भक्ति</span>
+                            <span data-i18n="intro_f2">⚡ लाइव अपडेट्स</span>
+                            <span data-i18n="intro_f3">🗺️ धामों की जानकारी</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- === 🌟 PLAY STORE READY: VIP ULTRA PRO MAX TICKER === -->
+                <div class="vip-pro-ticker-box">
+                    <div class="ticker-badge-glow">
+                        <span class="ticker-sparkle">✨</span>
+                    </div>
+                    <div class="ticker-content-track">
+                        <div class="ticker-scrolling-text" id="playStoreVIPTicker">
+                            ॥ जय श्री हरि ॥ भक्ति सेवा ऐप में आपका स्वागत है...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === 🌟 GRAH SHANTI MANTRA CARD === -->
+                <div class="grah-shanti-card" onclick="openGrahShantiPopup()">
+                    <div class="grah-card-icon">🕉️</div>
+                    <div class="grah-card-info">
+                        <h3>आज का ग्रह शांति का मंत्र</h3>
+                        <p>समस्त बाधाओं के निवारण और नवग्रह शांति हेतु विशेष मंत्र...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <!-- === 📜 GRAH SHANTI POPUP MODAL === -->
+                <div id="grahShantiModal" class="grah-modal-overlay" onclick="if(event.target === this) closeGrahShantiPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeGrahShantiPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ विशेष अनुष्ठान ✨</span>
+                            <h2>आज का ग्रह शांति का मंत्र</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('grahBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('grahBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="grahBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ब्रह्मा मुरारिस्त्रिपुरान्तकारी भानुः श्च भूमि सुतो बुधश्च गुरुश्च शुक्रः शनिः राहु केतवः सर्वे कुर्वन्तु शान्तिको भवन्तु सर्वे!"
+                                </p>
+                            </div>
+                            <h4>📖 मंत्र का अर्थ व लाभ:</h4>
+                            <p>इस महामंत्र के स्मरण मात्र से सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु और केतु—सातों ग्रह और दोनो छाया ग्रह शांत होकर जातक को सुख-समृद्धि और आरोग्य प्रदान करते हैं।</p>
+                            <h4>🙏 जप करने की विधि:</h4>
+                            <ul>
+                                <li>प्रातःकाल स्नान करके स्वच्छ वस्त्र धारण करें।</li>
+                                <li>भगवान सूर्य और इष्टदेव का स्मरण कर इस मंत्र की 1 या 3 माला का जाप करें।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === 🌟 VASTU MANDIR GUIDE CARD === -->
+                <div class="grah-shanti-card" onclick="openVastuMandirPopup()">
+                    <div class="grah-card-icon">🛕</div>
+                    <div class="grah-card-info">
+                        <h3>वास्तु के अनुसार घर का मंदिर</h3>
+                        <p>मंदिर की सही दिशा, महत्त्व, 20+ वास्तु नियम व पूजा विधि...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <!-- === 📜 VASTU MANDIR POPUP MODAL === -->
+                <div id="vastuMandirModal" class="grah-modal-overlay" onclick="if(event.target === this) closeVastuMandirPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeVastuMandirPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ वास्तु शास्त्र एवं पूजा मार्गदर्शन ✨</span>
+                            <h2>घर का मंदिर: संपूर्ण वास्तु व विधि</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('vastuBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('vastuBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="vastuBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ईशान कोण (उत्तर-पूर्व) देवताओं का स्थान है। यहाँ मंदिर होने से घर में सकारात्मक ऊर्जा और सुख-समृद्धि का वास होता है।"
+                                </p>
+                            </div>
+                            <h4>🙏 1. घर में मंदिर का महत्त्व:</h4>
+                            <p>घर का मंदिर वह पवित्र स्थान है जहाँ नकारात्मक ऊर्जा समाप्त होती है और दैवीय कृपा, शांति व मानसिक बल की प्राप्ति होती है। यह घर का आध्यात्मिक केंद्र बिंदु है।</p>
+
+                            <h4>⏰ 2. सुबह और शाम पूजा करने का सही समय:</h4>
+                            <ul>
+                                <li><b>प्रातःकाल (सुबह):</b> सूर्योदय के समय या सुबह 6:00 बजे से 8:00 बजे के बीच स्नान करके ताजे मन से पूजा करना सबसे उत्तम है।</li>
+                                <li><b>सायंकाल (शाम):</b> सूर्यास्त के समय (संध्या बेला) दीप प्रज्वलित कर भगवान का स्मरण करना चाहिए।</li>
+                            </ul>
+
+                            <h4>🛕 3. मंदिर में क्या-क्या होना चाहिए (20+ आवश्यक सामग्री व नियम):</h4>
+                            <ul>
+                                <li><b>1.</b> अंगूठे के आकार से लेकर अधिकतम 6 इंच तक की मूर्तियाँ या चित्र।</li>
+                                <li><b>2.</b> शुद्ध गाय के घी का दीपक और जलाने के लिए शुद्ध कॉटन की बत्तियाँ।</li>
+                                <li><b>3.</b> धूपबत्ती या अगरबत्ती स्टैंड।</li>
+                                <li><b>4.</b> पूजा की घंटी (शंख ध्वनि या घंटी बजाने से नकारात्मक ऊर्जा दूर होती है)।</li>
+                                <li><b>5.</b> तांबे या पीतल का पवित्र जल पात्र (चमनी) और आचमनी चम्मच।</li>
+                                <li><b>6.</b> ताजे फूल और मालाएँ अर्पित करने की थाली।</li>
+                                <li><b>7.</b> रोली, कुमकुम, चंदन, और अक्षत (साबुत चावल) रखने के छोटे पात्र।</li>
+                                <li><b>8.</b> भगवान को भोग लगाने के लिए छोटे पीतल या चांदी के बर्तन।</li>
+                                <li><b>9.</b> पूजा के दौरान बैठने के लिए स्वच्छ आसन (कुश या ऊनी आसन)।</li>
+                                <li><b>10.</b> नित्य पाठ के लिए हनुमान चालीसा, गीता या पवित्र धार्मिक पुस्तकें।</li>
+                            </ul>
+                            <h4>⚖️ 4. वास्तु के अनुसार कौन-सी चीज़ कहाँ होनी चाहिए:</h4>
+                            <ul>
+                                <li><b>11. मंदिर की दिशा:</b> घर का मंदिर हमेशा <b>ईशान कोण (उत्तर-पूर्व)</b> में होना चाहिए।</li>
+                                <li><b>12. पूजा के समय मुख:</b> पूजा करते समय आपका मुख हमेशा <b>पूर्व या उत्तर दिशा</b> की ओर होना चाहिए।</li>
+                                <li><b>13. दीपक का स्थान:</b> घी का दीपक हमेशा भगवान की मूर्ति के ठीक सामने या उनके दाईं (Right) तरफ रखना चाहिए।</li>
+                                <li><b>14. मूर्तियों की स्थिति:</b> मूर्तियाँ कभी भी सीधे दीवार से सटाकर न रखें, उनके पीछे थोड़ा गैप (Space) होना चाहिए।</li>
+                                <li><b>15. आमने-सामने मूर्तियाँ:</b> मंदिर में भगवान की दो मूर्तियाँ एक-दूसरे के आमने-सामने कभी नहीं होनी चाहिए।</li>
+                                <li><b>16. खंडित मूर्तियाँ:</b> मंदिर में कभी भी खंडित (टूटी हुई) मूर्तियाँ या फटी हुई तस्वीरें नहीं रखनी चाहिए।</li>
+                                <li><b>17. भारी सामान:</b> मंदिर के ऊपर या उसके ठीक ऊपर की मंजिल पर कोई भी भारी सामान या वॉर्डरोब नहीं होना चाहिए।</li>
+                                <li><b>18. चमड़े की वस्तुएं:</b> पूजा घर के आस-पास चमड़े का बेल्ट, पर्स या जूते-चप्पल भूलकर भी न रखें।</li>
+                                <li><b>19. पर्दा (Curtain):</b> मंदिर में रात को सोते समय और सूतक काल के दौरान साफ पर्दा डालकर रखना चाहिए।</li>
+                                <li><b>20. स्वच्छता नियम:</b> मंदिर के आसपास का स्थान हमेशा अत्यंत स्वच्छ, धूल-रहित और पवित्र होना चाहिए।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === 🌟 NEGATIVE ENERGY PROTECTION CARD === -->
+                <div class="grah-shanti-card" onclick="openNegativePowerPopup()">
+                    <div class="grah-card-icon">🛡️</div>
+                    <div class="grah-card-info">
+                        <h3>नकारात्मक शक्तियों से बचाव के उपाय</h3>
+                        <p>सुरक्षा के 30 शक्तिशाली मंत्र, उपाय, क्या करें और क्या न करें...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <!-- === 📜 NEGATIVE POWER POPUP MODAL === -->
+                <div id="negativePowerModal" class="grah-modal-overlay" onclick="if(event.target === this) closeNegativePowerPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeNegativePowerPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ आध्यात्मिक सुरक्षा एवं कवच ✨</span>
+                            <h2>नकारात्मक शक्तियों से बचाव व उपाय</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('negativeBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('negativeBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="negativeBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ॐ ह्रीं बं बटुकलपद्माय आपदुद्धारणाय कुरु कुरु बटुकय स्वाहा।" (बटुक भैरव रक्षा मंत्र)
+                                </p>
+                            </div>
+                            <h4>🛡️ 1. नकारात्मक ऊर्जा से बचाव का महत्त्व:</h4>
+                            <p>घर या जीवन में नकारात्मक ऊर्जा (Negative Energy) आने से मानसिक तनाव, कलह, स्वास्थ्य समस्याएँ और कार्यों में रुकावट आने लगती है। इनसे बचने के लिए प्राचीन आध्यात्मिक और वास्तु उपाय बेहद कारगर हैं।</p>
+
+                            <h4>✨ 2. सुरक्षा के 10 सबसे शक्तिशाली मंत्र:</h4>
+                            <ul>
+                                <li><b>1. महामृत्युंजय मंत्र:</b> <i>"ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्..."</i> (नित्य 108 बार जाप से अकाल मृत्यु और भय दूर होता है)।</li>
+                                <li><b>2. हनुमान चालीसा:</b> <i>"भूत पिशाच निकट नहीं आवै, महाबीर जब नाम सुनावै।"</i> (नित्य पाठ करें)।</li>
+                                <li><b>3. गायत्री मंत्र:</b> <i>"ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं..."</i> (बुद्धि शुद्धि और सुरक्षा हेतु)।</li>
+                                <li><b>4. दुर्गा कवच मंत्र:</b> <i>"विद्यासु शास्त्रेषु विवेकजडेषु..."</i> (शत्रु व नकारात्मकता नाश हेतु)।</li>
+                                <li><b>5. बटुक भैरव मंत्र:</b> <i>"ॐ ह्रीं बटुकनाथाय नमः।"</i> (भय और बुरी नजर से रक्षा)।</li>
+                                <li><b>6. नरसिंह कवच:</b> भगवान नरसिंह का स्मरण करने से बुरी शक्तियाँ पास नहीं फटकतीं।</li>
+                                <li><b>7. सुदर्शन चक्र मंत्र:</b> <i>"ॐ कृष्णाय वासुदेवाय हरये परमात्मने..."</i> (दिव्य चक्र सुरक्षा)।</li>
+                                <li><b>8. महाकाली मंत्र:</b> <i>"ॐ क्रीं कालिकाए नमः।"</i> (तंत्र-मंत्र बाधा निवारण)।</li>
+                                <li><b>9. धन्वंतरि मंत्र:</b> आरोग्य और नकारात्मक ऊर्जा नाश हेतु।</li>
+                                <li><b>10. गायत्री सुरक्षा मंत्र:</b> घर के मुख्य द्वार पर सुरक्षा चक्र हेतु।</li>
+                            </ul>
+
+                            <h4>✅ 3. क्या करना चाहिए (10 अचूक उपाय):</h4>
+                            <ul>
+                                <li><b>11. नमक का पोछा:</b> हफ्ते में एक-दो बार पानी में समुद्री नमक (Sea Salt) मिलाकर घर में पोछा लगाएं।</li>
+                                <li><b>12. कपूर जलाना:</b> रोज सुबह-शाम घर में गाय के घी के साथ कपूर जरूर जलाएं।</li>
+                                <li><b>13. मुख्य द्वार पर स्वास्तिक:</b> घर के मेन गेट पर रोली या सिंदूर से शुभ स्वास्तिक बनाएं।</li>
+                                <li><b>14. गूगल और लोबान:</b> गुरुवार या शनिवार को घर में गूगल, लोबान और गुग्गुल की धूप दें।</li>
+                                <li><b>15. पक्षियों को दाना:</b> रोज छत पर पक्षियों को दाना-पानी डालने से राहु-केतु के दोष कटते हैं।</li>
+                                <li><b>16. हनुमान जी को चोला:</b> मंगलवार को हनुमान जी को चोला चढ़ाएं और सिंदूर का टीका लगाएं।</li>
+                                <li><b>17. सुंदरकांड पाठ:</b> महीने में कम से कम एक बार घर में सुंदरकांड या रामायण का पाठ करवाएं।</li>
+                                <li><b>18. शुद्ध जल का छिड़काव:</b> रोज सुबह पूरे घर में गंगाजल का छिड़काव करें।</li>
+                                <li><b>19. संध्या दीपक:</b> सूर्यास्त के समय घर के मुख्य द्वार पर एक दीपक जरूर प्रज्वलित करें।</li>
+                                <li><b>20. पीपल की सेवा:</b> शनिवार को पीपल के पेड़ के नीचे सरसों के तेल का दीपक जलाएं।</li>
+                            </ul>
+
+                            <h4>❌ 4. क्या नहीं करना चाहिए (10 जरूरी सावधानियां):</h4>
+                            <ul>
+                                <li><b>21. बाल और नाखून रात में न काटें:</b> सूर्यास्त के बाद बाल, दाढ़ी या नाखून काटने से नकारात्मक ऊर्जा आकर्षित होती है।</li>
+                                <li><b>22. घर में टूटा शीशा न रखें:</b> टूटा हुआ कांच या आईना घर में दुर्भाग्य और नेगेटिविटी लाता है।</li>
+                                <li><b>23. फालतू कबाड़ जमा न करें:</b> घर के स्टोर रूम या छत पर पुराना टूटा-फूटा जंग लगा सामान इकट्ठा न होने दें।</li>
+                                <li><b>24. बंद घड़ियाँ न रखें:</b> घर में बंद या खराब घड़ियाँ कभी न रखें, इससे प्रगति रुक जाती है।</li>
+                                <li><b>25. रात में जूठे बर्तन न छोड़ें:</b> किचन में रात को सिंक में जूठे बर्तन छोड़ने से नकारात्मक शक्तियां बढ़ती हैं।</li>
+                                <li><b>26. चौखट पर न बैठें:</b> मुख्य द्वार की चौखट पर बैठकर भोजन करना या पैर रखना वर्जित है।</li>
+                                <li><b>27. दक्षिण दिशा में सिर करके न सोएं:</b> दक्षिण की ओर पैर करके सोने से मानसिक अशांति और बुरे सपने आते हैं (सिर हमेशा दक्षिण या पूर्व दिशा में रखें)।</li>
+                                <li><b>28. सूखी या मुरझाई मालाएं:</b> मंदिर में भगवान को चढ़ाई गई सूखी मालाएं या फूल लंबे समय तक न रखें।</li>
+                                <li><b>29. अंधेरे में भोजन:</b> पूरी तरह अंधेरे में बैठकर भोजन कभी न करें।</li>
+                                <li><b>30. दूसरों की नकारात्मक बातें:</b> घर में हमेशा सकारात्मक माहौल रखें, लड़ाई-झगड़े और गाली-गलौज से बचें।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 1. दैनिक पूजा विधि और दीप प्रज्वलन नियम
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openPoojaVidhiPopup()">
+                    <div class="grah-card-icon">🪔</div>
+                    <div class="grah-card-info">
+                        <h3>दैनिक पूजा विधि और दीप प्रज्वलन नियम</h3>
+                        <p>सुबह-शाम पूजा का सही तरीका, दीपक की दिशा व 20+ नियम...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="poojaVidhiModal" class="grah-modal-overlay" onclick="if(event.target === this) closePoojaVidhiPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closePoojaVidhiPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ नित्य अर्चन एवं दीप विधान ✨</span>
+                            <h2>दैनिक पूजा विधि व दीप प्रज्वलन नियम</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('poojaBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('poojaBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="poojaBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "दीपज्योतिः परब्रह्म दीपज्योतिर्जनार्दनः। दीपो हरतु मे पापं दीपज्योतिर्नमोऽस्तु ते॥"
+                                </p>
+                            </div>
+                            <h4>🪔 1. दीप प्रज्वलन का महत्त्व व नियम:</h4>
+                            <p>दीपक ज्ञान का प्रतीक है और यह घर से अंधकार व नकारात्मकता को दूर करता है। पूजा की शुरुआत हमेशा दीपक प्रज्वलित करके ही करनी चाहिए।</p>
+
+                            <h4>⏰ 2. पूजा का सही समय:</h4>
+                            <ul>
+                                <li><b>सुबह की पूजा:</b> सूर्योदय के समय या सुबह 6 से 8 बजे के बीच स्नान करके स्वच्छ वस्त्र पहनकर पूजा करें।</li>
+                                <li><b>शाम की पूजा:</b> सूर्यास्त के समय (संध्या बेला) मुख्य द्वार और मंदिर में दीपक जलाएं।</li>
+                            </ul>
+
+                            <h4>🛕 3. पूजा करने की विस्तृत विधि (20+ नियम):</h4>
+                            <ul>
+                                <li><b>1.</b> स्नान के उपरांत शुद्ध वस्त्र धारण कर आसन पर बैठें।</li>
+                                <li><b>2.</b> आचमन कर स्वयं को और पूजा सामग्री को पवित्र करें।</li>
+                                <li><b>3.</b> सबसे पहले भगवान गणेश और अपने गुरु/इष्ट देव का स्मरण करें।</li>
+                                <li><b>4.</b> घी का दीपक हमेशा भगवान की मूर्ति के दाईं (Right) ओर रखें।</li>
+                                <li><b>5.</b> तेल का दीपक (तिल के तेल का) बाईं (Left) ओर रखना शुभ होता है।</li>
+                                <li><b>6.</b> दीपक की लौ हमेशा पूर्व या उत्तर दिशा की ओर रखनी चाहिए।</li>
+                                <li><b>7.</b> भगवान को ताजे और शुद्ध जल से स्नान कराएं।</li>
+                                <li><b>8.</b> चंदन, रोली और कुमकुम का तिलक लगाएं।</li>
+                                <li><b>9.</b> अक्षत (साबुत चावल) चढ़ाते समय ध्यान रखें कि चावल टूटे हुए न हों।</li>
+                                <li><b>10.</b> मौसमी फल या मिठाई का शुद्ध भोग लगाएं।</li>
+                                <li><b>11.</b> धूपबत्ती और कपूर जलाकर आरती करें।</li>
+                                <li><b>12.</b> पूजा के अंत में घंटी और शंख अवश्य बजाएं।</li>
+                                <li><b>13.</b> भूल-चूक के लिए भगवान से क्षमा प्रार्थना करें।</li>
+                                <li><b>14.</b> पूजा के बाद थोड़ा सा पवित्र जल अपने ऊपर छिड़कें।</li>
+                                <li><b>15.</b> कभी भी खंडित दीप या खंडित मूर्ति की पूजा न करें।</li>
+                                <li><b>16.</b> बासी या सूखे फूलों का इस्तेमाल पूजा में न करें।</li>
+                                <li><b>17.</b> बिना स्नान किए मंदिर या पूजा की मूर्तियों को न छुएं।</li>
+                                <li><b>18.</b> दीपक कभी भी सीधे जमीन पर न रखें, उसके नीचे थोड़े चावल या अष्टदल रखें।</li>
+                                <li><b>19.</b> पूजा के दौरान मन को शांत रखें और दक्षिण दिशा की ओर मुंह करके न बैठें।</li>
+                                <li><b>20.</b> संध्या काल में घर के मुख्य दरवाजे पर एक दीपक अवश्य प्रज्वलित करें।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 2. नजर दोष व बुरी नज़र से बचाव के उपाय
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openNazarDoshaPopup()">
+                    <div class="grah-card-icon">👁️</div>
+                    <div class="grah-card-info">
+                        <h3>नजर दोष व बुरी नज़र से बचाव के उपाय</h3>
+                        <p>बच्चों और घर को नजर से बचाने के 30 अचूक टोटके व मंत्र...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="nazarDoshaModal" class="grah-modal-overlay" onclick="if(event.target === this) closeNazarDoshaPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeNazarDoshaPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ सुरक्षा कवच एवं निवारण ✨</span>
+                            <h2>नजर दोष व बुरी नज़र से बचाव</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('nazarBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('nazarBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="nazarBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ॐ नमो भगवते वासुदेवाय नजर दोष हर हर स्वाहा।"
+                                </p>
+                            </div>
+                            <h4>👁️ 1. नजर दोष क्या है और इसके लक्षण:</h4>
+                            <p>जब किसी व्यक्ति की ईर्ष्या या अत्यधिक आकर्षण की बुरी दृष्टि बच्चों, व्यापार या स्वास्थ्य पर पड़ती है, तो इसे नजर लगना कहते हैं। इससे अचानक सिरदर्द, रोना या काम रुकना शुरू हो जाता है।</p>
+
+                            <h4>🛡️ 2. नजर उतारने के 30 अचूक उपाय व नियम:</h4>
+                            <ul>
+                                <li><b>1. नमक और राई का उपाय:</b> मुट्ठी में नमक और राई लेकर पीड़ित व्यक्ति के ऊपर से 7 बार वार कर आग में जला दें।</li>
+                                <li><b>2. लाल सूखी मिर्च:</b> 7 सूखी लाल मिर्च सिर से वार कर चूल्हे पर जलाने से नजर उतरती है।</li>
+                                <li><b>3. फिटकरी का टोटका:</b> टुकड़ा फिटकरी का लेकर घर या बच्चे के ऊपर से वार कर टॉयलेट या नाले में फेंक दें।</li>
+                                <li><b>4. हनुमान चालीसा का पाठ:</b> नजर लगे व्यक्ति को हनुमान चालीसा का पाठ सुनाएं या सिंदूर लगाएं।</li>
+                                <li><b>5. नींबू और मिर्च:</b> शनिवार या मंगलवार को दुकान/घर के बाहर नींबू-मिर्ची टांगें।</li>
+                                <li><b>6. कपूर की आरती:</b> भीमसेनी कपूर जलाकर पूरे घर में उसकी धुनी दें।</li>
+                                <li><b>7. लोबान का धुआँ:</b> घर के कोनों में लोबान का धुआँ करने से बुरी बलाएं भागती हैं।</li>
+                                <li><b>8. काले धागे का प्रयोग:</b> मंगलवार को संकटमोचन हनुमान जी का सिंदूर लगाकर काला धागा गले या हाथ में बांधें।</li>
+                                <li><b>9. लहसुन के छिलके:</b> लहसुन के छिलके को आग में जलाने से नजर का प्रभाव खत्म होता है।</li>
+                                <li><b>10. मोर पंख:</b> घर के मुख्य हॉल में मोर पंख रखने से नकारात्मक दृष्टि नहीं लगती।</li>
+                                <li><b>11. गंगाजल का छिड़काव:</b> रोज सुबह पूरे घर में शुद्ध गंगाजल छिड़कें।</li>
+                                <li><b>12. मंगलवार का सिंदूर:</b> बच्चों के माथे पर हनुमान जी के कंधे का सिंदूर लगाएं।</li>
+                                <li><b>13. लोहे की अंगूठी:</b> घोड़े की नाल या काले घोड़े की फेर की अंगूठी धारण करें।</li>
+                                <li><b>14. राहु-केतु मंत्र:</b> राहु-केतु के बीज मंत्रों का जाप करें।</li>
+                                <li><b>15. दूध का उपाय:</b> कच्चा दूध शनिवार को काले कुत्ते को पिलाएं।</li>
+                                <li><b>16. पीपल की परिक्रमा:</b> शनिवार को पीपल के दर्शन मात्र से बुरी नजर कटती है।</li>
+                                <li><b>17. बच्चों को नजर टीका:</b> बच्चों को काला टीका कान के पीछे या गाल पर लगाएं।</li>
+                                <li><b>18. मुख्य द्वार शुद्धि:</b> घर के मेन गेट पर हल्दी का चौड़ा हाँथ लगाएं।</li>
+                                <li><b>19. अन्न दान:</b> समय-समय पर गरीबों को अन्न दान करें।</li>
+                                <li><b>20. पक्षियों को दाना:</b> रोज सात प्रकार के अनाज का मिश्रण पक्षियों को डालें।</li>
+                                <li><b>21. सात्विक भोजन:</b> घर में तामसिक भोजन और मदिरा से दूर रहें।</li>
+                                <li><b>22. साफ-सफाई:</b> घर में मकड़ी के जाले और गंदगी न जमने दें।</li>
+                                <li><b>23. संध्या समय सोएं नहीं:</b> गोधूलि बेला (शाम) के समय सोना वर्जित है।</li>
+                                <li><b>24. घर में कलह न करें:</b> जिस घर में रोज झगड़े होते हैं, वहाँ नजर जल्दी लगती है।</li>
+                                <li><b>25. चांदी का चौकोर टुकड़ा:</b> जेब में या गले में चांदी का टुकड़ा रखें।</li>
+                                <li><b>26. सात मुखी रुद्राक्ष:</b> गले में धारण करने से सुरक्षा मिलती है।</li>
+                                <li><b>27. कुलदेवता का स्मरण:</b> रोज सुबह अपने कुलदेवता और इष्ट का ध्यान करें।</li>
+                                <li><b>28. बुरी संगत से बचाव:</b> नकारात्मक विचारों वाले लोगों से दूरी बनाए रखें।</li>
+                                <li><b>29. दान-पुण्य:</b> गुप्त दान करने से बुरी नजर और बाधाएं टल जाती हैं।</li>
+                                <li><b>30. ईश्वर पर अटूट विश्वास:</b> भगवान का नाम सबसे बड़ा सुरक्षा कवच है।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 3. धन वृद्धि व माँ लक्ष्मी कृपा के उपाय
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openLakshmiVastuPopup()">
+                    <div class="grah-card-icon">💰</div>
+                    <div class="grah-card-info">
+                        <h3>धन वृद्धि व माँ लक्ष्मी कृपा के उपाय</h3>
+                        <p>तिजोरी की सही दिशा, कर्ज मुक्ति और बरकत बढ़ाने के 30 नियम...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="lakshmiVastuModal" class="grah-modal-overlay" onclick="if(event.target === this) closeLakshmiVastuPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeLakshmiVastuPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ ऐश्वर्य एवं धन वैभव ✨</span>
+                            <h2>धन वृद्धि व माँ लक्ष्मी कृपा के उपाय</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('lakshmiBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('lakshmiBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="lakshmiBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ॐ श्रीं ह्रीं श्रीं महालक्ष्म्यै नमः।"
+                                </p>
+                            </div>
+                            <h4>💰 1. धन वृद्धि और वास्तु का संबंध:</h4>
+                            <p>माता लक्ष्मी का वास वहीं होता है जहाँ साफ-सफाई, सकारात्मक ऊर्जा और धन का सही आदर होता है। वास्तु के नियमों का पालन करने से घर में कभी बरकत की कमी नहीं होती।</p>
+
+                            <h4>📈 2. तिजोरी और धन रखने की सही दिशा:</h4>
+                            <ul>
+                                <li><b>तिजोरी की दिशा:</b> घर या दुकान की तिजोरी हमेशा दक्षिण दीवार से लगकर उत्तर दिशा की ओर खुलने वाली होनी चाहिए (ताकि मुख उत्तर यानी कुबेर की दिशा में हो)।</li>
+                                <li><b>कैश बॉक्स:</b> पर्स या संदूक में कभी भी फटे नोट या अनावश्यक बिल संभाल कर न रखें।</li>
+                            </ul>
+
+                            <h4>⚖️ 3. बरकत और कर्ज मुक्ति के 30 अचूक वास्तु नियम:</h4>
+                            <ul>
+                                <li><b>1.</b> घर का ईशान कोण (उत्तर-पूर्व) हमेशा एकदम हल्का और साफ-सुथरा रखें।</li>
+                                <li><b>2.</b> मुख्य द्वार पर रोज सुबह शुद्ध जल का छिड़काव कर रंगोली या स्वास्तिक बनाएं।</li>
+                                <li><b>3.</b> शुक्रवार के दिन माता लक्ष्मी को खीर का भोग लगाकर कन्याओं में बांटें।</li>
+                                <li><b>4.</b> घर में उत्तर दिशा की ओर पानी का मटका या फाउंटेन रखना अत्यंत शुभ है।</li>
+                                <li><b>5.</b> रसोई घर में कभी भी अन्न और जल का अपमान या बर्बादी न करें।</li>
+                                <li><b>6.</b> रात को सोने से पहले किचन साफ करें, जूठे बर्तन सिंक में न छोड़ें।</li>
+                                <li><b>7.</b> पर्स में हमेशा गोमती चक्र या पीली कौड़ी संभाल कर रखें।</li>
+                                <li><b>8.</b> पीपल के पेड़ के नीचे शुक्रवार की शाम को मीठा दूध अर्पित करें।</li>
+                                <li><b>9.</b> घर की दक्षिण-पश्चिम (नैऋत्य) दिशा में भारी सामान या अलमारी रखें।</li>
+                                <li><b>10.</b> नल से पानी का टपकना भयंकर वास्तु दोष है, इसे तुरंत ठीक करवाएं।</li>
+                                <li><b>11.</b> शुक्रवार के दिन श्री सूक्त या कनकधारा स्त्रोत का पाठ करें।</li>
+                                <li><b>12.</b> घर में कभी भी झाड़ू को खड़ा करके या पैर से ठोकर मारकर न रखें (इसे लिटाकर छिपाकर रखें)।</li>
+                                <li><b>13.</b> शाम के समय मुख्य द्वार पर कभी भी अंधेरा न रखें, एक लाइट हमेशा जलाएं।</li>
+                                <li><b>14.</b> सूर्यास्त के समय सोना, उधार देना या किसी को पैसे देना वर्जित है।</li>
+                                <li><b>15.</b> गरीबों और जरूरतमंदों को अपनी क्षमतानुसार गुप्त दान करें।</li>
+                                <li><b>16.</b> हनुमान जी को चोला चढ़ाकर कर्ज मुक्ति की प्रार्थना करें (मंगलवार को)।</li>
+                                <li><b>17.</b> घर की उत्तर-पश्चिम (वायव्य) दिशा में हवा और रोशनी का अच्छा प्रबंध रखें।</li>
+                                <li><b>18.</b> फटे-पुराने कपड़े या कबाड़ घर में बिल्कुल जमा न होने दें।</li>
+                                <li><b>19.</b> किसी भी बुजुर्ग, महिला या असहाय का अपमान करने से लक्ष्मी रूठ जाती हैं।</li>
+                                <li><b>20.</b> घर में तुलसी का पौधा उत्तर या पूर्व दिशा में लगाएं और रोज दीपक जलाएं।</li>
+                                <li><b>21.</b> एकादशी के दिन चावल का सेवन भूलकर भी न करें।</li>
+                                <li><b>22.</b> अपनी कमाई का कुछ हिस्सा धर्म-कर्म और सेवा कार्य में जरूर लगाएं।</li>
+                                <li><b>23.</b> तिजोरी में लाल कपड़े में बांधकर 11 कौड़ियां और थोड़ी हल्दी रखें।</li>
+                                <li><b>24.</b> घर के मंदिर में एकाक्षी नारियल स्थापित कर रोज उसकी पूजा करें।</li>
+                                <li><b>25.</b> कभी भी बिस्तर पर बैठकर या लेटकर भोजन न करें।</li>
+                                <li><b>26.</b> घर के मुख्य दरवाजे के सामने कोई खंबा या गंदगी का ढेर नहीं होना चाहिए।</li>
+                                <li><b>27.</b> गुरुवार को केले के पेड़ की पूजा कर जल अर्पित करें।</li>
+                                <li><b>28.</b> अपने गुस्से पर नियंत्रण रखें, शांत माहौल वाले घर में लक्ष्मी जी स्थायी वास करती हैं।</li>
+                                <li><b>29.</b> नमक मिले पानी से हफ्ते में एक बार पूरे घर में पोंछा लगाएं।</li>
+                                <li><b>30.</b> अपनी मेहनत और ईमानदारी पर भरोसा रखते हुए नित्य माता लक्ष्मी का स्मरण करें।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 1. ग्रह दोष निवारण व शांति के उपाय
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openPlanetDoshaPopup()">
+                    <div class="grah-card-icon">🪐</div>
+                    <div class="grah-card-info">
+                        <h3>ग्रह दोष निवारण व शांति के उपाय</h3>
+                        <p>शनि, राहु, केतु और कालसर्प दोष से बचने के 30 महाउपाय...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="planetDoshaModal" class="grah-modal-overlay" onclick="if(event.target === this) closePlanetDoshaPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closePlanetDoshaPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ नवग्रह शांति एवं निवारण ✨</span>
+                            <h2>ग्रह दोष निवारण व शांति के उपाय</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('planetBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('planetBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="planetBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ॐ नीलांजन समाभासं रविपुत्रं यमाग्रजम्। छायामार्तण्ड संभूतं तं नमामि शनैश्वरम्॥"
+                                </p>
+                            </div>
+                            <h4>🪐 1. ग्रह दोष और उनका जीवन पर प्रभाव:</h4>
+                            <p>कुंडली में शनि, राहु, केतु या अन्य ग्रहों की अशुभ स्थिति से कार्यों में अड़चनें, मानसिक तनाव और शारीरिक कष्ट उत्पन्न होते हैं। धार्मिक और तांत्रिक उपायों से इनके दुष्प्रभावों को शांत किया जा सकता है।</p>
+
+                            <h4>🛡️ 2. शनि, राहु, केतु और दोष शांति के 30 अचूक उपाय:</h4>
+                            <ul>
+                                <li><b>1. शनि स्तोत्र पाठ:</b> शनिवार के दिन दशरथ कृत शनि स्तोत्र का पाठ करें।</li>
+                                <li><b>2. सरसों का तेल दान:</b> शनिवार को पीपल के नीचे सरसों के तेल का दीपक जलाएं और छाया दान करें।</li>
+                                <li><b>3. काले कुत्ते की सेवा:</b> रोज या शनिवार को काले कुत्ते को रोटी या बिस्कुट खिलाएं (इससे शनि और राहु शांत होते हैं)।</li>
+                                <li><b>4. पक्षियों को सात अनाज:</b> राहु-केतु के दोष निवारण हेतु पक्षियों को सात प्रकार का अनाज डालें।</li>
+                                <li><b>5. सुंदरकांड का पाठ:</b> मंगलवार या शनिवार को सुंदरकांड पढ़ने से शनि और हनुमान जी की कृपा मिलती है।</li>
+                                <li><b>6. राहु बीज मंत्र:</b> <i>"ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः"</i> का नित्य जाप करें।</li>
+                                <li><b>7. केतु बीज मंत्र:</b> <i>"ॐ स्रां स्रीं स्रौं सः केतवे नमः"</i> का जाप करें।</li>
+                                <li><b>8. नारियल का उपाय:</b> एक जटावाला सूखा नारियल अपने ऊपर से 7 बार वार कर बहते जल में प्रवाहित करें।</li>
+                                <li><b>9. काले तिल का दान:</b> शनिवार को काले तिल, उड़द की दाल और लोहा दान करें।</li>
+                                <li><b>10. महामृत्युंजय जाप:</b> अकाल मृत्यु भय और ग्रह पीड़ा नाश हेतु महामृत्युंजय मंत्र का अनुष्ठान करें।</li>
+                                <li><b>11. कुष्ठ रोगियों की सेवा:</b> शनिवार के दिन दवा या भोजन का दान करें।</li>
+                                <li><b>12. मुख्य द्वार पर स्वास्तिक:</b> रोज मेन गेट पर सिंदूर से स्वास्तिक बनाएं।</li>
+                                <li><b>13. मजदूरों का सम्मान:</b> कभी भी गरीब कामगारों या मजदूरों की मेहनत का हक न मारें।</li>
+                                <li><b>14. पीपल की परिक्रमा:</b> शनिवार को पीपल के पेड़ की 7 परिक्रमा करें।</li>
+                                <li><b>15. पक्षियों को पानी:</b> घर की छत पर परिंडे में पक्षियों के लिए पानी रखें।</li>
+                                <li><b>16. हनुमान चालीसा:</b> रोज सुबह-शाम हनुमान चालीसा का पाठ करें।</li>
+                                <li><b>17. चांदी का टुकड़ा:</b> जेब में हमेशा एक चौकोर चांदी का टुकड़ा रखें (चंद्रमा और राहु शांति हेतु)।</li>
+                                <li><b>18. गोमेद या लहसुनिया:</b> योग्य ज्योतिषी की सलाह से राहु-केतु के रत्न धारण करें।</li>
+                                <li><b>19. सात्विक आहार:</b> मांस-मदिरा और तामसिक भोजन से पूर्ण परहेज रखें।</li>
+                                <li><b>20. साफ-सुथरे कपड़े:</b> फटे-पुराने या गंदे कपड़े पहनने से बचें।</li>
+                                <li><b>21. घर की सफाई:</b> घर के कोनों में मकड़ी के जाले और कबाड़ न जमा होने दें।</li>
+                                <li><b>22. चींटियों को आटा:</b> पीपल के पेड़ के पास या बिल के पास चींटियों को शक्कर मिला आटा डालें।</li>
+                                <li><b>23. रुद्राक्ष धारण:</b> सात मुखी या नौ मुखी रुद्राक्ष धारण करें।</li>
+                                <li><b>24. दुर्गा सप्तशती पाठ:</b> नवरात्रि या विशेष दिनों में दुर्गा पाठ करें।</li>
+                                <li><b>25. बड़े-बुजुर्गों का आशीर्वाद:</b> माता-पिता और गुरु का सम्मान करने से ग्रह स्वतः शांत होते हैं।</li>
+                                <li><b>26. झूठ और फरेब से दूरी:</b> अनैतिक कार्यों से दूर रहें, राहु कुपित नहीं होता।</li>
+                                <li><b>27. संध्या वंदन:</b> सूर्यास्त के समय घर में दीप जलाकर भगवान का स्मरण करें।</li>
+                                <li><b>28. क्रोध नियंत्रण:</b> मंगल दोष शांति हेतु अपने गुस्से पर काबू रखें।</li>
+                                <li><b>29. रुद्राभिषेक:</b> सावन या सोमवार को शिवलिंग पर जल और दूध से अभिषेक करें।</li>
+                                <li><b>30. ईश्वर पर अटूट श्रद्धा:</b> भगवान पर भरोसा रखकर कर्म करते रहें, सभी दोष कट जाते हैं।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 2. पवित्र तुलसी पूजा और सेवा के नियम
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openTulsiVastuPopup()">
+                    <div class="grah-card-icon">🌿</div>
+                    <div class="grah-card-info">
+                        <h3>पवित्र तुलसी पूजा और सेवा के नियम</h3>
+                        <p>तुलसी में जल कब चढ़ाएं, परिक्रमा और बरकत बढ़ाने के 30 नियम...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="tulsiVastuModal" class="grah-modal-overlay" onclick="if(event.target === this) closeTulsiVastuPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeTulsiVastuPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ वृंदा देवी एवं विष्णु प्रिया ✨</span>
+                            <h2>पवित्र तुलसी पूजा और सेवा के नियम</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('tulsiBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('tulsiBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="tulsiBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "वृंदायै तुलसीदैव्यै प्रियायै केशवस्य च। विष्णू भक्ति प्रदे देवि सत्यै नमो नमः॥"
+                                </p>
+                            </div>
+                            <h4>🌿 1. तुलसी का धार्मिक और वास्तु महत्त्व:</h4>
+                            <p>तुलसी को माता लक्ष्मी का रूप और भगवान विष्णु को अत्यंत प्रिय माना गया है। जिस घर में तुलसी हरी-भरी रहती है, वहाँ नकारात्मक ऊर्जा प्रवेश नहीं करती और बरकत बनी रहती है।</p>
+
+                            <h4>🛕 2. तुलसी लगाने की सही दिशा व नियम:</h4>
+                            <ul>
+                                <li><b>सही दिशा:</b> तुलसी का पौधा हमेशा घर की <b>ईशान कोण (उत्तर-पूर्व)</b> या उत्तर दिशा में रखना सबसे उत्तम माना जाता है।</li>
+                                <li><b>स्थान की पवित्रता:</b> तुलसी का गमला हमेशा साफ-सुथरे स्थान पर रखें, उसके आस-पास जूते-चप्पल या कूड़ादान न हो।</li>
+                            </ul>
+
+                            <h4>⚖️ 3. तुलसी पूजा और सेवा के 30 जरूरी नियम:</h4>
+                            <ul>
+                                <li><b>1.</b> रोज सुबह स्नान करने के बाद ही तुलसी को जल अर्पित करें।</li>
+                                <li><b>2.</b> रविवार के दिन तुलसी में जल भूलकर भी नहीं चढ़ाना चाहिए (इस दिन तुलसी माता व्रत रखती हैं)।</li>
+                                <li><b>3.</b> एकादशी तिथि, सूर्य ग्रहण और चंद्र ग्रहण के दिन तुलसी के पत्ते न तोड़ें।</li>
+                                <li><b>4.</b> तुलसी के पत्ते कभी भी नाखून से खींचकर न तोड़ें, बल्कि ऊपर से डंठल तोड़ें।</li>
+                                <li><b>5.</b> सूर्यास्त के बाद (शाम को) तुलसी के पत्तों को छूना या तोड़ना वर्जित है।</li>
+                                <li><b>6.</b> शाम के समय तुलसी के पास गाय के घी का दीपक अवश्य प्रज्वलित करें।</li>
+                                <li><b>7.</b> तुलसी के पौधे के पास कभी भी गंदा पानी या कपड़े न सुखाएं।</li>
+                                <li><b>8.</b> बासी या सूखे पत्ते जो गिर जाएं, उन्हें इधर-उधर फेंकने के बजाय मिट्टी में दबा दें।</li>
+                                <li><b>9.</b> तुलसी के गमले में कभी भी कांटेदार पौधे (जैसे कैक्टस) न लगाएं।</li>
+                                <li><b>10.</b> घर की दक्षिण दिशा में तुलसी का पौधा भूलकर भी न रखें, इससे वास्तु दोष लगता है।</li>
+                                <li><b>11.</b> तुलसी के पौधे को कभी भी सीधे जमीन पर लगाने के बजाय गमले या ऊंचे चबूतरे पर लगाएं।</li>
+                                <li><b>12.</b> रोज शाम को तुलसी के सामने बैठकर विष्णु स्तोत्र या तुलसी चालीसा का पाठ करें।</li>
+                                <li><b>13.</b> पूजा के बाद तुलसी की कम से कम 3 या 7 बार परिक्रमा अवश्य करें।</li>
+                                <li><b>14.</b> यदि तुलसी का पौधा सूख जाए, तो उसे तुरंत नदी में प्रवाहित कर नया पौधा लगा दें (सूखी तुलसी घर में रखना अशुभ है)।</li>
+                                <li><b>15.</b> भगवान को लगने वाले भोग (विशेषकर खीर, पंचामृत या मिष्ठान) में तुलसी पत्र अवश्य शामिल करें।</li>
+                                <li><b>16.</b> तुलसी के पत्तों को कभी बासी नहीं माना जाता, ये हफ्तों तक पवित्र रहते हैं।</li>
+                                <li><b>17.</b> बिना स्नान किए या अशुद्ध अवस्था में तुलसी के पौधे को स्पर्श न करें।</li>
+                                <li><b>18.</b> तुलसी के गमले में लाल धागा या कलावा बांधना बेहद शुभ माना जाता है।</li>
+                                <li><b>19.</b> तुलसी के पौधे के पास दीपक हमेशा उत्तर या पूर्व दिशा की तरफ मुंह करके जलाएं।</li>
+                                <li><b>20.</b> गुरुवार के दिन तुलसी के पौधे में कच्चा दूध अर्पित करने से आर्थिक तंगी दूर होती है।</li>
+                                <li><b>21.</b> घर में कलाह या अशांति होने पर तुलसी की सेवा करने से मानसिक शांति मिलती है।</li>
+                                <li><b>22.</b> तुलसी के पत्तों को कभी भी चबाना नहीं चाहिए (दांतों से काटने की मनाही है), इन्हें सीधे पानी के साथ गटकना चाहिए।</li>
+                                <li><b>23.</b> घर की बेटी या बहू को तुलसी की तरह पवित्र और सहनशील माना गया है।</li>
+                                <li><b>24.</b> कार्तिक मास में तुलसी विवाह का आयोजन करने से विशेष पुण्य की प्राप्ति होती है।</li>
+                                <li><b>25.</b> तुलसी के पौधे में अत्यधिक पानी न डालें, इससे जड़ें गल सकती हैं।</li>
+                                <li><b>26.</b> घर से बाहर जाते समय या नया कार्य शुरू करते समय तुलसी के दर्शन करना शुभ होता है।</li>
+                                <li><b>27.</b> तुलसी के गमले में खरपतवार (घास-फूस) न उगने दें, उसकी नियमित निराई-गुड़ाई करें।</li>
+                                <li><b>28.</b> किसी भी नकारात्मक शक्ति को रोकने के लिए तुलसी का कवच अत्यंत प्रभावी है।</li>
+                                <li><b>29.</b> परिवार में किसी के बीमार होने पर तुलसी का जल औषधीय रूप में चरणामृत के साथ दें।</li>
+                                <li><b>30.</b> श्रद्धा और विश्वास के साथ नित्य तुलसी माता को प्रणाम करने से घर में सुख-समृद्धि बनी रहती है।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ==========================================================
+                   🌟 1. स्वप्न फल और सपनों का मतलब
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openSwapnaPhalPopup()">
+                    <div class="grah-card-icon">🌙</div>
+                    <div class="grah-card-info">
+                        <h3>स्वप्न फल और सपनों का मतलब</h3>
+                        <p>सपने में भगवान, सांप, पानी या मृत व्यक्ति दिखने का क्या है संकेत...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="swapnaPhalModal" class="grah-modal-overlay" onclick="if(event.target === this) closeSwapnaPhalPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeSwapnaPhalPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ स्वप्न शास्त्र एवं संकेत ✨</span>
+                            <h2>स्वप्न फल और सपनों का मतलब</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('swapnaBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('swapnaBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="swapnaBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "स्वप्ने दृष्टं शुभं वा यदि वा अशुभं, तस्य शांतिर्भवति भगवतः स्मरणात्।"
+                                </p>
+                            </div>
+                            <h4>🌙 1. स्वप्न शास्त्र का रहस्य:</h4>
+                            <p>स्वप्न शास्त्र के अनुसार, रात में नींद के दौरान देखे गए हर सपने का भविष्य से जुड़ा कोई न कोई गहरा संकेत होता है। कुछ सपने शुभ फल देते हैं तो कुछ आने वाली मुसीबतों से आगाह करते हैं।</p>
+
+                            <h4>👁️ 2. 30 प्रमुख सपनों का शुभ और अशुभ अर्थ:</h4>
+                            <ul>
+                                <li><b>1. भगवान के दर्शन:</b> सपने में देवी-देवता या मंदिर देखना अत्यंत शुभ, भाग्य खुलने और मनोकामना पूरी होने का संकेत है।</li>
+                                <li><b>2. सांप देखना:</b> सपने में सांप दिखना या पीछे पड़ना गुप्त शत्रु, भय या धन लाभ (यदि सांप बिल में जाए) दोनों का संकेत हो सकता है।</li>
+                                <li><b>3. बहता हुआ साफ पानी:</b> नदी या साफ पानी देखना जीवन में सुख-शांति, प्रगति और मानसिक तृप्ति का प्रतीक है।</li>
+                                <li><b>4. मृत व्यक्ति को देखना:</b> मरे हुए परिजन को हंसते हुए देखना उनकी कृपा और आशीर्वाद मिलने का संकेत है।</li>
+                                <li><b>5. खुद को उड़ते हुए देखना:</b> सपने में खुद को आसमान में उड़ते देखना बड़ी सफलता, आत्मविश्वास और बंधनमुक्त होने को दर्शाता है।</li>
+                                <li><b>6. फलदार पेड़ देखना:</b> रसीले या आम के फलों से लदा पेड़ देखना अचानक धन लाभ और संतान सुख का सूचक है।</li>
+                                <li><b>7. बारिश देखना:</b> सपने में वर्षा होते देखना व्यापार में लाभ और फसल-समृद्धि का प्रतीक है।</li>
+                                <li><b>8. आग देखना:</b> जलती हुई आग देखना करियर में तेजी, तेज ऊर्जा या किसी विवाद में फंसने का संकेत है।</li>
+                                <li><b>9. दांत टूटना:</b> सपने में अपने दांत टूटते देखना स्वास्थ्य खराब होने या किसी करीबी से अनबन का संकेत माना जाता है।</li>
+                                <li><b>10. परीक्षा में फेल होना:</b> डर या असफलता का सपना देखना जीवन की वास्तविक जिम्मेदारियों के प्रति तनाव को दर्शाता है।</li>
+                                <li><b>11. गहने या सोना मिलना:</b> सपने में सोना या कीमती आभूषण मिलना जल्द बड़ा आर्थिक लाभ होने का संकेत है।</li>
+                                <li><b>12. शादी देखना:</b> किसी की बारात या विवाह देखना अविवाहितों के लिए शुभ या कुछ मामलों में कार्य रुकावट का संकेत हो सकता है।</li>
+                                <li><b>13. ऊंचाई से गिरना:</b> सपने में खुद को ऊंचाई से गिरते देखना किसी बात का अत्यधिक मानसिक तनाव या डर होना है।</li>
+                                <li><b>14. कुत्ता देखना:</b> वफादार कुत्ता देखना सच्चे मित्र के मिलने का संकेत है, जबकि भौंकता कुत्ता खतरे का इशारा है।</li>
+                                <li><b>15. गाय देखना:</b> सपने में सफेद गाय देखना पुण्य फल प्राप्ति, सौभाग्य और माँ लक्ष्मी की कृपा का प्रतीक है।</li>
+                                <li><b>16. हाथी देखना:</b> ऐश्वर्य, राजा जैसी शान और जीवन में बड़े पद की प्राप्ति का संकेत है।</li>
+                                <li><b>17. मछली देखना:</b> तैरती हुई मछली देखना अपार धन-दौलत और रुका हुआ पैसा मिलने का योग बनाता है।</li>
+                                <li><b>18. उल्लू देखना:</b> माता लक्ष्मी का वाहन उल्लू दिखना गुप्त धन या अचानक लॉटरी/फायदा होने का संकेत है।</li>
+                                <li><b>19. खून देखना:</b> सपने में शरीर से खून बहना या रक्त देखना शारीरिक कमजोरी या गुप्त चिंता को दर्शाता है।</li>
+                                <li><b>20. खुद की मौत देखना:</b> अपनी मृत्यु का सपना देखना आयु लंबी होने और पुराने संकट के टलने का शुभ संकेत है।</li>
+                                <li><b>21. पहाड़ पर चढ़ना:</b> कठिन परिश्रम के बाद जीवन में बहुत बड़ी ऊंचाई और सफलता हासिल करने का प्रतीक है।</li>
+                                <li><b>22. अंधेरा कमरा:</b> चारों तरफ काला अंधेरा देखना भयंकर अकेलापन, कन्फ्यूजन या डिप्रेशन का संकेत है।</li>
+                                <li><b>23. गुलाब का फूल:</b> लाल गुलाब देखना प्रेम संबंध प्रगाढ़ होने और जीवन में रोमांस बढ़ने का संकेत है।</li>
+                                <li><b>24. किताब पढ़ना:</b> धार्मिक या अच्छी पुस्तकें पढ़ना ज्ञान वृद्धि और बुद्धि तीक्ष्ण होने का प्रतीक है।</li>
+                                <li><b>25. परीक्षा देना:</b> परीक्षा हॉल में खुद को बैठा पाना यह दिखाता है कि आप जीवन की कठिन परीक्षा से गुजर रहे हैं।</li>
+                                <li><b>26. चोरी होना:</b> घर में चोरी होने का सपना देखना आने वाले दिनों में किसी नुकसान या धोखे से सतर्क रहने की चेतावनी है।</li>
+                                <li><b>27. नदी पार करना:</b> कठिन बाधाओं को पार कर जीवन में एक नए और सफल पड़ाव में प्रवेश करने का संकेत है।</li>
+                                <li><b>28. घोड़े की सवारी:</b> तेज दौड़ते घोड़े की सवारी करना मान-सम्मान, यश और तेजी से तरक्की पाने का सूचक है।</li>
+                                <li><b>29. टूटा हुआ शीशा:</b> टूटा आईना देखना दुर्भाग्य, कलह या परिवार में किसी बुरी खबर के आने का संकेत है।</li>
+                                <li><b>30. सुबह का सपना:</b> ब्रह्म बेला (सुबह 4 से 6 बजे के बीच) देखा गया सपना 100% सच और सटीक परिणाम देता है।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 2. अचूक घरेलू नुस्खे व स्वास्थ्य उपाय
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openHomeRemediesPopup()">
+                    <div class="grah-card-icon">🌿</div>
+                    <div class="grah-card-info">
+                        <h3>अचूक घरेलू नुस्खे व स्वास्थ्य उपाय</h3>
+                        <p>सर्दी-जुकाम, पेट दर्द और छोटी-मोटी बीमारियों के 30 देसी उपाय...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="homeRemediesModal" class="grah-modal-overlay" onclick="if(event.target === this) closeHomeRemediesPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeHomeRemediesPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ आयुर्वेद एवं दादी-नानी के नुस्खे ✨</span>
+                            <h2>अचूक घरेलू नुस्खे व स्वास्थ्य उपाय</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('remediesBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('remediesBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="remediesBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "अन्नाद भवन्ति भूतानि पर्जन्याद अन्नसंभवः।" (स्वस्थ शरीर के लिए शुद्ध आहार और आयुर्वेद ही आधार है।)
+                                </p>
+                            </div>
+                            <h4>🌿 1. आयुर्वेद और घरेलू नुस्खों का महत्त्व:</h4>
+                            <p>रसोई में मौजूद मसाले और प्राकृतिक जड़ी-बूटियां केवल स्वाद ही नहीं बढ़ातीं, बल्कि छोटी-मोटी बीमारियों को जड़ से मिटाने की अचूक दवा भी हैं। इनके कोई साइड इफेक्ट्स नहीं होते।</p>
+
+                            <h4>💊 2. सेहत और बीमारियों से बचने के 30 असरदार देसी नुस्खे:</h4>
+                            <ul>
+                                <li><b>1. सर्दी और जुकाम:</b> तुलसी के पत्ते, अदरक और काली मिर्च की चाय पीने से जुकाम तुरंत ठीक होता है।</li>
+                                <li><b>2. गले की खराश:</b> गुनगुने पानी में चुटकी भर नमक डालकर गरारे करने से गले का दर्द गायब हो जाता है।</li>
+                                <li><b>3. पेट दर्द / गैस:</b> अजवाइन में काला नमक मिलाकर गुनगुने पानी के साथ फांकने से पेट दर्द में तुरंत राहत मिलती है।</li>
+                                <li><b>4. सिरदर्द का इलाज:</b> माथे पर पिपरमिंट ऑयल या शुद्ध देसी घी की मालिश करने से सिरदर्द भाग जाता है।</li>
+                                <li><b>5. इम्युनिटी बढ़ाएं:</b> सुबह खाली पेट गुनगुने पानी में नींबू और शहद मिलाकर पीने से रोग प्रतिरोधक क्षमता बढ़ती है।</li>
+                                <li><b>6. वजन घटाना:</b> छाछ में भुना हुआ जीरा और काला नमक डालकर पीने से मेटाबॉलिज्म तेज होता है।</li>
+                                <li><b>7. कब्ज की समस्या:</b> रात को सोते समय एक गिलास गुनगुने दूध में एक चम्मच देसी घी मिलाकर पिएं।</li>
+                                <li><b>8. एसिडिटी (अम्लपित्त):</b> ठंडा दूध या सौंफ का पानी पीने से पेट की जलन तुरंत शांत होती है।</li>
+                                <li><b>9. आंखों की रोशनी:</b> रोज सुबह खाली पेट भीगे हुए बादाम और सौंफ चबाने से आँखें तेज होती हैं।</li>
+                                <li><b>10. खाँसी दूर करें:</b> मुलेठी चूसने या अदरक के रस में शहद मिलाकर चाटने से पुरानी खाँसी ठीक होती है।</li>
+                                <li><b>11. जोड़ों का दर्द:</b> लहसुन की 2 कलियों को सरसों के तेल में गर्म करके जोड़ों की मालिश करें।</li>
+                                <li><b>12. त्वचा की चमक:</b> कच्चा दूध और हल्दी का लेप चेहरे पर लगाने से नेचुरल ग्लो आता है।</li>
+                                <li><b>13. मुंहासे (Pimples):</b> नीम की पत्तियों का पेस्ट या मुल्तानी मिट्टी लगाने से पिंपल्स सूख जाते हैं।</li>
+                                <li><b>14. मुँह के छाले:</b> छालों पर शहद या पिसी हुई फिटकरी लगाने से छाले तुरंत ठीक होते हैं।</li>
+                                <li><b>15. दांत दर्द:</b> लौंग का तेल या भुनी हुई हींग दांत के दर्द वाली जगह पर रखने से आराम मिलता है।</li>
+                                <li><b>16. नकसीर फूटना:</b> नाक से खून आने पर तुरंत प्याज का रस सूँघें या ठंडे पानी की पट्टी रखें।</li>
+                                <li><b>17. उल्टी बंद करना:</b> सौंफ और पुदीने का पानी पीने से जी मिचलाना और उल्टी रुकती है।</li>
+                                <li><b>18. बाल झड़ना रोकना:</b> आंवला पाउडर और नारियल तेल मिलाकर बालों की जड़ों में मालिश करें।</li>
+                                <li><b>19. खून की कमी (Anaemia):</b> चुकंदर और अनार का जूस पीने से शरीर में हीमोग्लोबिन तेजी से बढ़ता है।</li>
+                                <li><b>20. अनिद्रा (नींद न आना):</b> रात को सोने से पहले तलवों पर सरसों के तेल की मालिश करें।</li>
+                                <li><b>21. कमजोरी दूर करना:</b> मखाने को दूध में उबालकर खाने से शरीर को जबरदस्त ताकत मिलती है।</li>
+                                <li><b>22. मुंह की बदबू:</b> इलायची या सौंफ चबाने से सांसों की बदबू दूर होती है।</li>
+                                <li><b>23. जलने पर प्राथमिक उपचार:</b> जले हुए स्थान पर तुरंत कच्चा आलू घिसकर लगाएं या एलोवेरा जेल लगाएं।</li>
+                                <li><b>24. मोच आना:</b> हल्दी और चूने का गर्म लेप मोच या सूजन पर लगाने से आराम मिलता है।</li>
+                                <li><b>25. डायबिटीज नियंत्रण:</b> करेले का जूस या मेथी दाने का पानी सुबह खाली पेट पिएं।</li>
+                                <li><b>26. कोलेस्ट्रॉल कंट्रोल:</b> लहसुन की एक कली सुबह खाली पेट गुनगुने पानी के साथ लें।</li>
+                                <li><b>27. गुर्दे की पथरी:</b> नारियल पानी और कुलथी की दाल का सेवन करने से पथरी गलकर निकलती है।</li>
+                                <li><b>28. थकान मिटाना:</b> गुड़ और भुने हुए चने का सेवन करने से शरीर की सुस्ती गायब हो जाती है।</li>
+                                <li><b>29. शुद्ध पानी पिएं:</b> हमेशा तांबे के बर्तन में रखा हुआ पानी पीने से कई बीमारियां दूर रहती हैं।</li>
+                                <li><b>30. संतुलित जीवनशैली:</b> समय पर सोना, जल्दी उठना और योग करना ही सबसे बड़ा स्वास्थ्य का नियम है।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 1. आचार्य चाणक्य के सफलता और धन सूत्र
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openChanakyaPopup()">
+                    <div class="grah-card-icon">📜</div>
+                    <div class="grah-card-info">
+                        <h3>आचार्य चाणक्य के सफलता और धन सूत्र</h3>
+                        <p>जीवन में तरक्की, दोस्ती, और धन बचाने के चाणक्य के 30 अनमोल वचन...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="chanakyaModal" class="grah-modal-overlay" onclick="if(event.target === this) closeChanakyaPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeChanakyaPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ कूटनीति एवं जीवन दर्शन ✨</span>
+                            <h2>आचार्य चाणक्य के सफलता और धन सूत्र</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('chanakyaBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('chanakyaBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="chanakyaBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "कः कालः कानि मित्रাণि को देशः कौ च मे व्ययः। कश्च अहंच कस्य शक्तिरिति चिन्त्यं मुहुर्मुहुः॥"
+                                </p>
+                            </div>
+                            <h4>📜 1. चाणक्य नीति का सार:</h4>
+                            <p>आचार्य चाणक्य की नीतियां मनुष्य को संकट से उबारने, धन संचय करने और जीवन में अपार सफलता प्राप्त करने का मार्ग दिखाती हैं। उनके विचार आज के समय में भी उतने ही सटीक हैं जितने तब थे।</p>
+
+                            <h4>🧠 2. चाणक्य के 30 सफलता और धन के अचूक सूत्र:</h4>
+                            <ul>
+                                <li><b>1. गुप्त बातें:</b> अपनी कमजोरी, अपना नुकसान और अपने घर के भेदों को कभी किसी के सामने उजागर न करें।</li>
+                                <li><b>2. धन की बचत:</b> बुरे वक्त (आपत्ति काल) के लिए हमेशा कुछ धन बचाकर रखना चाहिए, क्योंकि धन ही सबसे बड़ा सच्चा मित्र है।</li>
+                                <li><b>3. सच्ची मित्रता:</b> मुसीबत के समय जो व्यक्ति साथ खड़ा रहे, वही सच्चा मित्र है; मतलबी लोगों से तुरंत दूरी बना लें।</li>
+                                <li><b>4. आलस्य का त्याग:</b> आलस्य मनुष्य का सबसे बड़ा शत्रु है, जो व्यक्ति आलस करता है वह कभी आगे नहीं बढ़ सकता।</li>
+                                <li><b>5. मूर्खों से बहस:</b> मूर्ख व्यक्ति को समझाने में अपना समय और ऊर्जा बर्बाद न करें, क्योंकि उन्हें ज्ञान समझ नहीं आता।</li>
+                                <li><b>6. समय की कीमत:</b> समय किसी के लिए नहीं रुकता; जो व्यक्ति समय का सदुपयोग करता है, सफलता उसके कदम चूमती है।</li>
+                                <li><b>7. शिक्षा का महत्त्व:</b> विद्या (शिक्षा) सबसे बड़ा धन है, इसे कोई चुरा नहीं सकता और यह हर जगह काम आती है।</li>
+                                <li><b>8. लोभ का त्याग:</b> अत्यधिक लालच मनुष्य की बुद्धि भ्रष्ट कर देता है और अंत में विनाश का कारण बनता है।</li>
+                                <li><b>9. क्रोध पर नियंत्रण:</b> क्रोध में इंसान अपनी सुधि खो बैठता है; गुस्से में कभी भी कोई बड़ा फैसला न लें।</li>
+                                <li><b>10. संगति का असर:</b> हमेशा अच्छे, गुणी और सकारात्मक सोच वाले लोगों की संगति में रहें, बुरी संगत इंसान को डुबा देती है।</li>
+                                <li><b>11. भविष्य की योजना:</b> बुद्धिमान व्यक्ति हमेशा आने वाले कल (भविष्य) की चिंता और तैयारी पहले ही कर लेता है।</li>
+                                <li><b>12. आत्मविश्वास:</b> अपने कर्म और अपनी क्षमता पर अटूट विश्वास रखें, बिना आत्मविश्वास के बड़ी जीत असंभव है।</li>
+                                <li><b>13. मीठी वाणी:</b> अपनी बोली हमेशा मधुर रखें, कड़वे वचन अपनों को भी पराया बना देते हैं।</li>
+                                <li><b>14. माता-पिता की सेवा:</b> दुनिया में माता-पिता से बड़ा कोई तीर्थ या देवता नहीं है, उनका आशीर्वाद ही सबसे बड़ा कवच है।</li>
+                                <li><b>15. राजा और नौकर की परख:</b> सेवक की परीक्षा संकट में और मित्र की परीक्षा बुरे वक्त में होती है।</li>
+                                <li><b>16. व्यापार की गोपनीयता:</b> अपने बिजनेस या कमाई के प्लान्स कभी भी अपने कंपटीटर या हर किसी को न बताएं।</li>
+                                <li><b>17. स्वास्थ्य सबसे धन:</b> यदि शरीर स्वस्थ है, तो दुनिया का सबसे बड़ा सुख आपके पास है।</li>
+                                <li><b>18. अहंकार का पतन:</b> घमंड करने वाले व्यक्ति का विनाश निश्चित है, हमेशा विनम्र स्वभाव रखें।</li>
+                                <li><b>19. जोखिम उठाने की क्षमता:</b> जो व्यक्ति नया रिस्क लेने से डरता है, वह जीवन में कभी बड़ा मुकाम हासिल नहीं कर सकता।</li>
+                                <li><b>20. स्त्री का सम्मान:</b> जिस घर में महिलाओं का सम्मान होता है, वहाँ देवता वास करते हैं और बरकत होती है।</li>
+                                <li><b>21. लगातार प्रयास:</b> असफलता मिलने पर निराश न हों, बल्कि अपनी गलतियों से सीखकर और दोगुनी ताकत से जुट जाएं।</li>
+                                <li><b>22. खर्च पर नियंत्रण:</b> आमदनी से ज्यादा खर्च करने वाला इंसान बहुत जल्द कर्ज के दलदल में फंस जाता है।</li>
+                                <li><b>23. दया और कठोरता:</b> जरूरत पड़ने पर दयालु बनें, लेकिन दुश्मनों के सामने कभी कमजोरी न दिखाएं।</li>
+                                <li><b>24. भाग्य और कर्म:</b> सिर्फ किस्मत के भरोसे न बैठें, बिना पुरुषार्थ (कर्म) के कुछ हासिल नहीं होता।</li>
+                                <li><b>25. गुण की परख:</b> व्यक्ति की पहचान उसके रूप-रंग से नहीं, बल्कि उसके अच्छे गुणों और संस्कारों से होती है।</li>
+                                <li><b>26. शत्रु को कमजोर न समझें:</b> छोटे से छोटा दुश्मन या बीमारी भी आगे चलकर बड़ा नुकसान दे सकती है, सतर्क रहें।</li>
+                                <li><b>27. अनुशासित जीवन:</b> नियमों और अनुशासन के दायरे में रहकर जीने वाला व्यक्ति हमेशा समाज में आदर पाता है।</li>
+                                <li><b>28. दूसरों की गलतियों से सीखें:</b> हर गलती खुद करके सीखने में पूरी जिंदगी कम पड़ जाती है, दूसरों के अनुभवों से सीख लें।</li>
+                                <li><b>29. संतोष परम सुख:</b> जो है उसमें संतुष्ट रहना सीखें, लेकिन तरक्की की भूख हमेशा जिंदा रखें।</li>
+                                <li><b>30. चाणक्य का अंतिम वचन:</b> कर्म ही प्रधान है; जैसा बीज बोएंगे, वैसा ही फल आपको भविष्य में मिलेगा।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                   🌟 2. रसोई घर का वास्तु व अन्नपूर्णा नियम
+                ========================================================== -->
+                <div class="grah-shanti-card" onclick="openKitchenVastuPopup()">
+                    <div class="grah-card-icon">🍳</div>
+                    <div class="grah-card-info">
+                        <h3>रसोई घर का वास्तु व अन्नपूर्णा नियम</h3>
+                        <p>चूल्हा, पानी और गैस की सही दिशा, बरकत बढ़ाने के 30 नियम...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="kitchenVastuModal" class="grah-modal-overlay" onclick="if(event.target === this) closeKitchenVastuPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closeKitchenVastuPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ माता अन्नपूर्णा एवं वास्तु ✨</span>
+                            <h2>रसोई घर का वास्तु व अन्नपूर्णा नियम</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('kitchenBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('kitchenBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="kitchenBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "अपूर्णार्ण समायुक्ता पूर्णब्रह्म स्वरूपिणी। अन्नपूर्णा नमस्तेऽस्तु त्रैलोक्यप्रिया मम॥"
+                                </p>
+                            </div>
+                            <h4>🍳 1. रसोई घर का महत्त्व और वास्तु:</h4>
+                            <p>रसोई घर को घर का दिल और माता अन्नपूर्णा का स्थान माना जाता है। जिस घर की रसोई वास्तु के अनुकूल होती है, वहाँ स्वास्थ्य, धन और बरकत हमेशा बनी रहती है।</p>
+
+                            <h4>🛕 2. चूल्हा और पानी की सही दिशा:</h4>
+                            <ul>
+                                <li><b>गैस चूल्हा (अग्नि):</b> रसोई घर हमेशा घर के <b>अग्नि कोण (दक्षिण-पूर्व)</b> में होना चाहिए और चूल्हा भी इसी दिशा में रखकर पूर्व या दक्षिण की ओर मुंह करके खाना बनाना चाहिए।</li>
+                                <li><b>पीने का पानी:</b> पानी का सिंक या फिल्टर हमेशा उत्तर या ईशान कोण (उत्तर-पूर्व) में होना चाहिए (अग्नि और पानी कभी पास-पास न रखें)।</li>
+                            </ul>
+
+                            <h4>⚖️ 3. रसोई घर और अन्नपूर्णा के 30 सख्त नियम:</h4>
+                            <ul>
+                                <li><b>1.</b> पहली रोटी हमेशा गाय के लिए और आखिरी रोटी कुत्ते या पक्षी के लिए निकालें।</li>
+                                <li><b>2.</b> खाना हमेशा स्नान करने के बाद और पवित्र मन से ही बनाना शुरू करें।</li>
+                                <li><b>3.</b> रसोई घर में कभी भी जूते-चप्पल पहनकर प्रवेश न करें।</li>
+                                <li><b>4.</b> रात को सोने से पहले किचन और गैस चूल्हा अच्छी तरह साफ करें, गंदा चूल्हा छोड़ना दरिद्रता लाता है।</li>
+                                <li><b>5.</b> रात को सिंक में जूठे बर्तन छोड़ने से धन हानि और मानसिक तनाव बढ़ता है।</li>
+                                <li><b>6.</b> रसोई में कभी भी दवाइयां या मेडिकल का सामान न रखें।</li>
+                                <li><b>7.</b> आटा गूंथकर फ्रिज में लंबे समय तक न रखें, यह नकारात्मक ऊर्जा को आकर्षित करता है।</li>
+                                <li><b>8.</b> माता अन्नपूर्णा की तस्वीर या फ्रेम रसोई की उत्तर-पूर्व दीवार पर लगाना अत्यंत शुभ है।</li>
+                                <li><b>9.</b> कभी भी अन्न (अनाज) का अपमान या बर्बादी न करें, थाली में खाना बिल्कुल न छोड़ें।</li>
+                                <li><b>10.</b> रसोई का रंग हल्का पीला, नारंगी या हल्का गुलाबी रखना वास्तु के अनुसार श्रेष्ठ माना गया है।</li>
+                                <li><b>11.</b> गैस लाइटर या माचिस को कभी भी खुले में न रखें, उसे ढककर उचित स्थान पर रखें।</li>
+                                <li><b>12.</b> रसोई में डस्टबिन (कूड़ादान) ढककर रखें और उसे रोज खाली करें।</li>
+                                <li><b>13.</b> खाना बनाते समय परिवार के लिए मंगल कामना और ईश्वर का स्मरण करें।</li>
+                                <li><b>14.</b> दक्षिण-पश्चिम (नैऋत्य) कोने में भारी राशन या अनाज के डिब्बे रखें।</li>
+                                <li><b>15.</b> नल से पानी का लगातार टपकना भयंकर आर्थिक नुकसान का संकेत है, इसे तुरंत ठीक करवाएं।</li>
+                                <li><b>16.</b> रसोई में टूटा हुआ कांच, कप या चटका हुआ बर्तन बिल्कुल इस्तेमाल न करें।</li>
+                                <li><b>17.</b> कभी भी सीधे खड़े होकर या जमीन पर बिना आसन बिछाए भोजन न करें।</li>
+                                <li><b>18.</b> भोजन बनाते समय सबसे पहले अग्नि देव (चूल्हा) को भोग लगाएं।</li>
+                                <li><b>19.</b> रसोई के दरवाजे के ठीक सामने गैस चूल्हा नहीं होना चाहिए।</li>
+                                <li><b>20.</b> शुक्रवार के दिन माता अन्नपूर्णा की पूजा कर खीर का भोग लगाएं।</li>
+                                <li><b>21.</b> रसोई में कभी भी अंधेरा न रखें, वहां पर्याप्त रोशनी और वेंटीलेशन होना चाहिए।</li>
+                                <li><b>22.</b> नमक के डिब्बे में एक लाल मिर्च या लौंग रखने से बरकत बनी रहती है।</li>
+                                <li><b>23.</b> रसोई घर कभी भी मुख्य दरवाजे के ठीक सामने नहीं होना चाहिए।</li>
+                                <li><b>24.</b> खाना हमेशा प्यार और प्रसन्नता के साथ बनाएं, गुस्से में बना खाना नकारात्मकता फैलाता है।</li>
+                                <li><b>25.</b> घर की बहू-बेटियों का सम्मान करें, क्योंकि उन्हें अन्नपूर्णा का रूप माना गया है।</li>
+                                <li><b>26.</b> चावल या दाल धोते समय पानी नाले में न बहाएं, उसे पौधों में डाल सकते हैं।</li>
+                                <li><b>27.</b> रसोई में कभी भी झाड़ू या पोंछा छिपाकर रखें, उसे सामने न आने दें।</li>
+                                <li><b>28.</b> लहसुन-प्याज का छिलका या कचरा कभी भी खुले बर्तन में इकट्ठा न होने दें।</li>
+                                <li><b>29.</b> महीने में एक बार रसोई की डीप क्लीनिंग कर हल्दी के पानी का छिड़काव करें।</li>
+                                <li><b>30.</b> माता अन्नपूर्णा का आशीर्वाद पाने के लिए हमेशा अपने घर के द्वार पर आने वाले भूखे को भोजन कराएं।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ====================================
+                   🌟 पितृ कृपा, पूजा विधि एवं दोष निवारण
+                ========================================== -->
+                <div class="grah-shanti-card" onclick="openPitruVastuPopup()">
+                    <div class="grah-card-icon">🪔</div>
+                    <div class="grah-card-info">
+                        <h3>पितृ कृपा, पूजा विधि एवं दोष निवारण</h3>
+                        <p>पितृ दोष के लक्षण, शांति के उपाय, पाठ, दान और आशीर्वाद के नियम...</p>
+                    </div>
+                    <div class="grah-arrow-btn">➔</div>
+                </div>
+
+                <div id="pitruVastuModal" class="grah-modal-overlay" onclick="if(event.target === this) closePitruVastuPopup()">
+                    <div class="grah-modal-content">
+                        <button class="grah-close-btn" onclick="closePitruVastuPopup()">&times;</button>
+                        <div class="grah-modal-header">
+                            <span>✨ पितृ देवो भवः (वंश एवं कुल संरक्षण) ✨</span>
+                            <h2>पितृ कृपा, पूजा विधि एवं दोष निवारण</h2>
+                            <div class="font-size-control-box">
+                                <button class="font-btn" onclick="changeFontSize('pitruBodyText', 1)" title="बड़ा करें">A+</button>
+                                <button class="font-btn" onclick="changeFontSize('pitruBodyText', -1)" title="छोटा करें">A-</button>
+                            </div>
+                        </div>
+                        <div class="grah-modal-body" id="pitruBodyText">
+                            <div class="mantra-highlight-box">
+                                <p class="sanskrit-mantra">
+                                    "ॐ देवताभ्यः पितृभ्यश्च महायोगिभ्य एव च। नमः स्वाहायै स्वाहायै नित्यमेव नमो नमः॥"
+                                </p>
+                            </div>
+                            <h4>🪔 1. सनातन धर्म में पितरों का महत्त्व और स्थान:</h4>
+                            <p>हिंदू सनातन परंपरा में कहा गया है कि <b>"प्रथम पूज्य गणेश जी"</b> हैं, लेकिन घर में वंश, स्वास्थ्य, सुख और समृद्धि की रक्षा सीधे तौर पर हमारे पूर्वजों (पितरों) के आशीर्वाद पर टिकी होती है। जिस घर पर पितृ प्रसन्न होते हैं, वहाँ देवताओं की कृपा स्वतः बरसती है।</p>
+
+                            <h4>✨ 2. पितृ कृपा होने पर मिलने वाले दिव्य फायदे (मुस्कान व सुख के संकेत):</h4>
+                            <ul>
+                                <li><b>वंश वृद्धि और संतान सुख:</b> घर में योग्य और संस्कारी संतानों का जन्म होता है, वंश कभी रुकता नहीं।</li>
+                                <li><b>अचानक संकटों से रक्षा:</b> बड़े से बड़े हादसे या कोर्ट-कचहरी के मामले टल जाते हैं, इसे ही "पितृ छाया" कहते हैं।</li>
+                                <li><b>व्यापार और करियर में तरक्की:</b> रुका हुआ धन मिलने लगता है और आर्थिक तंगी दूर होती है।</li>
+                                <li><b>घर में शांति व मुस्कान:</b> परिवार के सदस्यों के बीच आपसी कलह समाप्त होकर हंसी-खुशी का माहौल बनता है।</li>
+                                <li><b>मानसिक तृप्ति:</b> मन में असीम शांति और सकारात्मक ऊर्जा का अहसास होता है।</li>
+                            </ul>
+
+                            <h4>⚠️ 3. पितृ दोष के प्रमुख लक्षण (जब पितृ नाराज हों):</h4>
+                            <ul>
+                                <li>करियर में बार-बार असफलता मिलना और बनता हुआ काम अंतिम समय में बिगड़ जाना।</li>
+                                <li>घर में हमेशा बीमारियों का डेरा रहना और दवाइयों पर पैसा खर्च होना।</li>
+                                <li>वंश वृद्धि में रुकावट या बच्चों के विवाह में बार-बार बाधाएं आना।</li>
+                                <li>स्वप्न में बार-बार मृत परिजनों या सूखे पेड़-दीवारें दिखना।</li>
+                            </ul>
+
+                            <h4>📖 4. पितरों की प्रसन्नता के लिए कौन-सा पाठ करें?</h4>
+                            <ul>
+                                <li><b>श्रीमद्भागवत गीता का पाठ:</b> गीता के सातवें या ग्यारहवें अध्याय का पाठ करके उसका पुण्य पितरों को समर्पित करें।</li>
+                                <li><b>पितृ स्तोत्र व पितृ सूक्त:</b> नियमित रूप से या अमावस्या के दिन "पितृ स्तोत्र" का पाठ अत्यंत फलदायी होता है।</li>
+                                <li><b>महामृत्युंजय मंत्र:</b> पितरों की मुक्ति और अकाल मृत्यु से मृत आत्माओं की शांति के लिए महामृत्युंजय मंत्र का सवा लाख या नित्य जाप कराएं।</li>
+                                <li><b>हरिवंश पुराण:</b> वंश वृद्धि और संतान प्राप्ति के लिए हरिवंश पुराण का श्रवण या पाठ श्रेष्ठ माना गया है।</li>
+                            </ul>
+
+                            <h4>🌾 5. पितरों के लिए कौन-सा दान और अन्न है उत्तम?</h4>
+                            <ul>
+                                <li><b>अन्न दान:</b> अमावस्या या श्राद्ध पक्ष में कच्चे अनाज (गेहूं, चावल, दाल) का दान किसी योग्य ब्राह्मण या गरीब को करें।</li>
+                                <li><b>वस्त्र दान:</b> जरूरतमंद वृद्धों को मौसम के अनुसार वस्त्र दान करने से पितृ तृप्त होते हैं।</li>
+                                <li><b>जल का दान (प्यास बुझाना):</b> गर्मी के दिनों में प्याऊ लगवाना या राहगीरों को जल पिलाना पितृ ऋण से उऋण करता है।</li>
+                                <li><b>पंचबलि कर्म:</b> रोज बनने वाले भोजन में से गाय, कुत्ता, कौवा, चींटी और अग्नि (बलि) के लिए हिस्सा जरूर निकालें।</li>
+                            </ul>
+
+                            <h4>📅 6. कब और कैसे करें पितरों की पूजा व उपाय?</h4>
+                            <ul>
+                                <li><b>दैनिक कर्म:</b> रोज सुबह स्नान के बाद दक्षिण दिशा की तरफ मुंह करके अपने पितरों का स्मरण कर हाथ जोड़ें।</li>
+                                <li><b>अमावस्या तिथि:</b> हर महीने आने वाली अमावस्या के दिन दक्षिण दिशा में एक दीपक जलाएं और गरीबों को भोजन कराएं।</li>
+                                <li><b>श्राद्ध पक्ष (महालय):</b> आश्विन मास के कृष्ण पक्ष (पितृपक्ष) के 15 दिन अपने पूर्वजों की तिथि पर उनका तर्पण, पिंडदान और ब्राह्मण भोजन कराएं।</li>
+                                <li><b>सोमवती अमावस्या:</b> इस दिन पीपल के पेड़ की 108 परिक्रमा कर कच्चा दूध और गंगाजल चढ़ाने से पितृ दोष शांत होता है।</li>
+                                <li><b>विशेष ध्यान:</b> कभी भी पितरों के निमित्त किए जाने वाले कार्यों में अहंकार न लाएं; श्रद्धा और विनम्रता ही सबसे बड़ा अर्पण है।</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Editorial Temple Section -->
+                <section class="editorial-section" aria-labelledby="editorialTitle">
+                    <div class="editorial-header">
+                        <h2 id="editorialTitle" data-i18n="editorial_title">📜 भारत के पवित्र धाम</h2>
+                        <p data-i18n="editorial_desc">विस्तृत इतिहास, लाइव दर्शन और यात्रा जानकारी</p>
+                    </div>
+
+                    <article class="editorial-card">
+                        <div class="editorial-img-wrapper">
+                            <img src="assets/kdn.jpg" alt="Kedarnath Temple" loading="lazy">
+                            <span class="location-badge" data-i18n="loc_uk">📍 उत्तराखंड</span>
+                        </div>
+                        <div class="editorial-content">
+                            <h3 class="editorial-title" data-i18n="t_kedar">श्री केदारनाथ ज्योतिर्लिंग</h3>
+                            <p class="editorial-snippet" data-i18n="t_kedar_desc">हिमालय की गोद में स्थित भगवान शिव का यह परम पवित्र धाम 12 ज्योतिर्लिंगों में से एक है।...</p>
+                            <button class="read-more-btn" data-temple="केदारनाथ धाम" data-i18n="btn_read_more">संपूर्ण जानकारी पढ़ें <span class="arrow-right" aria-hidden="true">➔</span></button>
+                        </div>
+                    </article>
+
+                    <article class="editorial-card">
+                        <div class="editorial-img-wrapper">
+                            <img src="assets/tiru.jpg" alt="Tirupati Balaji Temple" loading="lazy">
+                            <span class="location-badge" data-i18n="loc_ap">📍 आंध्र प्रदेश</span>
+                        </div>
+                        <div class="editorial-content">
+                            <h3 class="editorial-title" data-i18n="t_tiru">तिरुपति बालाजी मंदिर</h3>
+                            <p class="editorial-snippet" data-i18n="t_tiru_desc">चित्तूर जिले की शेषचलम पहाड़ियों पर स्थित यह भव्य मंदिर दुनिया के सबसे अमीर मंदिरों में गिना जाता है...</p>
+                            <button class="read-more-btn" data-temple="तिरुपति बालाजी" data-i18n="btn_read_more">संपूर्ण जानकारी पढ़ें <span class="arrow-right" aria-hidden="true">➔</span></button>
+                        </div>
+                    </article>
+
+                    <article class="editorial-card">
+                        <div class="editorial-img-wrapper">
+                            <img src="assets/kasi.jpg" alt="Kashi Vishwanath Temple" loading="lazy">
+                            <span class="location-badge" data-i18n="loc_up">📍 उत्तर प्रदेश</span>
+                        </div>
+                        <div class="editorial-content">
+                            <h3 class="editorial-title" data-i18n="t_kashi">काशी विश्वनाथ धाम</h3>
+                            <p class="editorial-snippet" data-i18n="t_kashi_desc">बाबा विश्वनाथ की नगरी काशी (वाराणसी) में गंगा तट पर स्थित यह मंदिर शिवभक्तों का मुख्य केंद्र है...</p>
+                            <button class="read-more-btn" data-temple="काशी विश्वनाथ" data-i18n="btn_read_more">संपूर्ण जानकारी पढ़ें <span class="arrow-right" aria-hidden="true">➔</span></button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- View All Temples Section -->
+                <section class="view-all-temples-section">
+                    <button id="viewAllTemplesBtn" class="ultra-view-all-btn" aria-label="View All Temples">
+                        <span data-i18n="btn_all_temples">🌸 सभी पवित्र धामों की सूची देखें</span>
+                        <span class="btn-arrow" aria-hidden="true">➔</span>
+                    </button>
+                </section>
+
+                <!-- Donation / Sewa Section -->
+                <section class="donation-section" aria-label="Donation and Sewa">
+                    <div class="donation-card">
+                        <div class="donation-icon-glow" aria-hidden="true">🙏</div>
+                        <h2 class="donation-title" data-i18n="donate_main_title">धर्म सेवा और सहयोग</h2>
+                        <p class="donation-desc" data-i18n="donate_main_desc">
+                            🙏 प्रिय धर्मप्रेमी भक्तजनों, सनातन संस्कृति और भक्तिभाव से परिपूर्ण इस पावन डिजिटल मंदिर को बिना किसी विज्ञापन के, पूर्णतः शुद्ध, अबाधित और सर्वसुविधा संपन्न बनाए रखने के लिए हमें आपके प्रेमपूर्ण और उदार सहयोग की अत्यंत आवश्यकता है। आपके द्वारा दिया जाने वाला यह छोटा सा योगदान इस पवित्र मंच के सर्वर रखरखाव, निरंतर तकनीकी उन्नयन और सनातन सेवा के इस पवित्र विस्तार को निरंतर गति प्रदान करता है।
+                        </p>
+                        <div class="donation-badge-box">
+                            <span data-i18n="donate_f1">✨ सर्वर रखरखाव</span>
+                            <span data-i18n="donate_f2">⚡ तेज और सुरक्षित</span>
+                            <span data-i18n="donate_f3">🌸 निःशुल्क सेवा</span>
+                        </div>
+                        
+                        <!-- Button with Modal Trigger -->
+                        <button id="donateBtn" class="donation-pro-btn" onclick="openDonationModal()" aria-label="Donate for App Maintenance">
+                            <span data-i18n="btn_donate_support">💳 ऐप के रखरखाव हेतु सहयोग करें</span>
+                            <span class="btn-heart" aria-hidden="true">❤️</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- YouTube Playlist Player -->
+                <section class="bhajan-player-section" aria-labelledby="bhajanPlayerTitle">
+                    <div class="player-card">
+                        <div class="player-header">
+                            <span class="live-pulse-dot" aria-hidden="true"></span>
+                            <h3 id="bhajanPlayerTitle" data-i18n="yt_title">🎶 संपूर्ण भजन संध्या</h3>
+                        </div>
+                        <p class="player-subtitle" data-i18n="yt_subtitle">सूची से अपनी पसंद का भजन चुनें और आनंद लें</p>
+                        <div class="video-container">
+                            <iframe id="bhajanYouTubePlayer" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLJdbxY6iiuu0&enablejsapi=1" title="Bhakti Sewa Playlist Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="player-footer-note"><span data-i18n="yt_footer">✨ भक्ति सेवा म्यूज़िक कॉर्नर</span></div>
+                    </div>
+                </section>
+
+                <!-- 🌟 Ultra Pro Max VIP Disclaimer Section -->
+                <footer class="app-vip-disclaimer" aria-label="Footer and Disclaimer">
+                    <div class="disclaimer-card">
+                        <div class="disclaimer-icon">🪔</div>
+                        <h4 class="disclaimer-heading" data-i18n="disc_title">पवित्र सूचना एवं डिस्क्लेमर</h4>
+                        <p class="disclaimer-text" data-i18n="disc_text">इस ऐप में प्रदत्त समस्त धार्मिक, पंचांग, आरती एवं कथा सामग्री सनातन ग्रंथों, वेदों तथा लोक-मान्यताओं पर आधारित है। हमारा उद्देश्य केवल आपकी आध्यात्मिक यात्रा को सुगम बनाना है।</p>
+                        <div class="disclaimer-divider"></div>
+                        <p class="developer-tag">
+                            <span>✨ Bhakti Sewa Digital Sanctuary</span> <br>
+                            Crafted with devotion by <strong class="dev-highlight">Kapil Khandelwal</strong>
+                        </p>
+
+                        <!-- DIVINE TRIBUTE SECTION -->
+                        <div class="card-tribute-box">
+                            <div class="tribute-wrapper-inner">
+                                <span class="particle p1">✨</span>
+                                <span class="particle p2">⭐</span>
+                                <span class="particle p3">✨</span>
+                                <span class="particle p4">🌟</span>
+                                <span class="particle p5">✨</span>
+                                <span class="particle p6">⭐</span>
+                                <span class="particle p7">✨</span>
+                                <span class="particle p8">🌟</span>
+
+                                <div class="tribute-img-box">
+                                    <img src="assets/bhai.jpg" alt="Swargiya Deepak Prakash" class="tribute-avatar">
+                                    <div class="golden-sparkles-ring"></div>
+                                </div>
+                                <h3 class="tribute-name">स्वर्गीय दीपक प्रकाश</h3>
+                                <p class="tribute-tagline">"स्मृतियों में अमर, आशीर्वाद रूप में सदा साथ"</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </footer>
+
+            </div> 
+            <!-- 🔚 END OF HOME VIEW -->
+            <!-- 🎵 ULTRA PRO MAX MUSIC PLAYER VIEW -->
+            <div id="bhajan-view" class="view-section" style="display: none;">
+                
+                <!-- Top Immersive Audio Art Section -->
+                <div class="pro-audio-stage">
+                    <div class="divine-disc-box">
+                        <div class="spinning-vinyl">
+                            <div class="vinyl-center-art">🪔</div>
+                        </div>
+                    </div>
+                    <div class="song-info-container">
+                        <h2 id="pro-now-playing">भजन संध्या</h2>
+                        <p class="pro-artist-name">✨ भक्ति सेवा डिजिटल मंदिर</p>
+                    </div>
+                </div>
+
+                <!-- Sleek Glassmorphism Player Box -->
+                <div class="pro-player-glass-card">
+                    <!-- Time Indicators -->
+                    <div class="time-track-row">
+                        <span id="current-time">0:00</span>
+                        <span id="total-duration">0:00</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <input type="range" id="pro-progress-bar" min="0" max="100" value="0">
+                    </div>
+                    
+                    <!-- Controls Row -->
+                    <div class="pro-controls">
+                        <button id="pro-list-btn" class="pro-icon-btn" aria-label="Playlist">
+                            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                        </button>
+                        
+                        <button id="pro-prev-btn" class="pro-icon-btn" aria-label="Previous">
+                            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                        </button>
+                        
+                        <button id="pro-play-btn" class="pro-main-btn" aria-label="Play Pause">
+                            <svg id="pro-play-icon" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </button>
+                        
+                        <button id="pro-next-btn" class="pro-icon-btn" aria-label="Next">
+                            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                        </button>
+                        
+                        <button id="pro-like-btn" class="pro-icon-btn" aria-label="Like">
+                            <svg id="pro-heart-icon" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hidden Playlist Sheet -->
+                <div id="hidden-playlist-sheet" class="playlist-sheet">
+                    <div class="sheet-header">
+                        <h3>🎵 संपूर्ण भजन सूची</h3>
+                        <button id="close-playlist-btn" class="close-sheet-btn">✕</button>
+                    </div>
+                    <div id="bhajan-list-container" class="bhajan-list-scroll">
+                        <p style="text-align: center; margin-top: 20px; color: #888;">भजन लोड हो रहे हैं...</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 👤 VIP PROFILE VIEW SECTION (NO-LOGIN)
+            =========================================== -->
+            <div id="profile-view" class="view-section" style="display: none;">
+                
+                <!-- 1. Top Header (Identity, Back Button & Details) -->
+                <div class="vip-profile-header">
+                    <!-- प्रीमियम बैक बटन और टाइटल -->
+                    <div class="prof-top-bar">
+                        <button class="prof-back-btn" id="profBackBtn">❮</button>
+                        <span class="prof-top-title">मेरी प्रोफाइल</span>
+                    </div>
+
+                    <!-- फोटो अपलोड बॉक्स -->
+                    <div class="prof-avatar-box" title="फोटो बदलें">
+                        <span class="prof-avatar-icon">🕉️</span>
+                        <img id="profAvatarImg" class="prof-avatar-img" src="" alt="User">
+                        <div class="avatar-edit-icon">📷</div>
+                    </div>
+                    <!-- छुपी हुई फाइल इनपुट -->
+                    <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+
+                    <!-- एडिटेबल नाम -->
+                    <h2 class="prof-user-name" id="userNameDisplay">
+                        प्रिय भक्त <span class="name-edit-icon">✎</span>
+                    </h2>
+
+                    <!-- एडिटेबल गोत्र -->
+                    <div class="prof-gotra-badge" id="profGotraBadge">
+                        <span>गोत्र:</span> <strong id="userGotraDisplay">सेट करें ✎</strong>
+                    </div>
+                </div>
+
+                <!-- 2. Bhakti Stats Grid (Report Card) -->
+                <div class="prof-stats-container">
+                    <div class="prof-stat-card">
+                        <div class="stat-icon">📿</div>
+                        <div class="stat-number" id="profTotalMala">0</div>
+                        <div class="stat-label">कुल माला जाप</div>
+                    </div>
+                    <div class="prof-stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-number" id="profBadge" style="color: var(--primary-color); font-size: 16px; margin-top: 5px;">--</div>
+                        <div class="stat-label">आपका सम्मान</div>
+                    </div>
+                </div>
+
+                <!-- 🏆 बैज टारगेट (Badge Targets) -->
+                <div class="prof-badge-guide" id="openBadgeInfo" title="बैज की जानकारी देखें">
+                    <div class="guide-title">
+                        अगले बैज के लिए लक्ष्य: <span class="info-icon">ⓘ</span>
+                    </div>
+                    <div class="guide-steps">
+                        <span>🥈 21 माला</span>
+                        <span>🥇 51 माला</span>
+                        <span>💎 101 माला</span>
+                    </div>
+                </div>
+
+                <!-- 🏆 BADGE INFO MODAL -->
+                <div id="badgeInfoModal" class="vip-modal-overlay">
+                    <div class="vip-modal-box badge-info-box">
+                        <h3>🏆 सम्मान और बैज (नियम)</h3>
+                        <div class="badge-details-list">
+                            <div class="badge-row"><span>🙏 आरंभिक</span> <span>1 से 20 माला</span></div>
+                            <div class="badge-row"><span>🥈 सिल्वर बैज</span> <span>21 से 50 माला</span></div>
+                            <div class="badge-row"><span>🥇 गोल्डन बैज</span> <span>51 से 100 माला</span></div>
+                            <div class="badge-row"><span>💎 डायमंड बैज</span> <span>101 या अधिक</span></div>
+                            <div class="badge-row"><span>⭐ गौ सेवक</span> <span>गौ-सेवा करने पर (अतिरिक्त)</span></div>
+                        </div>
+                        <p class="badge-note">* आप जितनी ज्यादा माला जपेंगे, आपका सम्मान उतना ही बढ़ेगा।</p>
+                        <div class="vip-modal-actions" style="margin-top: 15px;">
+                            <button id="closeBadgeInfoBtn" class="vip-btn-cancel" style="width: 100%;">समझ गया</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Personalized Hub (Meri Bhakti) -->
+                <h3 class="prof-section-title">मेरी भक्ति</h3>
+                <div class="prof-menu-group">
+                    <div class="prof-menu-item" id="menuFavorites">
+                        <div class="menu-left"><span class="menu-icon">❤️</span> मेरी फेवरेट लिस्ट</div>
+                        <div class="menu-right">❯</div>
+                    </div>
+                    <div class="prof-menu-item" id="menuZodiac">
+                        <div class="menu-left"><span class="menu-icon">♈</span> मेरी राशि (Zodiac)</div>
+                        <div class="menu-right" id="userZodiacDisplay" style="color: var(--primary-color);">सेट करें ❯</div>
+                    </div>
+                </div>
+
+                <!-- 4. Smart Controls & Settings -->
+                <h3 class="prof-section-title">सेटिंग्स और टूल्स</h3>
+                <div class="prof-menu-group">
+                    <div class="prof-menu-item" id="menuTextSize">
+                        <div class="menu-left"><span class="menu-icon">🔠</span> कथा/आरती अक्षर आकार</div>
+                        <div class="menu-right">मध्यम ❯</div>
+                    </div>
+                    <div class="prof-menu-item" id="menuVratAlert">
+                        <div class="menu-left"><span class="menu-icon">🔔</span> व्रत रिमाइंडर अलर्ट</div>
+                        <div class="menu-right">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="vratAlertToggle" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="prof-menu-item" id="menuShareApp">
+                        <div class="menu-left"><span class="menu-icon">🔗</span> ऐप शेयर करें</div>
+                        <div class="menu-right">❯</div>
+                    </div>
+                    <div class="prof-menu-item" id="menuRateApp">
+                        <div class="menu-left"><span class="menu-icon">⭐</span> हमें 5-स्टार दें</div>
+                        <div class="menu-right">❯</div>
+                    </div>
+                </div>
+
+                <div class="prof-footer-brand">
+                    Bhakti Sewa App v1.0 • 100% Secure
+                </div>
+            </div>
+
+            <!-- === VIP CUSTOM MODAL === -->
+            <div id="vipCustomModal" class="vip-modal-overlay">
+                <div class="vip-modal-box">
+                    <h3 id="vipModalTitle">टाइटल</h3>
+                    <input type="text" id="vipModalInput" placeholder="यहाँ लिखें..." autocomplete="off">
+                    <div class="vip-modal-actions">
+                        <button id="vipModalCancel" class="vip-btn-cancel">रद्द करें</button>
+                        <button id="vipModalSave" class="vip-btn-save">सेव करें</button>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- 🔚 END OF SPA APP-CONTAINER -->
+
+        <!-- ====================================================================
+             06. BOTTOM NAVIGATION BAR
+             ==================================================================== -->
+        <nav class="bottom-nav" aria-label="Bottom Navigation">
+            <a href="#" id="nav-home" class="nav-item active" data-target="home-view" aria-label="Home" aria-current="page">
+                <span class="nav-icon" aria-hidden="true">🏠</span>
+                <span class="nav-text" data-i18n="nav_home">होम</span>
+            </a>
+            
+            <a href="#" id="nav-bhajan" class="nav-item" data-target="bhajan-view" aria-label="Bhajan">
+                <span class="nav-icon" aria-hidden="true">🎵</span>
+                <span class="nav-text" data-i18n="nav_bhajan">भजन</span>
+            </a>
+            
+            <a href="https://youtube.com/@bhaktisagarkapil?si=X4QUd36NtAtEiw75" target="_blank" id="nav-videos" class="nav-item" aria-label="Videos">
+                <span class="nav-icon" aria-hidden="true">▶️</span>
+                <span class="nav-text" data-i18n="nav_videos">वीडियोज़</span>
+            </a>
+
+            <a href="#" id="nav-profile" class="nav-item" data-target="profile-view" aria-label="Profile">
+                <span class="nav-icon" aria-hidden="true">👤</span>
+                <span class="nav-text" data-i18n="nav_profile">प्रोफाइल</span>
+            </a>
+        </nav>
+
+    </div> <!-- 🔚 END OF MAIN APP WRAPPER (#appContainer) -->
+
+    <!-- === 🔔 VIP TOAST NOTIFICATION === -->
+    <div id="vipToast" class="vip-toast">संदेश यहाँ आएगा</div>
+
+    <!-- === ⭐ PREMIUM RATING MODAL === -->
+    <div id="ratingModal" class="vip-modal-overlay">
+        <div class="vip-modal-box">
+            <h3 style="margin-bottom: 5px;">ऐप कैसी लगी?</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">अपना अनुभव साझा करें</p>
+            
+            <div class="rating-stars" id="ratingStars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            
+            <div class="vip-modal-actions" style="margin-top: 20px;">
+                <button id="closeRatingBtn" class="vip-btn-cancel">बाद में</button>
+                <button id="submitRatingBtn" class="vip-btn-save">रेटिंग दें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- === 🔔 VIP VRAT REMINDER POPUP === -->
+    <div id="vratReminderModal" class="vip-modal-overlay">
+        <div class="vrat-modal-box">
+            <div class="vrat-app-branding">✨ Bhakti Sewa ✨</div>
+            <div class="vrat-bell-icon">🔔</div>
+            <h3 class="vrat-title">जय श्री हरि!</h3>
+            <h4 id="vratNameDisplay" class="vrat-subtitle">
+                कल एकादशी का पावन व्रत है
+            </h4>
+            <p class="vrat-desc">
+                भक्ति सेवा में इस पावन पर्व की संपूर्ण व्रत कथा, आरती और पूजा विधि उपलब्ध है।<br>
+                <strong>प्रभु की कृपा आप पर सदैव बनी रहे।</strong>
+            </p>
+            <button id="closeVratReminderBtn" class="vrat-btn">
+                🙏 दर्शन और पूजा करें ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- 🌟 DIGITAL MANDIR FULL-SCREEN OVERLAY SECTION -->
+    <!-- ================================================================= -->
+    <div id="mandirOverlay" class="mandir-overlay">
+        <div id="patLayer" class="pat-layer">
+            <img src="assets/ptt.gif" alt="Opening Pat Animation..." class="pat-gif">
+        </div>
+
+        <div id="mandirContent" class="mandir-content">
+            <button id="closeMandirBtn" class="close-btn" aria-label="Close Mandir">&times;</button>
+
+            <div class="hanging-bells-container">
+                <img src="assets/ganti.gif" alt="Hanging Bell" class="bell-gif bell-center">
+            </div>
+
+            <div class="god-slider-container">
+                <img src="assets/frm.png" alt="Mandir Frame" class="mandir-frame">
+
+                <div id="aartiThaliContainer" class="aarti-thali-container hidden">
+                    <img src="assets/thali.png" alt="Aarti Thali" class="aarti-thali-img">
+                </div>
+
+                <div class="god-swiper">
+                    <div class="god-slide active" style="background-image: url('assets/img/ganesh.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/shiv.png');"></div>     
+                    <div class="god-slide" style="background-image: url('assets/img/ram.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/rada.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/durga.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/hanuman.png');"></div>  
+                    <div class="god-slide" style="background-image: url('assets/kali.png');"></div>  
+                    <div class="god-slide" style="background-image: url('assets/img/sani.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/chandra.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/indra.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/jin.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/khatu.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/laxmi.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/sai.png');"></div>   
+                    <div class="god-slide" style="background-image: url('assets/santoshi.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/sarswati.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/surya.png');"></div>
+                    <div class="god-slide" style="background-image: url('assets/img/tru.png');"></div>   
+                    <div class="god-slide" style="background-image: url('assets/img/vishnu.png');"></div>
+                </div>
+            </div>
+
+            <!-- 🌸 Flower Shower Action Buttons -->
+            <div class="flower-btn left-flower-btn" onclick="startFlowerShower('rose')">
+                <img src="assets/pti.png" alt="Rose Petals">
+            </div>
+            <div class="flower-btn right-flower-btn" onclick="startFlowerShower('marigold')">
+                <img src="assets/phool.png" alt="Marigold Flowers">
+            </div>
+
+            <div id="flower-container"></div>
+
+            <div class="diyas-container">
+                <img src="assets/diya.gif" alt="Diya Left" class="diya-gif diya-left">
+                <img src="assets/diya.gif" alt="Diya Right" class="diya-gif diya-right">
+            </div>
+
+            <img src="assets/smoke.gif" alt="Smoke Effect" class="smoke-gif-transparent">
+            <img src="assets/dhup.png" alt="Dhupbatti" class="dhupbatti-img-solid">
+
+            <!-- 🌟 VIP Ticker Container -->
+            <div class="mandir-vip-ticker-container">
+                <div class="vip-ticker-wrapper">
+                    <div id="sewa" class="vip-ticker-text">
+                        🙏 डिजिटल मंदिर भक्ति सेवा में आपका स्वागत है! • नियमित दर्शन, आरती और शंखध्वनि से पुण्य लाभ प्राप्त करें। • अपनी सेवाएँ जारी रखने के लिए दान/चढ़ावा दें। 🪔
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2.5 ACTION CARD -->
+            <div class="action-card-glass">
+                <div class="round-btns-grid">
+                    <button class="round-action-btn" id="shankhActionBtn">
+                        <img src="assets/sankh.png" alt="Shankh Icon">
+                        <span>शंख</span>
+                    </button>
+                    <button class="round-action-btn" id="aartiActionBtn">
+                        <img src="assets/thali.png" alt="Aarti Thali Icon">
+                        <span>आरती थाली</span>
+                    </button>
+                    <button class="round-action-btn" id="bellActionBtn">
+                        <img src="assets/ganti.png" alt="Bell Icon">
+                        <span>घंटी</span>
+                    </button>
+                    <button class="round-action-btn" id="darshanActionBtn">
+                        <img src="assets/k2.png" alt="Darshan Icon">
+                        <span>दर्शन</span>
+                    </button>
+                    <button class="round-action-btn" id="chadwaActionBtn" onclick="startChadawa(event)">
+                        <img src="assets/k.png" alt="Chadwa Icon">
+                        <span>चढ़ावा</span>
+                    </button>
+                    <button class="round-action-btn" id="aashirwaadActionBtn">
+                        <img src="assets/k 1.png" alt="Aashirwaad Icon">
+                        <span>आशीर्वाद</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 🪙 Coin Sound & Success Overlay -->
+    <audio id="coinSound" src="assets/coin.mp3"></audio> 
+
+    <div id="chadawaSuccessOverlay" class="chadawa-success-overlay">
+        <div class="chadawa-success-text">
+            <img src="assets/pti.png" alt="Flower" width="50" style="margin-bottom: 10px;"><br>
+            आपका चढ़ावा स्वीकार हुआ।<br>
+            <span style="font-size: 16px; color: #fff;">भगवान आप पर कृपा बनाए रखें! 🙏</span>
+        </div>
+    </div>
+
+    <!-- Donation Popup Bottom Sheet -->
+    <div id="donationModal" class="donation-modal-overlay" style="display: none;">
+        <div class="donation-modal-sheet">
+            <div class="sheet-indicator"></div>
+            <div class="modal-header-box">
+                <h3>🪔 डिजिटल मंदिर सहयोग</h3>
+                <button id="closeDonationModal" class="modal-close-x" onclick="closeDonationModal()">&times;</button>
+            </div>
+            
+            <p class="modal-sub">🙏 सनातन संस्कृति के इस पावन डिजिटल विस्तार में अपना प्रेमपूर्ण सहयोग देकर धर्म लाभ प्राप्त करें।</p>
+            
+            <div class="donation-chips">
+                <button class="d-chip" onclick="selectDonationAmount(this, 51)">₹51</button>
+                <button class="d-chip selected" onclick="selectDonationAmount(this, 101)">₹101</button>
+                <button class="d-chip" onclick="selectDonationAmount(this, 501)">₹501</button>
+                <button class="d-chip" onclick="selectDonationAmount(this, 1100)">₹1100</button>
+            </div>
+
+            <div class="qr-card-box">
+                <div class="qr-image-wrap">
+                    <img src="assets/qr.jpg" alt="UPI QR Code">
+                </div>
+                <p class="upi-text-info">UPI ID: <code>8824901073@axl</code></p>
+            </div>
+            
+            <a id="upiPayLink" href="upi://pay?pa=bhaktisewa@upi&pn=BhaktiSewa&am=101&cu=INR" class="upi-trigger-btn">
+                🚀 किसी भी UPI ऐप से भुगतान करें
+            </a>
+
+            <!-- RBI & NPCI Security Guidelines Section -->
+            <div class="security-rules-box">
+                <div class="sec-title-badge">
+                    <span class="rbi-shield-icon">🛡️</span>
+                    <span>RBI & NPCI डिजिटल भुगतान सुरक्षा मानक</span>
+                </div>
+                <ul class="rbi-rules-list">
+                    <li>लेनदेन सीधे बैंक-टू-बैंक सुरक्षित माध्यम (UPI P2P) से होता है।</li>
+                    <li>प्लेटफ़ॉर्म पर आपकी कोई भी बैंकिंग या यूपीआई पिन जानकारी स्टोर नहीं होती।</li>
+                    <li>भारतीय रिजर्व बैंक (RBI) एवं एनपीसीआई (NPCI) के सुरक्षा दिशा-निर्देशों का अनुपालन।</li>
+                    <li>यह स्वैच्छिक सहयोग राशि पूर्णतः डिजिटल मंदिर के सर्वर रखरखाव हेतु समर्पित है।</li>
+                    <li>किसी भी प्रकार की धोखाधड़ी से सुरक्षित, एन्क्रिप्टेड मर्चेंट पेमेंट चैनल।</li>
+                    <li>भुगतान प्रक्रिया पूरी तरह पारदर्शी और उपयोगकर्ता की मर्जी पर आधारित है।</li>
+                    <li>डेटा प्राइवेसी नीति के तहत आपकी व्यक्तिगत जानकारी पूरी तरह सुरक्षित रहती है।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. सिंगल मंदिर का विवरण दिखाने वाला पॉपअप -->
+    <div id="templePopup" class="temple-modal-overlay">
+        <div class="temple-modal-card">
+            <button id="closePopupBtn" class="close-modal-btn">&times;</button>
+            <img id="popupImage" src="" alt="Temple Image">
+            <div class="modal-body-content">
+                <span id="popupLocation" class="location-badge"></span>
+                <h3 id="popupTitle"></h3>
+                <p id="popupHistory"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. "सभी धामों की सूची" दिखाने वाला मोडल -->
+    <div id="allTemplesModal" class="temple-modal-overlay">
+        <div class="temple-modal-card">
+            <div class="modal-header">
+                <h3>🌸 सभी पवित्र धामों की सूची</h3>
+                <button id="closeAllTemplesBtn" class="close-modal-btn">&times;</button>
+            </div>
+            <div id="templesListContainer" class="temples-grid-container">
+                <!-- यहाँ JS से पूरी लिस्ट लोड होगी -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="vrat-data.js"></script>
+    <script src="aarti-data.js"></script>
+    <script src="bhajan-data.js"></script>
+    <script src="rashifal-data.js"></script>
+    <script src="quiz-data.js"></script>
+    <script src="temples-data.js"></script>
+   
+    <script src="app.js"></script>
+   
+</body>
+</html>

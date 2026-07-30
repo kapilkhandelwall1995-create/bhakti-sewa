@@ -1,0 +1,5218 @@
+/* ==========================================================
+   01. 🌐 LANGUAGE & TYPOGRAPHY ADJUSTMENTS
+========================================================== */
+html[lang="hi"] {
+    font-family: "Mukta", "Hind", system-ui, -apple-system, sans-serif;
+}
+html[lang="en"] {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: 0.2px;
+}
+
+/* ==========================================================
+   02. 🛠️ SPACING & ALIGNMENT CONTROLS
+========================================================== */
+:root {
+    --header-padding-top: 5px;
+    --header-padding-bottom: 5px;
+    --header-margin-bottom: 0px;
+    --god-section-padding-top: 15px;
+    --god-section-padding-bottom: 15px;
+    --god-section-margin-top: 0px;
+    --loop-img-height: 440px;
+    --loop-margin-top: 0px;
+    --loop-margin-bottom: 0px;
+    --temple-section-padding: 20px;
+    --temple-box-margin-bottom: 15px;
+}
+
+/* ==========================================================
+   03. 🎨 TOP 10 LIGHT BHAKTI THEMES PALETTE & GOLD VARS
+========================================================== */
+:root {
+    --bg-main: #fff5eb;
+    --bg-home: #ffffff;
+    --bg-header: #ffedd5;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #d97706;
+    --accent-color: #b45309;
+    --box-bg: #fffbeb;
+    --border-color: #fcd34d;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="temple-red"] {
+    --bg-main: #fff1f2;
+    --bg-home: #ffffff;
+    --bg-header: #ffe4e6;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #be123c;
+    --accent-color: #9f1239;
+    --box-bg: #fff1f2;
+    --border-color: #fda4af;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="golden-temple"] {
+    --bg-main: #fefce8;
+    --bg-home: #ffffff;
+    --bg-header: #fef9c3;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #ca8a04;
+    --accent-color: #a16207;
+    --box-bg: #fefce8;
+    --border-color: #fde047;
+    --gold: #eab308;
+    --gold-light: #fef08a;
+    --gold-glow: rgba(234, 179, 8, 0.5);
+}
+
+[data-theme="tulsi-green"] {
+    --bg-main: #f0fdf4;
+    --bg-home: #ffffff;
+    --bg-header: #dcfce7;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #15803d;
+    --accent-color: #166534;
+    --box-bg: #f0fdf4;
+    --border-color: #86efac;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="ganga-blue"] {
+    --bg-main: #f0f9ff;
+    --bg-home: #ffffff;
+    --bg-header: #e0f2fe;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #0369a1;
+    --accent-color: #0369a1;
+    --box-bg: #f0f9ff;
+    --border-color: #7dd3fc;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="pujan-purple"] {
+    --bg-main: #faf5ff;
+    --bg-home: #ffffff;
+    --bg-header: #f3e8ff;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #7e22ce;
+    --accent-color: #6b21a8;
+    --box-bg: #faf5ff;
+    --border-color: #d8b4fe;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="chandan-orange"] {
+    --bg-main: #fff7ed;
+    --bg-home: #ffffff;
+    --bg-header: #ffedd5;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #c2410c;
+    --accent-color: #9a3412;
+    --box-bg: #fff7ed;
+    --border-color: #fdba74;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="lotus-pink"] {
+    --bg-main: #fdf2f8;
+    --bg-home: #ffffff;
+    --bg-header: #fce7f3;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #be185d;
+    --accent-color: #9d174d;
+    --box-bg: #fdf2f8;
+    --border-color: #f472b6;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="shanti-white"] {
+    --bg-main: #f8fafc;
+    --bg-home: #ffffff;
+    --bg-header: #f1f5f9;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #0f172a;
+    --accent-color: #334155;
+    --box-bg: #f8fafc;
+    --border-color: #cbd5e1;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: rgba(245, 158, 11, 0.5);
+}
+
+[data-theme="bhakti-gold"] {
+    --bg-main: #fef3c7;
+    --bg-home: #ffffff;
+    --bg-header: #fde68a;
+    --text-color: #1f2937;
+    --text-muted: #4b5563;
+    --primary-color: #b45309;
+    --accent-color: #78350f;
+    --box-bg: #fffbeb;
+    --border-color: #f59e0b;
+    --gold: #d97706;
+    --gold-light: #fef08a;
+    --gold-glow: rgba(217, 119, 6, 0.5);
+}
+
+/* ==========================================================
+   04. 🌙 DARK MODE OVERRIDES
+========================================================== */
+body.dark-theme { 
+    --bg-main: #121212; 
+    --bg-home: #1E1E24; 
+    --bg-header: #1A1A1D; 
+    --text-color: #E0E0E0; 
+    --text-muted: #A0A0A5; 
+    --border-color: #2C2C35; 
+    --accent-color: #FFB74D; 
+    --gold: #fbbf24;
+    --gold-light: #fef08a;
+    --gold-glow: rgba(251, 191, 36, 0.4);
+}
+
+body.dark-theme .god-feature-card, 
+body.dark-theme .player-card { 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); 
+    border-color: #2C2C35; 
+}
+
+body.dark-theme .panchang-card, 
+body.dark-theme .suvichar-card, 
+body.dark-theme .darshan-modal-content {
+    background: var(--bg-home) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-theme .p-box, 
+body.dark-theme .p-full-box {
+    background: var(--bg-main) !important; 
+    border-color: var(--border-color) !important;
+}
+
+body.dark-theme .suvichar-text, 
+body.dark-theme .p-box strong { 
+    color: var(--text-color) !important; 
+}
+
+/* ==========================================================
+   05. 🌐 GLOBAL RESET & PLAY STORE OPTIMIZATION
+========================================================== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body { 
+    background: var(--bg-main); 
+    color: var(--text-color); 
+    overflow-x: hidden; 
+    transition: background 0.3s, color 0.3s; 
+    padding-bottom: 75px; 
+}
+
+.hidden { 
+    display: none !important; 
+}
+
+/* --- Splash Screen --- */
+.splash-screen { 
+    position: fixed; 
+    inset: 0; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    background: var(--bg-header); 
+    z-index: 9999; 
+}
+
+.splash-screen img { 
+    width: 185px; 
+    height: 185px; 
+    border-radius: 5%; 
+    border: 1px solid var(--primary-color); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
+}
+
+.splash-screen h1 { 
+    margin-top: 25px; 
+    font-size: 40px; 
+    color: var(--primary-color); 
+}
+
+.splash-screen p { 
+    margin-top: 12px; 
+    font-size: 18px; 
+    color: var(--text-muted); 
+}
+/* ==========================================================
+   06. 🔝 HEADER, TICKER & DROPDOWN MENU
+========================================================== */
+.app-header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    background: var(--bg-header); 
+    padding: max(var(--header-padding-top, 5px), env(safe-area-inset-top)) 10px var(--header-padding-bottom, 5px); 
+    border-bottom: 2px solid var(--border-color); 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    min-height: 42px; 
+}
+
+.running-text-box { 
+    flex-grow: 1; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    margin-right: 8px; 
+}
+
+.ticker-track { 
+    display: inline-block; 
+    white-space: nowrap; 
+    animation: tickerScroll 18s linear infinite; 
+}
+
+.ticker-track span { 
+    color: var(--primary-color); 
+    font-size: 13px; 
+    font-weight: bold; 
+    padding-right: 50px; 
+}
+
+@keyframes tickerScroll { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+}
+
+.dropdown-container { 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+}
+
+.theme-toggle-btn { 
+    background: transparent; 
+    border: 1px solid var(--border-color); 
+    border-radius: 50%; 
+    width: 34px !important; 
+    height: 34px !important; 
+    min-width: 34px !important; 
+    min-height: 34px !important; 
+    font-size: 16px !important; 
+    padding: 0 !important; 
+    display: flex !important; 
+    justify-content: center !important; 
+    align-items: center !important; 
+    cursor: pointer; 
+    transition: transform 0.2s ease, background 0.3s ease; 
+}
+
+body.dark-theme .theme-toggle-btn { 
+    background: rgba(255, 255, 255, 0.08); 
+}
+
+.theme-toggle-btn:active { 
+    transform: scale(0.85); 
+}
+
+.dropdown-btn { 
+    font-size: 18px; 
+    cursor: pointer; 
+    color: var(--primary-color); 
+    width: 34px; 
+    height: 34px; 
+    background: var(--bg-main); 
+    border-radius: 8px; 
+    border: 1.5px solid var(--primary-color); 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.dropdown-content { 
+    display: none; 
+    position: absolute; 
+    right: 0; 
+    top: 42px; 
+    background-color: var(--bg-header); 
+    min-width: 210px; 
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.25); 
+    z-index: 1000; 
+    border-radius: 12px; 
+    border: 2px solid var(--primary-color); 
+    overflow: hidden; 
+    padding: 8px 0; 
+}
+
+.dropdown-content.show { 
+    display: block; 
+    animation: menuFadeIn 0.2s ease-out; 
+}
+
+.dropdown-item { 
+    display: flex; 
+    align-items: center; 
+    color: var(--text-color); 
+    padding: 12px 16px; 
+    text-decoration: none; 
+    font-size: 14px; 
+    font-weight: 600; 
+    transition: background 0.2s ease, color 0.2s ease; 
+}
+
+.dropdown-item:hover, .dropdown-item:active { 
+    background-color: rgba(255, 153, 51, 0.12); 
+    color: var(--primary-color); 
+}
+
+.menu-icon { 
+    font-size: 18px; 
+    margin-right: 12px; 
+    width: 24px; 
+    text-align: center; 
+}
+
+.menu-divider { 
+    border: none; 
+    border-top: 1px solid var(--border-color); 
+    margin: 4px 0; 
+    opacity: 0.5; 
+}
+
+@keyframes menuFadeIn { 
+    from { opacity: 0; transform: translateY(-10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* ==========================================================
+   07. 🚀 ULTRA PRO MAX SIDEBAR
+========================================================== */
+.sidebar { 
+    height: 100%; 
+    width: 190px; 
+    position: fixed; 
+    z-index: 2000; 
+    top: 0; 
+    left: 0; 
+    background-color: var(--bg-header); 
+    transform: translateX(-100%); 
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+    padding-top: max(55px, env(safe-area-inset-top)); 
+    border-right: 2px solid var(--border-color); 
+    box-shadow: 10px 0 25px rgba(0,0,0,0.2); 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.sidebar.open { 
+    transform: translateX(0); 
+}
+
+.sidebar.open .sidebar-handle { 
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.2s ease; 
+}
+
+.sidebar h3 { 
+    color: var(--primary-color); 
+    font-size: 14px; 
+    padding-left: 12px; 
+    margin-bottom: 12px; 
+    white-space: nowrap; 
+}
+
+.sidebar a { 
+    padding: 12px 12px; 
+    text-decoration: none; 
+    font-size: 13.5px; 
+    font-weight: 600; 
+    color: var(--text-color); 
+    display: block; 
+    transition: all 0.3s ease; 
+    white-space: normal; 
+    border-left: 4px solid transparent; 
+}
+
+.sidebar a:hover, .sidebar a:active { 
+    color: var(--primary-color); 
+    background: var(--bg-main); 
+    border-left-color: var(--primary-color); 
+    padding-left: 16px; 
+}
+
+.sidebar .close-btn { 
+    position: absolute; 
+    top: max(8px, env(safe-area-inset-top)); 
+    right: 8px; 
+    width: 36px; 
+    height: 36px; 
+    font-size: 26px; 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    color: var(--primary-color); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.sidebar-handle { 
+    position: absolute; 
+    top: 50%; 
+    right: -18px; 
+    transform: translateY(-50%); 
+    width: 18px; 
+    height: 60px; 
+    background: var(--bg-header); 
+    border: 2px solid var(--border-color); 
+    border-left: none; 
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    z-index: 2500; 
+    box-shadow: 4px 0 12px rgba(0,0,0,0.15); 
+    transition: width 0.3s ease, opacity 0.3s ease; 
+}
+
+.sidebar-handle:active, .sidebar-handle:hover { 
+    width: 26px; 
+}
+
+#handleIcon { 
+    font-size: 13px; 
+    color: var(--primary-color); 
+    font-weight: bold; 
+    transition: transform 0.4s ease; 
+    display: inline-block; 
+}
+
+.overlay { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(3px); 
+    -webkit-backdrop-filter: blur(3px); 
+    z-index: 1500; 
+}
+
+.overlay.active { 
+    display: block; 
+}
+
+/* ==========================================================
+   08. 📱 ULTRA PRO MAX BOTTOM NAVIGATION BAR
+========================================================== */
+.bottom-nav { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    width: 100%; 
+    min-height: 70px; 
+    background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08); 
+    z-index: 1100; 
+    padding-bottom: max(5px, env(safe-area-inset-bottom)); 
+    border-top: 1px solid var(--border-color); 
+}
+
+body.dark-theme .bottom-nav { 
+    background: rgba(26, 26, 29, 0.95); 
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4); 
+}
+
+.nav-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-decoration: none; 
+    color: var(--text-muted); 
+    width: 25%; 
+    min-height: 60px; 
+    transition: all 0.3s ease; 
+    border-radius: 12px; 
+    gap: 4px;
+}
+
+.nav-icon { 
+    font-size: 24px; 
+    margin-bottom: 4px; 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.nav-text, .nav-label { 
+    font-size: 11px; 
+    font-weight: 600; 
+    transition: color 0.3s ease; 
+}
+
+.nav-item.active { 
+    color: var(--primary-color); 
+}
+
+.nav-item.active .nav-icon { 
+    transform: translateY(-3px) scale(1.15); 
+}
+
+.nav-item:active { 
+    background: rgba(0,0,0,0.05); 
+}
+
+body.dark-theme .nav-item:active { 
+    background: rgba(255,255,255,0.05); 
+}
+/* ==========================================================
+   09. 🕉️ GOD HORIZONTAL SCROLL (COMPACT & SLIM SIZE)
+========================================================== */
+.god-scroll-wrapper { 
+    width: 100%; 
+    overflow: hidden; 
+    background: var(--bg-main); 
+    border-bottom: 1px solid var(--border-color); 
+    padding: 4px 0; 
+}
+
+.god-scroll-track { 
+    display: flex; 
+    gap: 10px; 
+    overflow-x: auto; 
+    padding: 4px 10px; 
+    scroll-behavior: smooth; 
+}
+
+.god-scroll-track::-webkit-scrollbar { 
+    display: none; 
+}
+
+.god-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-width: 50px; 
+    cursor: pointer; 
+    -webkit-tap-highlight-color: transparent; 
+    position: relative;
+    animation: godFloatSlim 2.2s ease-in-out infinite alternate !important;
+    will-change: transform;
+}
+
+.god-item:nth-child(even) {
+    animation-delay: 0.5s !important;
+}
+
+.god-item:active { 
+    transform: scale(0.92); 
+}
+
+.god-img { 
+    width: 46px !important;  
+    height: 46px !important; 
+    border-radius: 50% !important; 
+    border: 1.5px dashed var(--gold) !important; 
+    padding: 1.5px;
+    object-fit: cover; 
+    box-shadow: 0 3px 8px var(--gold-glow); 
+    transition: border 0.3s, box-shadow 0.3s; 
+    display: block !important;
+    transform-origin: center center !important;
+    animation: rotateGod360 8s linear infinite !important; 
+    will-change: transform;
+}
+
+.god-item:hover,
+.god-item:hover .god-img {
+    animation-play-state: paused !important;
+}
+
+.god-name { 
+    font-size: 10px; 
+    font-weight: 700; 
+    margin-top: 3px; 
+    color: var(--text-color); 
+    white-space: nowrap; 
+}
+
+.god-item.active .god-img { 
+    border: 1.5px solid var(--accent-color) !important; 
+    box-shadow: 0 0 10px var(--gold-glow); 
+}
+
+.god-item.active .god-name { 
+    color: var(--accent-color); 
+}
+
+/* Consolidated Keyframe Animations */
+@keyframes godFloatSlim {
+    0% { transform: translate3d(0, 0px, 0); }
+    100% { transform: translate3d(0, -4px, 0); }
+}
+
+@keyframes rotateGod360 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================
+   10. 🖼️ FULL SCREEN GOD IMAGE LOOP
+========================================================== */
+.image-loop-section { 
+    width: 100%; 
+    height: 68vh; 
+    min-height: 480px; 
+    margin-top: var(--loop-margin-top); 
+    margin-bottom: 10px; 
+    position: relative; 
+    overflow: hidden; 
+    background: var(--bg-main); 
+}
+
+.loop-img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    position: absolute; 
+    inset: 0; 
+    opacity: 0; 
+    transition: opacity 1.2s ease-in-out; 
+}
+
+.loop-img.active { 
+    opacity: 1; 
+}
+
+/* ==========================================================
+   11. 🌟 DAILY SUVICHAR & RUNNING NEWS TICKER
+========================================================== */
+.daily-suvichar-section { 
+    width: 90%; 
+    margin: 12px auto 16px auto; 
+    box-sizing: border-box; 
+}
+
+.suvichar-card { 
+    background: linear-gradient(135deg, var(--box-bg) 0%, var(--bg-header) 100%); 
+    border: 1px solid var(--border-color); 
+    border-radius: 16px; 
+    padding: 16px; 
+    position: relative; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    text-align: center; 
+}
+
+.suvichar-badge { 
+    background: var(--gold); 
+    color: #fff; 
+    font-size: 12px; 
+    font-weight: bold; 
+    padding: 3px 10px; 
+    border-radius: 12px; 
+    display: inline-block; 
+    margin-bottom: 8px; 
+}
+
+.suvichar-text { 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: var(--text-color); 
+    margin: 8px 0; 
+    line-height: 1.4; 
+}
+
+.suvichar-meaning small { 
+    color: var(--text-muted); 
+    font-size: 13px; 
+}
+
+.running-news-container { 
+    --news-bg: var(--bg-home); 
+    --news-border: var(--border-color); 
+    --news-shadow: rgba(255, 0, 0, 0.08); 
+    --news-badge-bg: var(--bg-header); 
+    --news-dot: var(--primary-color); 
+    --news-text: var(--text-color); 
+    display: flex; 
+    align-items: center; 
+    background: var(--news-bg); 
+    border: 1.5px solid var(--news-border); 
+    border-radius: 12px; 
+    padding: 12px 16px; 
+    margin: 15px; 
+    box-shadow: 0 4px 12px var(--news-shadow); 
+    overflow: hidden; 
+    position: relative; 
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease; 
+}
+
+body.dark-theme .running-news-container { 
+    --news-bg: #1e1e1e; 
+    --news-border: #333333; 
+    --news-shadow: rgba(0, 0, 0, 0.4); 
+    --news-badge-bg: #2d1515; 
+    --news-dot: #ff5252; 
+    --news-text: #e0e0e0; 
+}
+
+.news-badge-box { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background: var(--news-badge-bg); 
+    padding: 6px 14px; 
+    border-radius: 20px; 
+    flex-shrink: 0; 
+    z-index: 2; 
+    margin-right: 14px; 
+    transition: background 0.3s ease; 
+}
+
+.news-blink-dot { 
+    width: 10px; 
+    height: 10px; 
+    background-color: var(--news-dot); 
+    border-radius: 50%; 
+    animation: liveBlink 1.2s infinite ease-in-out; 
+}
+
+@keyframes liveBlink {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.news-badge-text { 
+    color: var(--news-dot); 
+    font-weight: 800; 
+    font-size: 13px; 
+    letter-spacing: 0.8px; 
+    transition: color 0.3s ease; 
+}
+
+.running-text-wrap { 
+    overflow: hidden; 
+    flex: 1; 
+    white-space: nowrap; 
+    position: relative; 
+    display: flex;
+    align-items: center;
+}
+
+.running-text-track { 
+    display: flex; 
+    white-space: nowrap; 
+    animation: marqueeScroll 120s linear infinite; 
+}
+
+.running-text-track:hover {
+    animation-play-state: paused; 
+}
+
+.running-text-track span { 
+    font-size: 15px; 
+    color: var(--news-text); 
+    font-weight: 600; 
+    margin-right: 40px; 
+    transition: color 0.3s ease; 
+    display: inline-block;
+}
+
+@keyframes marqueeScroll { 
+    0% { transform: translateX(0%); } 
+    100% { transform: translateX(-50%); } 
+}
+
+@media (max-width: 600px) {
+    .running-news-container { padding: 10px 12px; margin: 10px; }
+    .news-badge-box { padding: 5px 10px; margin-right: 10px; }
+    .news-badge-text { font-size: 11px; }
+    .running-text-track span { font-size: 13.5px; }
+    .running-text-track { animation-duration: 90s; }
+}
+
+/* ==========================================================
+   12. 📰 EDITORIAL / MAGAZINE STYLE TEMPLE SECTION
+========================================================== */
+.editorial-section {
+    padding: 30px 15px;
+    background: var(--bg-main);
+}
+
+.editorial-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.editorial-header h2 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    border-bottom: 2px solid var(--border-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.editorial-header p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+.editorial-card {
+    background: var(--bg-home);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.editorial-card:active {
+    transform: scale(0.97);
+}
+
+.editorial-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+}
+
+.editorial-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.location-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.editorial-content {
+    padding: 20px;
+}
+
+.editorial-title {
+    font-size: 20px;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.editorial-snippet {
+    font-size: 14.5px;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.85;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.read-more-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 10px;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 15.5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.read-more-btn .arrow-right {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn:active,
+.read-more-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.read-more-btn:active .arrow-right,
+.read-more-btn:hover .arrow-right {
+    transform: translateX(5px);
+}
+
+
+/* ==========================================================
+   13. ✨ ULTRA PRO MAX BUTTONS & PANCHANG SECTION
+========================================================== */
+.aarti-action-section, .mandir-action-section { 
+    padding: 20px 15px 5px 15px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: var(--bg-main); 
+}
+
+.ultra-pro-btn { 
+    position: relative; 
+    overflow: hidden; 
+    width: 100%; 
+    max-width: 320px; 
+    min-height: 56px; 
+    border-radius: 50px; 
+    border: none; 
+    background: linear-gradient(135deg, var(--gold), var(--primary-color), var(--accent-color)); 
+    background-size: 200% 200%; 
+    color: #ffffff; 
+    font-size: 19px; 
+    font-weight: bold; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 12px; 
+    box-shadow: 0 8px 25px var(--gold-glow), inset 0 2px 5px rgba(255, 255, 255, 0.4); 
+    cursor: pointer; 
+    animation: gradientShift 4s ease infinite; 
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+.ultra-pro-btn:active { 
+    transform: scale(0.95); 
+    box-shadow: 0 4px 12px var(--gold-glow); 
+}
+
+.ultra-pro-btn .btn-icon { 
+    font-size: 26px; 
+    animation: pulseIcon 2s infinite ease-in-out; 
+}
+
+.ultra-pro-btn .btn-text { 
+    letter-spacing: 0.5px; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4); 
+}
+
+.ultra-pro-btn .btn-shine { 
+    position: absolute; 
+    top: 0; 
+    left: -100%; 
+    width: 50%; 
+    height: 100%; 
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent); 
+    transform: skewX(-20deg); 
+    animation: shineLoop 3s infinite; 
+}
+
+@keyframes gradientShift { 
+    0% { background-position: 0% 50%; } 
+    50% { background-position: 100% 50%; } 
+    100% { background-position: 0% 50%; } 
+}
+
+@keyframes shineLoop { 
+    0% { left: -100%; } 
+    20% { left: 200%; } 
+    100% { left: 200%; } 
+}
+
+@keyframes pulseIcon { 
+    0% { transform: scale(1); } 
+    50% { transform: scale(1.2); } 
+    100% { transform: scale(1); } 
+}
+
+.view-all-temples-section { 
+    padding: 10px 15px 20px 15px; 
+    background: var(--bg-main); 
+    display: flex; 
+    justify-content: center; 
+}
+
+.ultra-view-all-btn { 
+    width: 100%; 
+    max-width: 380px; 
+    min-height: 52px; 
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 50px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 12px; 
+    cursor: pointer; 
+    box-shadow: 0 6px 20px rgba(230, 92, 0, 0.3); 
+    transition: transform 0.2s ease; 
+}
+
+.ultra-view-all-btn:active { 
+    transform: scale(0.96); 
+}
+
+.btn-arrow { 
+    font-size: 20px; 
+    transition: transform 0.2s ease; 
+}
+
+.ultra-view-all-btn:active .btn-arrow { 
+    transform: translateX(4px); 
+}
+
+.panchang-section { 
+    padding: 12px 15px; 
+    background: var(--bg-main); 
+}
+
+.ultra-panchang-btn { 
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    background: linear-gradient(135deg, var(--gold) 0%, var(--accent-color) 100%); 
+    border: none; 
+    border-radius: 16px; 
+    padding: 14px 16px; 
+    min-height: 72px; 
+    cursor: pointer; 
+    box-shadow: 0 8px 20px var(--gold-glow); 
+    transition: transform 0.2s ease; 
+}
+
+.ultra-panchang-btn:active { 
+    transform: scale(0.96); 
+}
+
+.panchang-icon-ring { 
+    width: 50px; 
+    height: 50px; 
+    background: #ffffff; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    flex-shrink: 0; 
+}
+
+.p-icon { 
+    font-size: 24px; 
+}
+
+.panchang-text-content { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-left: 14px; 
+    flex-grow: 1; 
+}
+
+.p-title { 
+    color: #ffffff; 
+    font-size: 17px; 
+    font-weight: bold; 
+    margin-bottom: 4px; 
+}
+
+.p-subtitle { 
+    color: rgba(255, 255, 255, 0.9); 
+    font-size: 12px; 
+    font-weight: 500; 
+}
+
+.panchang-arrow { 
+    color: #ffffff; 
+    font-size: 20px; 
+    background: rgba(255, 255, 255, 0.2); 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* ==========================================================
+   14. 🕉️ DAILY MANTRA & LIVE AARTI
+========================================================== */
+.daily-mantra-section, .live-aarti-section { 
+    padding: 12px 15px; 
+    background: var(--bg-main); 
+}
+
+.mantra-card { 
+    background: linear-gradient(135deg, rgba(255,153,51,0.1), rgba(216,67,21,0.05)); 
+    border-left: 4px solid var(--primary-color); 
+    padding: 18px 15px; 
+    border-radius: 12px; 
+    position: relative; 
+    border: 1px solid var(--border-color); 
+}
+
+.quote-icon { 
+    font-size: 34px; 
+    color: var(--primary-color); 
+    opacity: 0.3; 
+    position: absolute; 
+    top: -2px; 
+    left: 10px; 
+}
+
+.mantra-text { 
+    font-size: 17px; 
+    font-weight: bold; 
+    color: var(--accent-color); 
+    margin-bottom: 8px; 
+    text-align: center; 
+}
+
+.mantra-meaning { 
+    font-size: 13px; 
+    color: var(--text-color); 
+    text-align: center; 
+    line-height: 1.5; 
+}
+
+.section-title { 
+    font-size: 17px; 
+    font-weight: bold; 
+    color: var(--text-color); 
+    margin-bottom: 14px; 
+}
+
+.aarti-scroll-container { 
+    display: flex; 
+    gap: 14px; 
+    overflow-x: auto; 
+    padding-bottom: 10px; 
+    scrollbar-width: none; 
+}
+
+.aarti-scroll-container::-webkit-scrollbar { 
+    display: none; 
+}
+
+.aarti-card { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    flex-shrink: 0; 
+    width: 130px; 
+    cursor: pointer; 
+    text-decoration: none !important; 
+    color: inherit; 
+}
+
+.aarti-card-icon { 
+    width: 40px !important; 
+    height: 40px !important; 
+    background: var(--bg-header) !important; 
+    border-radius: 50% !important; 
+    display: flex !important; 
+    justify-content: center !important; 
+    align-items: center !important; 
+    font-size: 18px !important; 
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0,0,0,0.05) !important; 
+    border: 1px solid var(--border-color) !important; 
+}
+
+.aarti-img-box { 
+    width: 100%; 
+    height: 75px; 
+    border-radius: 12px; 
+    position: relative; 
+    display: flex; 
+    align-items: flex-start; 
+    padding: 6px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+
+.aarti-name { 
+    font-size: 13px; 
+    font-weight: 600; 
+    margin-top: 8px; 
+    color: var(--text-color); 
+}
+/* ==========================================================
+   15. 🔔 SYSTEM & SETTINGS MODALS
+========================================================== */
+.modal { 
+    position: fixed; 
+    z-index: 3000; 
+    inset: 0; 
+    background: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(2px); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.modal-content { 
+    background: var(--bg-home); 
+    padding: 25px 20px; 
+    width: 90%; 
+    max-width: 360px; 
+    border-radius: 16px; 
+    border: 2px solid var(--border-color); 
+    position: relative; 
+    text-align: center; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+}
+
+.close-modal { 
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    width: 40px; 
+    height: 40px; 
+    font-size: 28px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    color: var(--primary-color); 
+    border: none; 
+    background: transparent; 
+}
+
+.theme-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; 
+    margin-top: 20px; 
+}
+
+.theme-box { 
+    padding: 14px 10px; 
+    font-size: 13px; 
+    font-weight: bold; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    border: none; 
+    transition: transform 0.2s; 
+}
+
+.theme-box:active { 
+    transform: scale(0.95); 
+}
+
+.setting-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 0; 
+}
+
+.text-size-controls { 
+    display: flex; 
+    gap: 8px; 
+}
+
+.size-btn { 
+    padding: 6px 12px; 
+    border: 1px solid var(--primary-color); 
+    background: transparent; 
+    color: var(--text-color); 
+    border-radius: 8px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+.size-btn.active { 
+    background: var(--primary-color); 
+    color: white; 
+}
+
+.action-btn { 
+    padding: 8px 16px; 
+    background-color: #ef4444; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 13px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3); 
+}
+
+.action-btn:active { 
+    transform: scale(0.95); 
+}
+
+/* ==========================================================
+   16. 📞 CONTACT, ABOUT & PRIVACY MODALS
+========================================================== */
+.contact-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; 
+    margin-top: 10px; 
+}
+
+.contact-card { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 16px 10px; 
+    border-radius: 14px; 
+    text-decoration: none; 
+    transition: 0.2s ease; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+
+.contact-card:active { 
+    transform: scale(0.92); 
+}
+
+.c-icon { 
+    font-size: 22px; 
+    margin-bottom: 6px; 
+}
+
+.c-text { 
+    font-size: 13px; 
+    font-weight: 700; 
+    color: white; 
+    letter-spacing: 0.5px; 
+}
+
+.whatsapp { background: #25D366; } 
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); } 
+.youtube { background: #FF0000; } 
+.email { background: #007BFF; } 
+
+.about-modal-wrapper { 
+    border-top: 4px solid var(--primary-color); 
+    text-align: center; 
+}
+
+.about-header-area { 
+    margin-bottom: 15px; 
+}
+
+.about-header-icon { 
+    font-size: 40px; 
+    margin-bottom: 5px; 
+}
+
+.about-title { 
+    color: var(--primary-color); 
+    margin-bottom: 2px; 
+    font-size: 22px; 
+}
+
+.about-subtitle { 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    letter-spacing: 1px; 
+    margin: 0; 
+}
+
+.about-desc-box { 
+    background: var(--bg-main); 
+    padding: 14px; 
+    border-radius: 10px; 
+    border: 1px solid var(--border-color); 
+    text-align: left; 
+    margin-bottom: 15px; 
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02); 
+}
+
+.about-desc-text { 
+    font-size: 13px; 
+    color: var(--text-color); 
+    line-height: 1.6; 
+    margin: 0; 
+}
+
+.about-details-box { 
+    display: flex; 
+    justify-content: space-around; 
+    background: var(--bg-home); 
+    padding: 10px; 
+    border-radius: 8px; 
+    border: 1px dashed var(--border-color); 
+    margin-bottom: 15px; 
+    font-size: 12px; 
+    color: var(--text-muted); 
+}
+
+.about-footer { 
+    border-top: 1px solid var(--border-color); 
+    padding-top: 12px; 
+    font-size: 12px; 
+    color: var(--text-muted); 
+}
+
+.developer-name { 
+    font-weight: bold; 
+    color: var(--primary-color); 
+    font-size: 14px; 
+    letter-spacing: 0.5px; 
+}
+
+.privacy-modal-wrapper { 
+    border-top: 4px solid var(--primary-color); 
+    text-align: left; 
+}
+
+.privacy-header { 
+    text-align: center; 
+    margin-bottom: 15px; 
+}
+
+.privacy-icon { 
+    font-size: 35px; 
+    margin-bottom: 5px; 
+}
+
+.privacy-title { 
+    color: var(--text-color); 
+    margin-bottom: 2px; 
+    font-size: 22px; 
+}
+
+.privacy-content-scroll { 
+    max-height: 50vh; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+    margin-bottom: 10px; 
+}
+
+.privacy-content-scroll::-webkit-scrollbar { 
+    width: 5px; 
+}
+
+.privacy-content-scroll::-webkit-scrollbar-thumb { 
+    background-color: var(--border-color); 
+    border-radius: 10px; 
+}
+
+.privacy-summary-box { 
+    background: rgba(21, 128, 61, 0.1); 
+    border: 1px solid #bbf7d0; 
+    padding: 12px; 
+    border-radius: 8px; 
+    font-size: 13px; 
+    color: #166534; 
+    margin-bottom: 20px; 
+}
+
+.privacy-legal-text h4 { 
+    font-size: 14px; 
+    color: var(--text-color); 
+    margin: 15px 0 5px 0; 
+}
+
+.privacy-legal-text p { 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    line-height: 1.6; 
+    margin: 0 0 10px 0; 
+}
+
+/* ==========================================================
+   17. 🐄 GAU SEWA MODAL
+========================================================== */
+.badge-punya { 
+    background: var(--gold); 
+    color: white; 
+    font-size: 10px; 
+    padding: 2px 6px; 
+    border-radius: 12px; 
+    margin-left: auto; 
+    font-weight: bold; 
+}
+
+.gau-modal-wrapper { 
+    border-top: 4px solid var(--gold); 
+    text-align: center; 
+}
+
+.gau-header { 
+    margin-bottom: 15px; 
+}
+
+.gau-icon { 
+    font-size: 42px; 
+    display: block; 
+    margin-bottom: 5px; 
+}
+
+.gau-title { 
+    color: var(--primary-color); 
+    margin: 0 0 5px 0; 
+    font-size: 22px; 
+}
+
+.gau-donate-btn { 
+    display: inline-block; 
+    background: linear-gradient(45deg, #16a34a, #22c55e); 
+    color: white; 
+    padding: 12px 25px; 
+    border-radius: 30px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 15px; 
+    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3); 
+    transition: transform 0.2s ease; 
+    margin-bottom: 20px; 
+}
+
+.gau-donate-btn:active { 
+    transform: scale(0.95); 
+}
+
+.gau-verification-box { 
+    background: var(--bg-main); 
+    padding: 15px; 
+    border-radius: 8px; 
+    border: 1px solid var(--border-color); 
+}
+
+.trans-input { 
+    width: 90%; 
+    padding: 10px; 
+    border: 1px solid var(--border-color); 
+    border-radius: 6px; 
+    margin-bottom: 10px; 
+    font-size: 13px; 
+    outline: none; 
+    background: var(--bg-home); 
+    color: var(--text-color); 
+}
+
+.verify-btn { 
+    background: var(--primary-color); 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 6px; 
+    font-weight: bold; 
+    width: 95%; 
+    cursor: pointer; 
+}
+
+.gau-success { 
+    margin-top: 15px; 
+    padding: 12px; 
+    background: rgba(22, 163, 74, 0.1); 
+    color: #166534; 
+    border-radius: 8px; 
+    font-size: 12px; 
+    border: 1px solid #bbf7d0; 
+}
+
+.gau-benefits-box { 
+    background: rgba(34, 197, 94, 0.05); 
+    border-left: 4px solid #22c55e; 
+    padding: 12px; 
+    border-radius: 0 8px 8px 0; 
+    margin-bottom: 15px; 
+    text-align: left; 
+}
+
+.benefits-title { 
+    color: #166534; 
+    font-size: 14px; 
+    margin: 0 0 8px 0; 
+}
+
+.benefits-list { 
+    margin: 0; 
+    padding-left: 18px; 
+    font-size: 12px; 
+    color: #15803d; 
+    line-height: 1.6; 
+}
+
+.badge-new { 
+    background: #ef4444; 
+    color: white; 
+    font-size: 10px; 
+    padding: 2px 6px; 
+    border-radius: 12px; 
+    margin-left: auto; 
+    font-weight: bold; 
+}
+
+/* ==========================================================
+   18. 📿 DIGITAL MANTRA JAAP MODAL
+========================================================== */
+.jaap-modal-wrapper { 
+    border-top: 4px solid #dc2626; 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px 15px; 
+}
+
+.jaap-header { 
+    margin-bottom: 12px; 
+    width: 100%; 
+}
+
+.jaap-title { 
+    color: #b91c1c; 
+    margin: 0 0 2px 0; 
+    font-size: 22px; 
+    font-weight: 700; 
+}
+
+.jaap-subtitle { 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    margin: 0; 
+}
+
+.mantra-selector-box { 
+    background: var(--bg-main); 
+    padding: 10px 12px; 
+    border-radius: 10px; 
+    border: 1px solid var(--border-color); 
+    margin-bottom: 15px; 
+    width: 100%; 
+    text-align: left; 
+}
+
+.mantra-label { 
+    display: block; 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    margin-bottom: 5px; 
+    font-weight: bold; 
+}
+
+.mantra-select { 
+    width: 100%; 
+    padding: 8px; 
+    border: 1px solid var(--border-color); 
+    border-radius: 6px; 
+    font-size: 14px; 
+    color: var(--text-color); 
+    outline: none; 
+    background: var(--bg-home); 
+}
+
+.jaap-counter-area { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    margin-bottom: 15px; 
+}
+
+.jaap-progress-text { 
+    font-size: 26px; 
+    font-weight: bold; 
+    color: #b91c1c; 
+    margin-bottom: 12px; 
+    letter-spacing: 2px; 
+}
+
+.jaap-tap-button { 
+    width: 130px; 
+    height: 130px; 
+    border-radius: 50%; 
+    background: radial-gradient(circle at 30% 30%, #ef4444, #991b1b); 
+    border: 6px solid #fca5a5; 
+    box-shadow: 0 8px 20px rgba(153, 27, 27, 0.4), inset 0 -5px 15px rgba(0,0,0,0.3); 
+    color: white; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0 auto; 
+    transition: transform 0.1s ease; 
+    user-select: none; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.jaap-tap-button:active { 
+    transform: scale(0.92); 
+    box-shadow: 0 4px 10px rgba(153, 27, 27, 0.4), inset 0 -2px 10px rgba(0,0,0,0.3); 
+}
+
+.tap-text { 
+    font-size: 19px; 
+    font-weight: bold; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+}
+
+.jaap-controls { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: var(--bg-main); 
+    padding: 10px 14px; 
+    border-radius: 10px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.jaap-reset-btn { 
+    background: var(--text-muted); 
+    color: white; 
+    border: none; 
+    padding: 7px 14px; 
+    border-radius: 6px; 
+    font-size: 12px; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
+
+.jaap-stats { 
+    font-size: 13px; 
+    color: var(--text-color); 
+    font-weight: 600; 
+}
+
+.jaap-success { 
+    margin-top: 12px; 
+    padding: 10px; 
+    background: rgba(253, 224, 71, 0.2); 
+    color: #854d0e; 
+    border-radius: 8px; 
+    font-size: 13px; 
+    border: 1px solid #fde047; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+/* ==========================================================
+   19. 📖 AARTI, VRAT & BHAJAN MODALS (LISTS & READER) - PERFECT FIX
+========================================================== */
+.aarti-modal, .vrat-modal, .bhajan-modal { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,.65); 
+    z-index: 99999; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 15px; 
+    animation: fadeIn .25s ease; 
+}
+
+.aarti-modal-content, .vrat-modal-content, .bhajan-modal-content { 
+    width: 100%; 
+    max-width: 430px; 
+    max-height: 90vh; 
+    background: var(--bg-home); 
+    border-radius: 18px; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: 0 15px 40px rgba(0,0,0,.3); 
+}
+
+.aarti-header, .vrat-header, .bhajan-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 16px 18px; 
+    background: var(--primary-color); 
+    color: #fff; 
+    transition: background 0.3s; 
+}
+
+.aarti-header h2, .vrat-header h2, .bhajan-header h2 { 
+    margin: 0; 
+    font-size: 20px; 
+    font-weight: 700; 
+}
+
+.close-aarti-btn, .close-vrat-btn, .close-bhajan-btn { 
+    width: 36px; 
+    height: 36px; 
+    border: none; 
+    border-radius: 50%; 
+    background: #ffffff; 
+    color: var(--accent-color); 
+    font-size: 18px; 
+    cursor: pointer; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+}
+
+#aartiListPage, #vratListPage, #bhajanListPage { 
+    padding: 15px; 
+    overflow-y: auto; 
+    flex: 1; 
+    background: var(--bg-home); 
+}
+
+/* Modal List Container */
+#aartiList, #vratList, #bhajanList { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    gap: 12px !important; 
+    padding: 5px !important; 
+    width: 100% !important; 
+    box-sizing: border-box !important;
+}
+
+/* ==========================================================
+   ✨ HORIZONTAL ROW CARD FIX FOR AARTI, VRAT & BHAJAN
+========================================================== */
+.aarti-card, .vrat-card, .bhajan-card { 
+    display: flex !important; 
+    flex-direction: row !important; 
+    align-items: center !important; 
+    justify-content: space-between !important; 
+    width: 100% !important; 
+    box-sizing: border-box !important; 
+    background: var(--bg-home) !important; 
+    border-radius: 12px !important; 
+    padding: 12px 14px !important; 
+    min-height: 65px !important; 
+    cursor: pointer !important; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important; 
+    border: 1px solid var(--border-color) !important; 
+    position: relative !important; 
+    overflow: hidden !important; 
+    text-decoration: none !important; 
+    transition: transform 0.2s, background 0.3s !important; 
+    text-align: left !important;
+}
+
+.aarti-card:active, .vrat-card:active, .bhajan-card:active { 
+    transform: scale(0.97) !important; 
+    background: var(--bg-main) !important; 
+}
+
+/* Left Circular Icon Style */
+.aarti-card-icon { 
+    width: 42px !important; 
+    height: 42px !important; 
+    min-width: 42px !important; 
+    min-height: 42px !important; 
+    background: var(--bg-header) !important; 
+    border-radius: 50% !important; 
+    display: flex !important; 
+    justify-content: center !important; 
+    align-items: center !important; 
+    font-size: 20px !important; 
+    margin-right: 12px !important; 
+    margin-bottom: 0 !important; 
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0,0,0,0.05) !important; 
+    border: 1px solid var(--border-color) !important; 
+    flex-shrink: 0 !important; 
+}
+
+/* Text Content Area */
+.aarti-card-content { 
+    flex-grow: 1 !important; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: flex-start !important; 
+    text-align: left !important; 
+    overflow: hidden !important; 
+    margin: 0 !important;
+}
+
+.aarti-card-title { 
+    margin: 0 !important; 
+    color: var(--accent-color) !important; 
+    font-size: 15px !important; 
+    font-weight: 700 !important; 
+    white-space: nowrap !important; 
+    overflow: hidden !important; 
+    text-overflow: ellipsis !important; 
+    width: 100% !important; 
+    text-align: left !important;
+}
+
+.aarti-card-subtitle { 
+    font-size: 11.5px !important; 
+    color: var(--text-muted) !important; 
+    margin-top: 2px !important; 
+    font-weight: 600 !important; 
+    text-align: left !important;
+}
+
+/* Right Side Arrow Icon */
+.aarti-card-arrow { 
+    color: var(--primary-color) !important; 
+    font-size: 16px !important; 
+    margin-left: 10px !important; 
+    margin-top: 0 !important; 
+    transition: transform 0.2s ease !important; 
+    flex-shrink: 0 !important; 
+}
+
+/* ==========================================================
+   📖 READER PAGE STYLES
+========================================================== */
+#aartiReaderPage, #vratReaderPage, #bhajanReaderPage { 
+    display: none; 
+    padding: 15px; 
+    overflow-y: auto; 
+    flex: 1; 
+    background: var(--bg-home); 
+}
+
+.reader-toolbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+} 
+
+#readerTitle, #vratReaderTitle, #bhajanReaderTitle { 
+    font-size: 20px; 
+    color: var(--accent-color); 
+    text-align: center; 
+    margin-bottom: 15px; 
+    font-weight: bold; 
+}
+
+#readerContent, #vratReaderContent, #bhajanReaderContent { 
+    font-size: 15px; 
+    line-height: 1.8; 
+    color: var(--text-color); 
+    white-space: pre-wrap; 
+    text-align: center; 
+}
+
+#backBtn, #backVratBtn, #backBhajanBtn, #backRashifalBtn { 
+    padding: 8px 14px; 
+    background: var(--bg-main); 
+    color: var(--text-color); 
+    border: 1px solid var(--border-color); 
+    border-radius: 8px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.2s; 
+}
+
+#playVoiceBtn, #playVratVoiceBtn, #playBhajanVoiceBtn, #playRashifalVoiceBtn { 
+    width: 100%; 
+    padding: 14px; 
+    margin-top: 20px; 
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+}
+
+#playVoiceBtn:active, #playVratVoiceBtn:active, #playBhajanVoiceBtn:active, #playRashifalVoiceBtn:active { 
+    transform: scale(0.96); 
+}
+
+/* ==========================================================
+   20. 🔮 RASHIFAL MODAL & DHARMA QUIZ
+========================================================== */
+.rashifal-modal, .quiz-modal { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,.6); 
+    z-index: 99999; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 15px; 
+}
+
+.rashifal-modal-content, .quiz-modal-content { 
+    width: 100%; 
+    max-width: 430px; 
+    max-height: 90vh; 
+    background: var(--bg-home); 
+    border-radius: 18px; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: 0 15px 40px rgba(0,0,0,.3); 
+}
+
+.rashifal-header, .quiz-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 16px 18px; 
+    background: var(--primary-color); 
+    color: #fff; 
+}
+
+.close-rashifal-btn, .close-quiz-btn { 
+    width: 36px; 
+    height: 36px; 
+    border: none; 
+    border-radius: 50%; 
+    background: #ffffff; 
+    color: var(--accent-color); 
+    font-size: 18px; 
+    cursor: pointer; 
+}
+
+.playstore-disclaimer { 
+    padding: 8px 12px; 
+    background: rgba(255, 153, 51, 0.1); 
+    border-bottom: 1px solid var(--border-color); 
+    text-align: center; 
+    font-size: 11px; 
+    color: var(--text-muted); 
+    font-weight: 600; 
+}
+
+#rashifalListPage { padding: 15px; overflow-y: auto; flex: 1; }
+
+.rashifal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.zodiac-card { 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 14px; 
+    padding: 15px 5px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.04); 
+    transition: transform 0.2s; 
+}
+
+.zodiac-card:active { transform: scale(0.94); background: var(--border-color); }
+
+.z-icon { font-size: 28px; margin-bottom: 6px; }
+.z-name { font-size: 14px; font-weight: 700; color: var(--accent-color); margin: 0; }
+.z-eng { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+#rashifalReaderPage { display: none; padding: 15px; overflow-y: auto; flex: 1; background: var(--bg-home); }
+
+.share-whatsapp-btn { 
+    padding: 8px 12px; background: #25D366; color: white; border: none; border-radius: 8px; 
+    font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; 
+}
+
+.rashifal-reader-header { display: flex; flex-direction: column; align-items: center; border-bottom: 2px dashed var(--border-color); padding-bottom: 15px; margin-bottom: 15px; }
+.zodiac-big-icon { font-size: 50px; background: var(--bg-header); width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 2px solid var(--primary-color); margin-bottom: 10px; }
+.zodiac-date { font-size: 13px; color: var(--primary-color); font-weight: 600; margin: 4px 0 0 0; background: var(--bg-main); padding: 4px 12px; border-radius: 20px; }
+
+.rashifal-categories { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
+.r-cat-box { background: var(--bg-main); border-left: 4px solid var(--primary-color); padding: 12px; border-radius: 8px; }
+.r-cat-title { font-size: 14px; font-weight: bold; color: var(--accent-color); margin: 0 0 5px 0; display: flex; align-items: center; gap: 6px; }
+.r-cat-text { font-size: 14px; color: var(--text-color); margin: 0; line-height: 1.5; }
+
+.lucky-box { display: flex; justify-content: space-between; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px 15px; margin-bottom: 20px; }
+.lucky-item { font-size: 14px; color: var(--text-color); }
+
+/* Dharma Quiz Page */
+.quiz-page-container { padding: 25px 20px; text-align: center; }
+.quiz-icon-big { font-size: 60px; margin-bottom: 10px; }
+.quiz-primary-btn { padding: 12px 24px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+.quiz-top-bar { display: flex; justify-content: space-between; margin-bottom: 20px; }
+.q-badge { background: var(--bg-main); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; color: var(--text-color); border: 1px solid var(--border-color); }
+.score-badge { color: #10b981; border-color: #10b981; background: #ecfdf5; }
+.question-box h3 { font-size: 18px; color: var(--accent-color); line-height: 1.5; margin-bottom: 25px; font-weight: 700; }
+.options-box { display: flex; flex-direction: column; gap: 12px; }
+.opt-btn { padding: 14px 15px; background: var(--bg-main); border: 2px solid var(--border-color); border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-color); text-align: left; cursor: pointer; }
+.opt-btn.correct { background: #10b981; color: white; border-color: #059669; }
+.opt-btn.wrong { background: #ef4444; color: white; border-color: #b91c1c; }
+.explanation-box { margin-top: 15px; padding: 12px; background: var(--box-bg); border-left: 4px solid var(--gold); border-radius: 6px; font-size: 13px; color: var(--accent-color); text-align: left; }
+.quiz-next-btn { width: 100%; padding: 14px; background: var(--accent-color); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+
+/* ==========================================================
+   21. 🙏 PANCHANG & MASTER DARSHAN MODAL
+========================================================== */
+.panchang-modal { display: none; position: fixed; z-index: 9999; inset: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); overflow-y: auto; padding: 15px; }
+.panchang-card { background: var(--bg-home); border: 2px solid var(--border-color); border-radius: 20px; max-width: 420px; margin: 20px auto; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden; }
+.close-panchang-btn { position: absolute; right: 15px; top: 10px; font-size: 28px; color: #ffffff; cursor: pointer; z-index: 10; font-weight: bold; }
+.panchang-card-header { background: linear-gradient(90deg, var(--gold), var(--primary-color)); color: white; padding: 15px; display: flex; align-items: center; gap: 12px; border-radius: 16px; margin: 12px; }
+.p-header-icon { font-size: 28px; background: #fff; padding: 6px; border-radius: 12px; }
+.p-header-arrow { margin-left: auto; background: rgba(255, 255, 255, 0.2); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.panchang-card-body { padding: 15px; text-align: center; }
+.p-date-section h3 { color: var(--accent-color); font-size: 22px; margin: 5px 0; }
+.p-badge { display: inline-block; background-color: rgba(216, 27, 96, 0.1); color: #D81B60; border: 1px solid #FFCDD2; padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-top: 10px; }
+.p-divider { border-bottom: 2px dashed var(--border-color); margin: 15px 0; }
+.p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.p-box, .p-full-box { background: var(--bg-main); border: 1px solid var(--border-color); padding: 10px; border-radius: 12px; }
+.green-bg { background-color: rgba(46, 125, 50, 0.1); border-color: #C8E6C9; display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; }
+.green-text { color: #2E7D32; font-weight: bold; }
+.red-bg { background-color: rgba(198, 40, 40, 0.1); border-color: #FFCDD2; display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; }
+.red-text { color: #C62828; font-weight: bold; }
+
+.darshan-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 99999; justify-content: center; align-items: flex-end; padding: 15px; }
+.darshan-modal-content { width: 100%; max-width: 450px; background: #f0fdf4; border-radius: 20px; overflow: hidden; padding: 20px; border: 1px solid #16a34a; animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.darshan-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #bbf7d0; padding-bottom: 12px; margin-bottom: 8px; }
+.darshan-header h2 { margin: 0; font-size: 18px; font-weight: 800; color: #166534; display: flex; align-items: center; gap: 8px; }
+.close-darshan-btn { background: transparent; border: none; font-size: 22px; color: #16a34a; cursor: pointer; font-weight: bold; }
+.darshan-subtitle { font-size: 12px; color: #15803d; margin-bottom: 20px; font-weight: 600; }
+.darshan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.d-btn { background: #dcfce7; border: 2px solid #86efac; border-radius: 14px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+.d-btn:active { transform: scale(0.95); background: #bbf7d0; }
+.d-icon { font-size: 32px; margin-bottom: 8px; }
+.d-text { font-size: 14px; font-weight: 700; color: #166534; }
+
+@keyframes slideUp { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* ==========================================================
+   22. 🛕 DIGITAL MANDIR & MEDIA PLAYER
+========================================================== */
+.bhajan-player-section { padding: 20px 15px; background: var(--bg-main); width: 100%; box-sizing: border-box; }
+.player-card { background: var(--bg-home); border-radius: 16px; padding: 18px; border: 2px solid var(--primary-color); box-shadow: 0 8px 25px rgba(230, 92, 0, 0.12); margin-bottom: 15px; }
+.player-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.live-pulse-dot { width: 10px; height: 10px; background-color: #e60000; border-radius: 50%; box-shadow: 0 0 8px #e60000; animation: pulseDot 1.5s infinite; flex-shrink: 0; }
+.player-header h3 { font-size: 17px; color: var(--accent-color); font-weight: bold; margin: 0; }
+.player-subtitle { font-size: 12.5px; color: var(--text-muted); margin-top: 0; margin-bottom: 16px; }
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #000; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.player-footer-note { text-align: right; margin-top: 12px; font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+
+@keyframes pulseDot { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+.gallery-header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 15px; text-align: center; z-index: 10; }
+.pro-close-btn { padding: 10px 24px; background: linear-gradient(135deg, #ff4d4d, #ff3333); color: white; border: none; border-radius: 30px; font-weight: bold; }
+.pinterest-gallery { column-count: 2; column-gap: 12px; padding: 12px; margin-top: 70px; }
+.wallpaper-card { position: relative; margin-bottom: 12px; break-inside: avoid; border-radius: 16px; overflow: hidden; background: #e0e0e0; min-height: 200px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+.wallpaper-card img { width: 100%; display: block; border-radius: 16px; opacity: 0; transition: opacity 0.5s ease-in-out; }
+
+.fullscreen-viewer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px); z-index: 99999; flex-direction: column; justify-content: center; align-items: center; }
+.fullscreen-viewer img { max-width: 100%; max-height: 80%; object-fit: contain; border-radius: 12px; }
+.viewer-top-bar { position: absolute; top: 20px; right: 20px; }
+.viewer-bottom-bar { position: absolute; bottom: 30px; display: flex; gap: 20px; }
+.pro-action-btn { padding: 12px 24px; background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 30px; font-size: 16px; font-weight: bold; }
+
+.watermark-text { position: absolute; bottom: 45px; right: 12px; color: rgba(255, 255, 255, 0.7); font-size: 11px; font-style: italic; pointer-events: none; z-index: 5; opacity: 0.8; }
+
+/* ==========================================================
+   23. 💳 DONATION CARD & BOTTOM SHEET MODAL STYLES (NO-LAG)
+   ========================================================== */
+
+/* --- MAIN PAGE DONATION CARD SECTION --- */
+
+/* Main Donation Section Container */
+.donation-card { 
+    position: relative; 
+    background: linear-gradient(135deg, var(--bg-home), var(--bg-header)); 
+    border-radius: 18px; 
+    padding: 28px 20px; 
+    text-align: center; 
+    border: 2px solid var(--primary-color); 
+    box-shadow: 0 10px 30px rgba(230, 92, 0, 0.12); 
+    overflow: hidden; 
+}
+
+/* Top Decorative Tricolor Gradient Strip */
+.donation-card::before { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 6px; 
+    background: linear-gradient(90deg, var(--gold), var(--primary-color), var(--accent-color)); 
+}
+
+/* Glowing Pulsing Icon */
+.donation-icon-glow { 
+    font-size: 38px; 
+    margin-bottom: 10px; 
+    display: inline-block; 
+    animation: pulseIcon 2s infinite ease-in-out; 
+}
+
+/* Main Section Heading Title */
+.donation-title { 
+    font-size: 22px; 
+    color: var(--accent-color); 
+    font-weight: bold; 
+    margin-bottom: 12px; 
+}
+
+/* Description Text Paragraph */
+.donation-desc { 
+    font-size: 14px; 
+    color: var(--text-color); 
+    line-height: 1.7; 
+    margin-bottom: 18px; 
+    opacity: 0.9; 
+}
+
+/* Feature Badge Pill Container */
+.donation-badge-box { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin-bottom: 22px; 
+}
+
+/* Individual Feature Badge Item */
+.donation-badge-box span { 
+    background: var(--bg-main); 
+    color: var(--primary-color); 
+    font-size: 11.5px; 
+    font-weight: bold; 
+    padding: 6px 14px; 
+    border-radius: 15px; 
+    border: 1px solid var(--border-color); 
+}
+
+/* Main Page Support/Donate Action Button */
+.donation-pro-btn { 
+    position: relative; 
+    width: 100%; 
+    max-width: 320px; 
+    min-height: 52px; 
+    border-radius: 50px; 
+    border: none; 
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); 
+    color: #ffffff; 
+    font-size: 16px; 
+    font-weight: bold; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    cursor: pointer; 
+    box-shadow: 0 6px 20px rgba(190, 18, 60, 0.4); 
+    margin: 0 auto; 
+    transition: transform 0.2s ease; 
+}
+
+.donation-pro-btn:active { 
+    transform: scale(0.96); 
+}
+
+
+/* --- BOTTOM SHEET MODAL OVERLAY (GPU OPTIMIZED & LAG-FREE) --- */
+
+/* Fixed Dark Backdrop Overlay (Highest Z-Index for Digital Mandir) */
+.donation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 2147483647; /* Max Layer to open above all screens */
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    visibility: hidden;
+    will-change: opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    transition: opacity 0.25s ease-out, visibility 0.25s ease-out;
+}
+
+/* Active State for Overlay Display */
+.donation-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Bottom Sheet Container Card */
+.donation-modal-sheet {
+    background: linear-gradient(180deg, #111827 0%, #0b0f19 100%);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    width: 100%;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    padding: 24px 20px 40px 20px;
+    transform: translateY(100%);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    position: relative;
+    color: #ffffff;
+    max-height: 88vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Active State to Slide Sheet Up */
+.donation-modal-overlay.active .donation-modal-sheet { 
+    transform: translateY(0); 
+}
+
+/* Drag Handle Bar Indicator */
+.sheet-indicator { 
+    width: 45px; 
+    height: 5px; 
+    background: rgba(59, 130, 246, 0.4); 
+    border-radius: 10px; 
+    margin: 0 auto 18px auto; 
+}
+
+/* Modal Header Bar */
+.modal-header-box { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 8px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+    padding-bottom: 12px; 
+}
+
+/* Modal Title Heading */
+.modal-header-box h3 { 
+    font-size: 20px; 
+    color: #60a5fa; 
+    font-weight: 700; 
+}
+
+/* Circular Close Button (Top Right) */
+.modal-close-x { 
+    background: rgba(255, 255, 255, 0.08); 
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    font-size: 20px; 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #60a5fa; 
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.modal-close-x:active {
+    transform: scale(0.9);
+    background: rgba(59, 130, 246, 0.2);
+}
+
+/* Subtitle Guidance Text */
+.modal-sub { 
+    font-size: 13px; 
+    color: #cbd5e1; 
+    margin-bottom: 16px; 
+    line-height: 1.5; 
+}
+
+/* Amount Selector Chips Box */
+.donation-chips { 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-bottom: 22px; 
+}
+
+/* Individual Amount Chip Button */
+.d-chip { 
+    background: rgba(59, 130, 246, 0.1); 
+    border: 1.5px solid rgba(59, 130, 246, 0.4); 
+    color: #93c5fd; 
+    padding: 10px 18px; 
+    border-radius: 24px; 
+    font-weight: bold; 
+    font-size: 15px; 
+    cursor: pointer; 
+    transition: all 0.25s ease; 
+}
+
+/* Selected State for Amount Chip */
+.d-chip.selected, 
+.d-chip:active { 
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8); 
+    color: white; 
+    border-color: #60a5fa; 
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); 
+    transform: translateY(-2px); 
+}
+
+/* QR Code Display Container Box */
+.qr-card-box { 
+    background: rgba(255, 255, 255, 0.04); 
+    border: 1px dashed rgba(59, 130, 246, 0.4); 
+    padding: 16px; 
+    border-radius: 20px; 
+    margin-bottom: 20px; 
+}
+
+.qr-card-box img { 
+    width: 160px; 
+    height: 160px; 
+    object-fit: contain; 
+    border-radius: 12px; 
+    background: #ffffff; 
+    padding: 6px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* UPI ID Info Text */
+.upi-text-info { 
+    font-size: 13px; 
+    color: #cbd5e1; 
+    margin-top: 10px; 
+}
+
+.upi-text-info code { 
+    background: rgba(59, 130, 246, 0.15); 
+    padding: 3px 8px; 
+    border-radius: 6px; 
+    font-weight: bold; 
+    color: #93c5fd; 
+    border: 1px solid rgba(59, 130, 246, 0.3); 
+}
+
+/* Direct UPI App Payment Trigger Link Button */
+.upi-trigger-btn { 
+    display: block; 
+    width: 100%; 
+    background: linear-gradient(135deg, #2563eb, #1e40af); 
+    color: #ffffff; 
+    text-decoration: none; 
+    padding: 16px; 
+    border-radius: 16px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upi-trigger-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Security Standards Guidelines Box (RBI & NPCI Compliant) */
+.security-rules-box { 
+    margin-top: 20px; 
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(59, 130, 246, 0.25); 
+    border-radius: 14px; 
+    padding: 14px; 
+    text-align: left; 
+}
+
+.rbi-rules-list { 
+    margin: 0; 
+    padding-left: 15px; 
+    list-style-type: disc; 
+}
+
+.rbi-rules-list li { 
+    font-size: 10.5px; 
+    color: #94a3b8; 
+    line-height: 1.45; 
+    margin-bottom: 5px; 
+}
+
+==========================================================
+   24. 🎵 SPA MUSIC PLAYER & PLAYLIST BOTTOM SHEET STYLES
+========================================================== */
+
+/* Main View Section (SPA Tab Container) */
+.view-section { 
+    padding-bottom: 130px; 
+    animation: fadeIn 0.3s ease-in-out; 
+}
+
+/* Base Fade-In Animation for SPA Tab Views */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+
+/* ==========================================================
+   📀 TOP AUDIO STAGE & VINYL DISC ANIMATION
+========================================================== */
+
+/* Top Stage Wrapper with Radial Gradient Background */
+.pro-audio-stage { 
+    height: 46vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    background: radial-gradient(circle, #2d3748 0%, #1a202c 100%); 
+    color: #ffffff; 
+    padding: 20px; 
+    border-bottom-left-radius: 30px; 
+    border-bottom-right-radius: 30px; 
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Outer Spinning Vinyl Disc Frame */
+.divine-disc-box { 
+    width: 130px; 
+    height: 130px; 
+    background: #0f172a; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 8px rgba(255, 255, 255, 0.05); 
+    margin-bottom: 20px; 
+    animation: rotateVinyl 10s linear infinite; 
+    animation-play-state: paused; /* Controlled via JS when music plays */
+}
+
+/* Active State to Start Disc Rotation */
+.divine-disc-box.playing { 
+    animation-play-state: running; 
+}
+
+/* Continuous 360-Degree Disc Rotation Animation */
+@keyframes rotateVinyl { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+/* Center Art Badge on Vinyl Disc */
+.vinyl-center-art { 
+    width: 55px; 
+    height: 55px; 
+    background: linear-gradient(135deg, var(--gold, #f59e0b), var(--primary-color, #d97706)); 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 24px; 
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Currently Playing Track Details Area */
+.song-info-container { 
+    text-align: center; 
+    padding: 0 15px; 
+}
+
+/* Now Playing Song Title */
+#pro-now-playing { 
+    font-size: 20px; 
+    font-weight: 700; 
+    margin: 0 0 6px 0; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 300px; 
+}
+
+/* Artist Subtitle Text */
+.pro-artist-name { 
+    color: #cbd5e1; 
+    font-size: 13px; 
+    margin: 0; 
+    opacity: 0.8; 
+}
+
+
+/* ==========================================================
+   🎛️ GLASSMORPHISM PLAYER CONTROLS CARD
+========================================================== */
+
+/* Main Floating Glass Container Box */
+.pro-player-glass-card { 
+    background: rgba(17, 24, 39, 0.9); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 24px; 
+    margin: -35px 15px 0 15px; 
+    padding: 22px 20px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
+    position: relative; 
+    z-index: 10; 
+}
+
+/* Elapsed Time & Duration Track Row */
+.time-track-row { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 11px; 
+    color: #94a3b8; 
+    margin-bottom: 8px; 
+}
+
+/* Seek Progress Bar Container */
+.progress-container { 
+    margin-bottom: 20px; 
+}
+
+/* Custom Progress Bar Input Slider */
+#pro-progress-bar { 
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 100%; 
+    height: 5px; 
+    background: rgba(255, 255, 255, 0.15); 
+    border-radius: 3px; 
+    outline: none; 
+}
+
+/* Custom Slider Thumb Handle */
+#pro-progress-bar::-webkit-slider-thumb { 
+    -webkit-appearance: none; 
+    appearance: none; 
+    width: 14px; 
+    height: 14px; 
+    border-radius: 50%; 
+    background: #38bdf8; 
+    cursor: pointer; 
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.8); 
+}
+
+/* Bottom Buttons Bar (Previous, Play/Pause, Next, List) */
+.pro-controls { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* Secondary Action Icon Buttons (Prev, Next, Playlist, Like) */
+.pro-icon-btn { 
+    background: none; 
+    border: none; 
+    color: #cbd5e1; 
+    cursor: pointer; 
+    padding: 8px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.pro-icon-btn:active { 
+    transform: scale(0.85); 
+    color: #ffffff; 
+}
+
+/* Primary Main Play/Pause Button */
+.pro-main-btn { 
+    background: linear-gradient(135deg, #ffffff, #e2e8f0); 
+    color: #0f172a; 
+    border: none; 
+    width: 58px; 
+    height: 58px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pro-main-btn:active { 
+    transform: scale(0.92); 
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+
+/* ==========================================================
+   📜 PLAYLIST BOTTOM SHEET OVERLAY
+========================================================== */
+
+/* Sliding Playlist Sheet Wrapper */
+.playlist-sheet { 
+    position: fixed; 
+    bottom: -100%; 
+    left: 0; 
+    width: 100%; 
+    height: 70vh; 
+    background: var(--bg-home); 
+    border-top-left-radius: 25px; 
+    border-top-right-radius: 25px; 
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3); 
+    z-index: 2000; 
+    will-change: bottom;
+    transition: bottom 0.4s cubic-bezier(0.1, 0.9, 0.2, 1); 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Active State to Slide Playlist Up */
+.playlist-sheet.open { 
+    bottom: 0; 
+}
+
+/* Playlist Sheet Header Bar */
+.sheet-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px; 
+    border-bottom: 1px solid var(--border-color); 
+    background: var(--bg-main); 
+    border-radius: 25px 25px 0 0; 
+}
+
+.sheet-header h3 { 
+    margin: 0; 
+    font-size: 18px; 
+    color: var(--text-color); 
+    font-weight: 700;
+}
+
+/* Close Button on Playlist Sheet Header */
+.close-sheet-btn { 
+    background: none; 
+    border: none; 
+    font-size: 22px; 
+    cursor: pointer; 
+    color: var(--text-muted); 
+    transition: transform 0.2s ease;
+}
+
+.close-sheet-btn:active {
+    transform: scale(0.9);
+}
+
+/* Scrollable Bhajan List Container */
+.bhajan-list-scroll { 
+    padding: 15px; 
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch;
+    flex-grow: 1; 
+    padding-bottom: 40px; 
+}
+
+/* ==========================================================
+   26. 🛕 TEMPLE DETAILS POPUP & ALL TEMPLES OVERLAY MODALS
+========================================================== */
+
+/* Outer Dark Backdrop Overlay (Temple Popup & All Temples Modal) */
+.popup-overlay, 
+.all-temples-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.65); 
+    backdrop-filter: blur(6px); 
+    -webkit-backdrop-filter: blur(6px); 
+    z-index: 1100; 
+    display: flex; 
+    align-items: flex-end; 
+    opacity: 0; 
+    visibility: hidden; 
+    will-change: opacity;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out; 
+}
+
+/* Active State to Display Overlay */
+.popup-overlay.active, 
+.all-temples-overlay.active { 
+    opacity: 1; 
+    visibility: visible; 
+}
+
+/* Bottom Sheet Sliding Container Wrapper */
+.popup-content-wrapper, 
+.all-temples-wrapper { 
+    background: var(--bg-home); 
+    width: 100%; 
+    height: 75vh; 
+    max-height: 75vh;
+    border-top-left-radius: 24px; 
+    border-top-right-radius: 24px; 
+    padding: 20px; 
+    position: relative; 
+    transform: translateY(100%); 
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Active State for Sliding Sheet Up */
+.popup-overlay.active .popup-content-wrapper, 
+.all-temples-overlay.active .all-temples-wrapper { 
+    transform: translateY(0); 
+}
+
+/* Circular Close Button (Top Right) */
+.popup-close-btn, 
+.all-close-btn { 
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    background: var(--bg-main); 
+    border: none; 
+    font-size: 24px; 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--text-color); 
+    z-index: 10; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.popup-close-btn:active, 
+.all-close-btn:active {
+    transform: scale(0.9);
+    background: var(--border-color);
+}
+
+/* Scrollable Inner Box Container */
+.popup-scroll-box, 
+.temples-list-scroll { 
+    width: 100%; 
+    height: 100%; 
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch; 
+    padding-right: 5px; 
+    margin-top: 10px; 
+}
+
+/* Temple Detail Body Container */
+.popup-body { 
+    width: 100%; 
+    padding-bottom: 60px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+}
+
+/* Temple Main Banner Image */
+.popup-main-img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 12px; 
+    margin-bottom: 12px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Temple Location Pill Badge Tag */
+.popup-location-badge { 
+    display: inline-block; 
+    background: var(--bg-header); 
+    color: var(--primary-color); 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    border: 1px solid var(--border-color);
+}
+
+/* Temple Title Heading */
+.popup-body h2 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+/* Temple History & Scrollable Paragraph Text */
+.popup-scrollable-text {
+    width: 100%;
+    text-align: justify;
+}
+
+.popup-scrollable-text p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+
+/* ==========================================================
+   🏛️ ALL TEMPLES LIST CARD STYLES
+========================================================== */
+
+/* Single Temple Item Card Row */
+.temple-list-card { 
+    display: flex; 
+    align-items: center; 
+    background: var(--bg-home); 
+    padding: 12px 14px; 
+    border-radius: 16px; 
+    margin-bottom: 14px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
+    cursor: pointer; 
+    border: 1px solid var(--border-color); 
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.temple-list-card:active {
+    transform: scale(0.97);
+    background: var(--bg-main);
+    border-color: var(--primary-color);
+}
+
+/* Left Side Temple Thumbnail Image */
+.temple-list-card img { 
+    width: 65px; 
+    height: 65px; 
+    border-radius: 12px; 
+    object-fit: cover; 
+    margin-right: 14px; 
+    border: 2px solid var(--border-color); 
+    flex-shrink: 0; 
+}
+
+/* Middle Text Content Area */
+.temple-list-info { 
+    flex: 1; 
+}
+
+/* Temple Name Title */
+.temple-list-info h4 { 
+    font-size: 16px; 
+    font-weight: 600; 
+    color: var(--text-color); 
+    margin-bottom: 6px; 
+}
+
+/* Location Badge Tag inside Card */
+.temple-list-info span { 
+    display: inline-block; 
+    font-size: 12px; 
+    background: var(--bg-header); 
+    color: var(--primary-color); 
+    padding: 3px 10px; 
+    border-radius: 20px; 
+    font-weight: 600; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================
+   25. 🌟 ULTRA PRO MAX VIP DISCLAIMER & TRIBUTE FOOTER
+========================================================== */
+
+/* Outer Footer Wrapper Container (Bottom Spacing for Navigation Bar) */
+.app-vip-disclaimer { 
+    padding: 20px 15px 95px 15px; 
+    background: var(--bg-main); 
+    display: flex; 
+    justify-content: center; 
+    box-sizing: border-box; 
+    width: 100%; 
+}
+
+/* Main Disclaimer Card Box */
+.disclaimer-card { 
+    position: relative; 
+    width: 100%; 
+    max-width: 420px; 
+    background: var(--bg-home); 
+    border: 1.5px solid var(--border-color); 
+    border-radius: 18px; 
+    padding: 22px 18px; 
+    text-align: center; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05); 
+    overflow: hidden; 
+}
+
+/* Top Gradient Strip Line */
+.disclaimer-card::before { 
+    content: ""; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    height: 4px; 
+    background: linear-gradient(90deg, var(--gold), var(--primary-color), var(--accent-color)); 
+}
+
+/* Diya / Notice Icon */
+.disclaimer-icon { 
+    font-size: 28px; 
+    margin-bottom: 6px; 
+    display: inline-block; 
+}
+
+/* Heading Title (पवित्र सूचना एवं डिस्क्लेमर) */
+.disclaimer-heading { 
+    font-size: 15px; 
+    font-weight: 700; 
+    color: var(--accent-color); 
+    margin-bottom: 8px; 
+}
+
+/* Main Disclaimer Text Body */
+.disclaimer-text { 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    line-height: 1.6; 
+    margin-bottom: 14px; 
+}
+
+/* Decorative Divider Line */
+.disclaimer-divider { 
+    width: 40px; 
+    height: 2px; 
+    background: var(--border-color); 
+    margin: 0 auto 12px auto; 
+    border-radius: 2px; 
+}
+
+/* Developer Tag Text */
+.developer-tag { 
+    font-size: 11.5px; 
+    color: var(--text-muted); 
+    line-height: 1.5; 
+}
+
+/* Highlighted Developer Name (Kapil Khandelwal) */
+.dev-highlight { 
+    color: var(--primary-color); 
+    font-weight: 700; 
+    font-size: 12.5px; 
+}
+
+
+/* ==========================================================
+   ✨ DIVINE TRIBUTE BOX & GOLDEN SPARKLES ANIMATION
+========================================================== */
+
+/* Outer Tribute Box Section */
+.card-tribute-box { 
+    margin-top: 20px; 
+    padding-top: 18px; 
+    border-top: 1px dashed var(--gold-glow); 
+    text-align: center; 
+    position: relative; 
+}
+
+/* Inner Centered Wrapper */
+.tribute-wrapper-inner { 
+    position: relative; 
+    display: inline-block; 
+    width: 100%; 
+    max-width: 280px; 
+}
+
+/* Avatar Image Frame Box */
+.card-tribute-box .tribute-img-box { 
+    position: relative; 
+    width: 85px; 
+    height: 85px; 
+    margin: 0 auto 12px auto; 
+}
+
+/* Profile Photo Avatar */
+.card-tribute-box .tribute-avatar { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 3px solid var(--gold-light); 
+    box-shadow: 0 0 25px var(--gold-glow); 
+    position: relative; 
+    z-index: 2; 
+}
+
+/* Outer Rotating Golden Dashed Ring */
+.card-tribute-box .golden-sparkles-ring { 
+    position: absolute; 
+    inset: -7px; 
+    border-radius: 50%; 
+    border: 2px dashed var(--gold-light); 
+    animation: rotateSparkles 8s linear infinite; 
+    box-shadow: 0 0 12px var(--gold-glow); 
+    z-index: 1; 
+}
+
+/* Sparkle Ring 360 Degree Rotation Animation */
+@keyframes rotateSparkles { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}
+
+/* Orbiting Golden Particle Stars */
+.card-tribute-box .particle { 
+    position: absolute; 
+    font-size: 10px; 
+    animation: orbitParticles 4s linear infinite; 
+    opacity: 0.9; 
+    z-index: 3; 
+    text-shadow: 0 0 8px var(--gold), 0 0 15px var(--gold-light); 
+}
+
+/* Individual Particle Positions and Durations */
+.card-tribute-box .p1 { top: 0px; left: 10px; animation-duration: 3s; }
+.card-tribute-box .p2 { top: 10px; right: 5px; animation-duration: 5s; animation-direction: reverse; }
+.card-tribute-box .p3 { bottom: 15px; left: 5px; animation-duration: 4s; }
+.card-tribute-box .p4 { bottom: 5px; right: 10px; animation-duration: 3.5s; animation-direction: reverse; }
+.card-tribute-box .p5 { top: 40%; left: -8px; animation-duration: 4.5s; }
+.card-tribute-box .p6 { top: 40%; right: -8px; animation-duration: 3.8s; animation-direction: reverse; }
+.card-tribute-box .p7 { top: -5px; left: 40%; animation-duration: 5.5s; font-size: 8px; }
+.card-tribute-box .p8 { bottom: -5px; left: 45%; animation-duration: 4.2s; animation-direction: reverse; font-size: 8px; }
+
+/* Golden Particle Orbiting Animation Keyframe */
+@keyframes orbitParticles {
+    0% { 
+        transform: rotate(0deg) translate(48px) rotate(0deg) scale(0.8); 
+        opacity: 0.4; 
+    }
+    50% { 
+        opacity: 1; 
+        transform: rotate(180deg) translate(48px) rotate(-180deg) scale(1.25); 
+        text-shadow: 0 0 12px var(--gold-light), 0 0 20px var(--gold); 
+    }
+    100% { 
+        transform: rotate(360deg) translate(48px) rotate(-360deg) scale(0.8); 
+        opacity: 0.4; 
+    }
+}
+
+/* Tribute Person Name (Golden Shiny Text Gradient) */
+.card-tribute-box .tribute-name { 
+    font-size: 19px; 
+    font-weight: 700; 
+    font-family: serif; 
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--primary-color) 100%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    margin: 0 0 4px 0; 
+    text-shadow: 0 2px 10px var(--gold-glow); 
+}
+
+/* Tribute Subtitle Tagline Text */
+.card-tribute-box .tribute-tagline { 
+    color: var(--text-muted); 
+    font-size: 11px; 
+    font-style: italic; 
+    margin: 0; 
+}
+
+/* ==========================================================
+   ✨ INTRO / WELCOME SECTION COMPLETE FIX (NO OVERLAP)
+========================================================== */
+
+/* Outer Section Container */
+.app-intro-section {
+    padding: 20px 15px !important;
+    background: var(--bg-main) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block !important;
+}
+
+/* Main Glowing Welcome Card Box */
+.intro-card-glow {
+    position: relative !important;
+    background: var(--bg-home) !important;
+    border-radius: 18px !important;
+    padding: 22px 16px !important;
+    text-align: center !important;
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 8px 25px rgba(217, 119, 6, 0.12) !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Top Decorative Saffron Border Strip */
+.intro-card-glow::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 5px !important;
+    background: linear-gradient(90deg, var(--gold, #f59e0b), var(--primary-color, #d97706), var(--accent-color, #b45309)) !important;
+}
+
+/* Top Badge Pill Tag */
+.intro-badge {
+    display: inline-block !important;
+    background: var(--bg-header) !important;
+    color: var(--primary-color) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    margin-bottom: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    letter-spacing: 0.3px !important;
+}
+
+/* Main Heading Title (Welcome to Bhakti Sewa) */
+.intro-title {
+    font-size: 20px !important;
+    color: var(--accent-color) !important;
+    font-weight: 800 !important;
+    margin: 6px 0 10px 0 !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+}
+
+/* Description Text Body */
+.intro-desc {
+    font-size: 13.5px !important;
+    color: var(--text-muted) !important;
+    line-height: 1.6 !important;
+    margin: 0 0 16px 0 !important;
+    padding: 0 5px !important;
+}
+
+/* Bottom Feature Chips Pill Container */
+.intro-features-pill {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    border-top: 1px dashed var(--border-color) !important;
+    padding-top: 14px !important;
+    margin-top: 5px !important;
+}
+
+/* Feature Tag Badges */
+.intro-features-pill span {
+    background: var(--bg-main) !important;
+    color: var(--text-color) !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    padding: 6px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03) !important;
+}
+
+
+/* ==========================================================
+   👤 VIP PROFILE VIEW STYLES (UPDATED COMPLETE)
+========================================================== */
+
+/* Header Card (Gradient & Shadow) */
+.vip-profile-header {
+    background: linear-gradient(135deg, var(--bg-home) 0%, var(--bg-main) 100%);
+    padding: 30px 20px 25px 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* 🔙 BACK BUTTON & TOP BAR STYLES */
+.prof-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.prof-back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.prof-back-btn:active {
+    transform: translateY(-50%) scale(0.9);
+    background: var(--bg-home);
+}
+
+.prof-top-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+/* 📸 AVATAR IMAGE & EDIT ICON */
+.prof-avatar-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--gold), var(--primary-color));
+    border-radius: 50%;
+    margin: 0 auto 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3);
+    border: 3px solid var(--bg-home);
+    position: relative;
+    cursor: pointer;
+}
+
+.prof-avatar-icon {
+    font-size: 40px;
+    color: white;
+}
+
+.prof-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none; /* जब फोटो लगेगी तब दिखेगी */
+}
+
+.avatar-edit-icon {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: var(--primary-color);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    border: 2.5px solid var(--bg-home);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* 📝 USER NAME & EDIT ICON */
+.prof-user-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin: 0 0 8px 0;
+    cursor: pointer;
+}
+
+.name-edit-icon {
+    font-size: 14px;
+    color: var(--primary-color);
+    background: var(--bg-home);
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-left: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border: 1px solid var(--border-color);
+    transition: 0.2s;
+}
+
+.prof-user-name:active .name-edit-icon {
+    transform: scale(0.9);
+    background: var(--bg-main);
+}
+
+/* Gotra Badge */
+.prof-gotra-badge {
+    display: inline-block;
+    background: var(--bg-header);
+    color: var(--text-color);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.prof-gotra-badge:active {
+    transform: scale(0.95);
+}
+
+/* Stats Grid (Report Card) */
+.prof-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 0 15px;
+    margin-bottom: 25px;
+}
+
+.prof-stat-card {
+    background: var(--bg-home);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.stat-icon { font-size: 24px; margin-bottom: 5px; }
+.stat-number { font-size: 24px; font-weight: 800; color: var(--text-color); margin-bottom: 2px; }
+.stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+/* Section Titles */
+.prof-section-title {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin: 0 0 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Menu Item Groups */
+.prof-menu-group {
+    background: var(--bg-home);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 25px;
+}
+
+.prof-menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    background: var(--bg-home);
+    transition: background 0.2s;
+}
+
+.prof-menu-item:last-child {
+    border-bottom: none;
+}
+
+.prof-menu-item:active {
+    background: var(--bg-main);
+}
+
+.menu-left {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.menu-icon {
+    font-size: 20px;
+    margin-right: 14px;
+    width: 25px;
+    text-align: center;
+}
+
+.menu-right {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+/* iOS Style Toggle Switch */
+.toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; margin: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: var(--primary-color); }
+input:checked + .slider:before { transform: translateX(20px); }
+.slider.round { border-radius: 24px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Footer App Brand Text */
+.prof-footer-brand {
+    text-align: center;
+    padding: 10px 0 30px 0;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* ==========================================================
+   ✨ VIP CUSTOM POPUP MODAL (REPLACES BROWSER PROMPT)
+========================================================== */
+.vip-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.vip-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.vip-modal-box {
+    background: var(--bg-home);
+    width: 88%;
+    max-width: 340px;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    transform: scale(0.85);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--border-color);
+}
+
+.vip-modal-overlay.active .vip-modal-box {
+    transform: scale(1);
+}
+
+.vip-modal-box h3 {
+    margin: 0 0 16px 0;
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.vip-modal-box input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-main);
+    color: var(--text-color);
+    font-size: 15px;
+    margin-bottom: 22px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+.vip-modal-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+}
+
+.vip-modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.vip-modal-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.vip-modal-actions button:active { transform: scale(0.95); }
+
+.vip-btn-cancel {
+    background: var(--bg-main);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+
+.vip-btn-save {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3);
+}
+
+
+/* ==========================================================
+   🏆 BADGE TARGET GUIDE
+========================================================== */
+.prof-badge-guide {
+    background: var(--bg-home);
+    margin: -10px 15px 25px 15px; /* Stats grid के ठीक नीचे चिपकाने के लिए */
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1.5px dashed var(--primary-color);
+    text-align: center;
+    background-color: rgba(217, 119, 6, 0.05); /* हल्का सा ऑरेंज बैकग्राउंड */
+}
+
+.guide-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.guide-steps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-muted);
+}
+/* ==========================================================
+   ℹ️ BADGE INFO ICON & MODAL STYLES
+========================================================== */
+.prof-badge-guide {
+    cursor: pointer; /* क्लिक करने वाला हाथ दिखेगा */
+    transition: transform 0.2s, background 0.2s;
+}
+.prof-badge-guide:active {
+    transform: scale(0.97);
+    background-color: rgba(217, 119, 6, 0.1);
+}
+
+.info-icon {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+/* Modal Content Styling (Small & Clean Text) */
+.badge-info-box h3 {
+    font-size: 16px;
+    color: var(--accent-color);
+    margin-bottom: 12px;
+}
+
+.badge-details-list {
+    text-align: left;
+    background: var(--bg-main);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.badge-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px; /* एकदम छोटा और साफ़ टेक्स्ट */
+    color: var(--text-color);
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+.badge-row:last-child { border-bottom: none; }
+.badge-row span:first-child { font-weight: bold; }
+
+.badge-note {
+    font-size: 10px; /* नोट के लिए सबसे छोटा टेक्स्ट */
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0;
+}
+
+
+
+/* ==========================================================
+   🔔 VIP TOAST NOTIFICATION
+========================================================== */
+.vip-toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10000;
+    transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.vip-toast.show {
+    bottom: 30px;
+}
+
+/* ==========================================================
+   ⭐ RATING STARS STYLING
+========================================================== */
+.rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 35px;
+    color: #e0e0e0; /* खाली स्टार का रंग */
+    cursor: pointer;
+}
+
+.rating-stars .star {
+    transition: transform 0.2s, color 0.2s;
+}
+
+.rating-stars .star.active {
+    color: #FFD700; /* चमकता हुआ सुनहरा रंग */
+    transform: scale(1.1);
+}
+
+
+/* ==========================================================
+   🔠 REAL DYNAMIC APP SCALER (पूरे ऐप का साइज़ कंट्रोल)
+========================================================== */
+/* छोटा (Small) - पूरे ऐप को 10% छोटा करेगा (टेक्स्ट, बटन, कार्ड सब कुछ) */
+body.font-size-0 {
+    zoom: 0.9 !important;
+    -moz-transform: scale(0.9);
+    -moz-transform-origin: top center;
+}
+
+/* मध्यम (Medium - Default) - नार्मल साइज़ */
+body.font-size-1 {
+    zoom: 1.0 !important;
+    -moz-transform: scale(1.0);
+    -moz-transform-origin: top center;
+}
+
+/* बड़ा (Large) - पूरे ऐप को 12% बड़ा करेगा (बुजुर्गों के लिए सबसे बेस्ट) */
+body.font-size-2 {
+    zoom: 1.12 !important;
+    -moz-transform: scale(1.12);
+    -moz-transform-origin: top center;
+}
+
+/* ==========================================================
+   🔔 VIP VRAT REMINDER STYLES (Glassmorphism & Metallic UI)
+========================================================== */
+
+/* मेन पॉप-अप बॉक्स का डिज़ाइन (Glass Effect) */
+.vrat-modal-box {
+    text-align: center;
+    padding: 30px 20px;
+    width: 90%;
+    max-width: 340px;
+    margin: 0 auto;
+    
+    /* शीशे जैसा ट्रांसपेरेंट बैकग्राउंड */
+    background: rgba(255, 255, 255, 0.85);
+    
+    /* ब्लर इफेक्ट (असली Glass Look) */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    
+    /* मैटेलिक गोल्डन बॉर्डर और 3D शैडो */
+    border: 1px solid rgba(217, 119, 6, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    
+    /* कार्ड पॉप-अप एनीमेशन */
+    animation: glassPopUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ऐप का नाम (ब्रांडिंग) - अगर HTML में जोड़ा है तो काम करेगा */
+.vrat-app-branding {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #b8860b, #ffda44, #b8860b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 3s infinite linear;
+}
+
+/* बेल (घंटी) और उसका एनिमेशन (3D Shadow के साथ) */
+.vrat-bell-icon {
+    display: inline-block;
+    font-size: 55px;
+    margin-bottom: 10px;
+    animation: ringBell 2s ease-in-out infinite;
+    transform-origin: top center;
+    filter: drop-shadow(0 10px 10px rgba(217, 119, 6, 0.3));
+}
+
+/* टाइटल - जय श्री हरि */
+.vrat-title {
+    color: #1f2937;
+    margin-bottom: 5px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* सबटाइटल - व्रत का नाम (Capsule Style) */
+.vrat-subtitle {
+    margin-bottom: 15px;
+    color: #ea580c;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 5px 15px;
+    background: rgba(234, 88, 12, 0.1);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* डिस्क्रिप्शन - संदेश */
+.vrat-desc {
+    font-size: 15px;
+    color: #4b5563;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.vrat-desc strong {
+    color: #b8860b;
+    display: block;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* दर्शन करें बटन (3D & Glowing Pulse) */
+.vrat-btn {
+    width: 100%;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 50px;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    border: none;
+    outline: none;
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4), inset 0 2px 2px rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: btnPulse 2s infinite;
+}
+
+/* बटन पर क्लिक करने का इफेक्ट */
+.vrat-btn:active {
+    transform: translateY(3px) scale(0.96);
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.4);
+}
+
+/* ==========================================================
+   🎬 ANIMATIONS (Keyframes)
+========================================================== */
+
+/* पॉप-अप के स्मूथ ओपनिंग का एनीमेशन */
+@keyframes glassPopUp {
+    0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* घंटी हिलने का की-फ्रेम */
+@keyframes ringBell {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50% { transform: rotate(15deg); }
+    20%, 40% { transform: rotate(-15deg); }
+    60% { transform: rotate(0deg); }
+}
+
+/* सोने (Gold) की चमक का एनीमेशन */
+@keyframes goldShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* बटन के पल्स (धड़कने) का एनीमेशन */
+@keyframes btnPulse {
+    0% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.5); }
+    70% { box-shadow: 0 0 0 12px rgba(234, 88, 12, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+}
+
+/* ==========================================================
+   🌟 VIP ULTRA PRO MAX TICKER (Glass & Metallic UI/UX)
+========================================================== */
+.vip-pro-ticker-box {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-color, rgba(255, 255, 255, 0.85)), var(--bg-header, rgba(254, 243, 199, 0.75)));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--primary-color, #f59e0b);
+    border-radius: 16px;
+    padding: 10px 14px;
+    margin: 12px auto;
+    width: 94%;
+    max-width: 410px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    position: relative;
+    z-index: 50;
+}
+
+/* चमकता हुआ आइकॉन बैज */
+.ticker-badge-glow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(circle, var(--accent-color, #ffda44) 0%, var(--primary-color, #d97706) 100%);
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 12px var(--primary-color);
+    flex-shrink: 0;
+}
+
+.ticker-sparkle {
+    font-size: 16px;
+    animation: proSparklePulse 1.5s infinite alternate ease-in-out;
+}
+
+/* स्क्रॉलिंग एरिया */
+.ticker-content-track {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    /* दोनों किनारों पर स्मूथ फेड (Fade) इफ़ेक्ट */
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* असली रनिंग टेक्स्ट - मैटेलिक फिनिश */
+.ticker-scrolling-text {
+    display: inline-block;
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: var(--primary-color, #92400e);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    padding-left: 100%;
+    animation: proTickerScroll 20s linear infinite;
+    will-change: transform;
+}
+
+/* यूजर टच करने पर टिकर रुक जाएगा (Pause on Touch) */
+.vip-pro-ticker-box:active .ticker-scrolling-text {
+    animation-play-state: paused;
+}
+
+/* ==========================================================
+   🎬 PRO ANIMATIONS
+========================================================== */
+@keyframes proTickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes proSparklePulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+/* ==========================================================
+   ⚡ ZERO-LAG ULTRA PRO MAX POPUP STYLES (High Performance)
+========================================================== */
+
+/* --- 1. मुख्य कार्ड का डिज़ाइन (थीम एडाप्टिव) --- */
+.grah-shanti-card {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-color, #ffffff), var(--bg-header, #fef3c7));
+    border: 1.5px solid var(--primary-color, #f59e0b);
+    border-radius: 18px;
+    padding: 16px;
+    margin: 15px auto;
+    width: 94%;
+    max-width: 410px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grah-shanti-card:active {
+    transform: scale(0.97);
+}
+
+.grah-card-icon {
+    font-size: 28px;
+    background: radial-gradient(circle, var(--accent-color, #ffda44) 0%, var(--primary-color, #d97706) 100%);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 14px;
+    box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3);
+    flex-shrink: 0;
+}
+
+.grah-card-info {
+    flex-grow: 1;
+}
+
+.grah-card-info h3 {
+    font-size: 16px;
+    color: var(--primary-color, #92400e);
+    font-weight: 800;
+    margin: 0 0 4px 0;
+}
+
+.grah-card-info p {
+    font-size: 12px;
+    color: var(--text-color, #4b5563);
+    margin: 0;
+    opacity: 0.85;
+}
+
+.grah-arrow-btn {
+    font-size: 18px;
+    color: var(--primary-color, #d97706);
+    font-weight: bold;
+    padding-left: 8px;
+}
+
+/* --- 2. पॉप-अप बैकग्राउंड ओवरले (लाइटवेट और फास्ट) --- */
+.grah-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    
+    /* बिना ब्लर के सुपर-फास्ट ट्रांसपेरेंट बैकग्राउंड */
+    background: transparent !important; 
+    z-index: 2147483647 !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease-out, visibility 0.15s ease-out;
+}
+
+.grah-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* --- 3. ज़ीरो-लैग अल्ट्रा प्रो मैक्स मैटेलिक पॉप-अप बॉक्स (स्क्रॉलएबल) --- */
+.grah-modal-content {
+    /* बिना भारी-भरकम ब्लर के शुद्ध रिच डार्क मैटेलिक फिनिश (लैग फ्री) */
+    background: linear-gradient(135deg, #121620 0%, #0a0d14 100%) !important;
+    border: 2px solid var(--primary-color, #f59e0b) !important;
+    
+    /* 📱 SIZE CONTROL: यहाँ से पॉप-अप की चौड़ाई और ऊँचाई सेट है */
+    width: 92% !important;
+    max-width: 380px !important;
+    max-height: 82vh !important;
+    
+    border-radius: 26px !important;
+    padding: 24px 18px !important;
+    position: fixed !important;
+    color: #ffffff !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+    
+    /* 📜 अंदर का कंटेंट बड़ा होने पर मक्खन की तरह स्क्रॉल होगा */
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    
+    /* 🎯 POSITION CONTROL: स्क्रीन के एकदम बीच में और हल्का सा नीचे */
+    left: 50% !important;
+    top: 50% !important;
+    
+    /* 🚀 हार्डवेयर एक्सेलेरेशन ताकि एनिमेशन में ज़रा भी अटकन न हो */
+    will-change: transform, opacity !important;
+    transform: translate(-50%, calc(-50% + 15px)) scale(0.9) !important;
+    transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
+}
+
+/* पॉप-अप ओपन ज़ूम एनीमेशन */
+.grah-modal-overlay.active .grah-modal-content {
+    transform: translate(-50%, calc(-50% + 15px)) scale(1) !important;
+}
+
+/* स्क्रॉलबर को और सुंदर बनाने के लिए */
+.grah-modal-content::-webkit-scrollbar {
+    width: 5px;
+}
+.grah-modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color, #f59e0b);
+    border-radius: 10px;
+}
+/* --- 4. क्लोज (कट) मैटेलिक बटन (Fixed & Working) --- */
+.grah-close-btn {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important; 
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--primary-color, #f59e0b) !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    width: 36px !important;
+    height: 36px !important; 
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 999999 !important; /* 🌟 सबसे ऊपर ताकि उंगली लगते ही बंद हो जाए */
+    transition: background 0.2s, transform 0.1s;
+}
+
+.grah-close-btn:active {
+    background: var(--primary-color, #f59e0b) !important;
+    color: #000 !important;
+    transform: scale(0.9) !important;
+}
+
+
+/* --- 5. पॉप-अप हेडर और टेक्स्ट डिज़ाइन --- */
+.grah-modal-header {
+    text-align: center;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.grah-modal-header span {
+    font-size: 11px;
+    color: var(--accent-color, #fbbf24);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.grah-modal-header h2 {
+    font-size: 18px;
+    color: #f3f4f6;
+    margin: 4px 0 0 0;
+}
+
+.mantra-highlight-box {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1.5px dashed var(--primary-color, #f59e0b);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.sanskrit-mantra {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fef08a;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.grah-modal-body h4 {
+    font-size: 13px;
+    color: #60a5fa;
+    margin: 10px 0 4px 0;
+}
+
+.grah-modal-body p {
+    font-size: 12.5px;
+    color: #d1d5db;
+    line-height: 1.45;
+    margin: 0 0 8px 0;
+}
+
+.grah-modal-body ul {
+    margin: 0;
+    padding-left: 16px;
+}
+
+.grah-modal-body li {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+/* ==========================================================
+   🎛️ FONT SIZE CONTROLLER BUTTONS STYLES (Larger & Enhanced)
+========================================================== */
+.grah-modal-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+/* फॉंट छोटा-बड़ा करने वाले बटनों का बॉक्स */
+.font-size-control-box {
+    display: flex;
+    gap: 12px; /* 🎛️ नियंत्रण: बटनों के बीच की दूरी */
+    justify-content: center;
+    margin-top: 10px; /* 🎛️ नियंत्रण: ऊपर से दूरी */
+}
+
+.font-btn {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid var(--primary-color, #f59e0b);
+    color: var(--primary-color, #f59e0b);
+    font-size: 14px;      /* 🎛️ नियंत्रण: यहाँ से अक्षर का साइज़ बड़ा-छोटा करें */
+    font-weight: 800;
+    padding: 6px 16px;    /* 🎛️ नियंत्रण: यहाँ से बटन की चौड़ाई और ऊँचाई (Size) बढ़ाएँ */
+    border-radius: 10px;  /* 🎛️ नियंत्रण: कोने की गोलाई */
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.font-btn:active {
+    background: var(--primary-color, #f59e0b);
+    color: #000;
+    transform: scale(0.92);
+}
+
+/* ========================================================= */
+/* 🏛️ BhaktiSewa: Mandir Animations & Darshan Zoom Styles   */
+/* ========================================================= */
+
+/* :root Variables */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 215, 0, 0.45);
+    --gold-text: #FFD700;
+    --transition-fast: all 0.25s ease;
+    --transition-slow: all 0.8s ease;
+}
+
+/* body.mandir-open */
+body.mandir-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    touch-action: none;
+}
+
+/* .mandir-overlay */
+.mandir-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-slow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .mandir-overlay.open */
+.mandir-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* .pat-layer */
+.pat-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    pointer-events: none;
+    transition: opacity 1s ease-out;
+}
+
+/* .pat-gif */
+.pat-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: screen;
+}
+
+/* .pat-layer.hidden */
+.pat-layer.hidden {
+    opacity: 0;
+}
+
+/* .mandir-content */
+.mandir-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    background: radial-gradient(circle, #3a1e05 0%, #0a0400 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* .close-btn */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--gold-text);
+    border-radius: 50%;
+    color: var(--gold-text);
+    z-index: 100005;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .close-btn:active */
+.close-btn:active {
+    transform: scale(0.9);
+}
+
+/* .hanging-bells-container */
+.hanging-bells-container {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100003;
+    pointer-events: none;
+}
+
+/* .bell-gif */
+.bell-gif {
+    width: 300px;
+    height: auto;
+}
+
+/* .god-slider-container */
+.god-slider-container {
+    width: 100%;
+    height: 70%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* .mandir-frame */
+.mandir-frame {
+    position: absolute;
+    top: -20px;
+    left: -21%;
+    width: 145%;
+    height: 105%;
+    object-fit: fill;
+    z-index: 100002;
+    pointer-events: none;
+}
+
+/* .god-swiper */
+.god-swiper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* .god-swiper::-webkit-scrollbar */
+.god-swiper::-webkit-scrollbar {
+    display: none;
+}
+
+/* .god-slide */
+.god-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    background-size: auto 90%;
+    background-repeat: no-repeat;
+    background-position: center 100%;
+    scroll-snap-align: start;
+    z-index: 100001;
+    transition: transform 3s ease-in-out, opacity 0.5s ease-in-out !important;
+}
+
+/* .god-slide.darshan-zoom-active */
+.god-slide.darshan-zoom-active {
+    transform: scale(1.25) !important;
+    transform-origin: center center !important;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)) brightness(1.15) !important;
+    z-index: 100001;
+}
+
+/* .magic-particle */
+.magic-particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 100006;
+    will-change: transform, opacity;
+}
+
+/* @keyframes petalArcAnim */
+@keyframes petalArcAnim {
+    0% { 
+        transform: translate(0, 0) rotate(0deg) scale(0.5); 
+        opacity: 1; 
+    }
+    40% { 
+        transform: translate(var(--mx), var(--my)) rotate(180deg) scale(1.2); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(var(--ex), var(--ey)) rotate(360deg) scale(0.8); 
+        opacity: 0; 
+    }
+}
+
+/* @keyframes starFallAnim */
+@keyframes starFallAnim {
+    0% { 
+        transform: translateY(-20px) scale(0.5) rotate(0deg); 
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1.2) rotate(45deg); 
+    }
+    100% { 
+        transform: translateY(100vh) scale(0.5) rotate(180deg); 
+        opacity: 0; 
+    }
+}
+
+/* @keyframes faceEmitAnim */
+@keyframes faceEmitAnim {
+    0% { 
+        transform: translate(-50%, -50%) scale(0.1); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(var(--tx), var(--ty)) scale(3); 
+        opacity: 0; 
+    }
+}
+
+/* .aarti-thali-container */
+.aarti-thali-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100003;
+    pointer-events: none;
+}
+
+/* .aarti-thali-container.hidden */
+.aarti-thali-container.hidden {
+    display: none;
+}
+
+/* .aarti-thali-img */
+.aarti-thali-img {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 46px #ff9900);
+    animation: simpleAartiOrbit 3s linear infinite;
+}
+
+/* @keyframes simpleAartiOrbit */
+@keyframes simpleAartiOrbit {
+    0% {
+        transform: rotate(0deg) translateY(100px) rotate(0deg) scale(1.15);
+    }
+    50% {
+        transform: rotate(180deg) translateY(100px) rotate(-180deg) scale(0.85);
+    }
+    100% {
+        transform: rotate(360deg) translateY(100px) rotate(-360deg) scale(1.15);
+    }
+}
+
+/* .diyas-container */
+.diyas-container {
+    position: absolute;
+    bottom: 294px; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6%;
+    z-index: 100003;
+    pointer-events: none;
+}
+
+/* .diya-gif */
+.diya-gif {
+    width: 50px;
+    height: auto;
+}
+
+/* .action-card-glass */
+.action-card-glass {
+    position: absolute;
+    bottom: 65px; 
+    left: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 12px 10px 14px 10px;
+    z-index: 100004;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* .card-title */
+.card-title {
+    font-size: 0.85rem;
+    margin: 0 0 12px 0;
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* .round-btns-grid */
+.round-btns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px 10px;
+    justify-items: center;
+}
+
+/* .round-action-btn */
+.round-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(60, 30, 10, 0.9), rgba(10, 5, 0, 0.95));
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255, 215, 0, 0.4);
+    padding: 0;
+}
+
+/* .round-action-btn:active */
+.round-action-btn:active {
+    transform: scale(0.85) translateY(2px);
+    border-color: #ffffff;
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.9);
+}
+
+/* .round-action-btn img */
+.round-action-btn img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    margin-bottom: 3px;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
+
+/* .round-action-btn span */
+.round-action-btn span {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.2px;
+}
+/* ========================================================= */
+/* 🌟 VIP Professional Ticker                                */
+/* ========================================================= */
+
+.mandir-vip-ticker-container {
+    /* 👈 CHOURAYI (Width): Kam ya zyada karne ke liye % change karein */
+    width: 92%; 
+    
+    /* 👈 UPAR, RIGHT, NEECHE, LEFT move karne ke liye (Margin) */
+    /* Pehla (-10px) = UPAR (-) ya NEECHE (+) khiskane ke liye */
+    /* Doosra (0px)  = Right side gap */
+    /* Teesra (0px)  = Neeche ka gap */
+    /* Choutha (15px) = LEFT (+) ya RIGHT (-) khiskane ke liye */
+    margin: -24px 0px 0px 15px; 
+    
+    position: relative;
+    background: linear-gradient(135deg, rgba(40, 30, 10, 0.85) 0%, rgba(15, 10, 2, 0.95) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    border-radius: 10px; /* 👈 Kono ki goolai (Roundness) */
+    
+    /* 👈 HEIGHT KAM/BADA KARNE KE LIYE (Padding Top/Bottom) */
+    /* Pehla (4px)  = Top aur Bottom se andarni jagah (Height kam/zyada karein) */
+    /* Doosra (10px) = Left aur Right ki andarni jagah */
+    padding: 6px 10px; 
+    
+    z-index: 1000000;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.vip-ticker-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.vip-ticker-text {
+    display: inline-block;
+    white-space: nowrap;
+    
+    /* 👈 ANIMATION SPEED: (kam sec = tez bhagega, zyada sec = dheema chalega) */
+    animation: vipTickerScroll 15s linear infinite; 
+    
+    /* 👈 TEXT KA SIZE: (Bada karna ho toh 0.9rem ya 1rem karein, chota karna ho toh 0.75rem) */
+    font-size: 0.85rem; 
+    
+    font-weight: 700; /* 👈 Text kitna mota (Bold) dikhega */
+    letter-spacing: 0.5px; /* 👈 Aksharo ke beech ka gap */
+    
+    background: linear-gradient(to right, #cf9f34, #fff29d, #e6ca65, #fff29d, #cf9f34);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+}
+
+@keyframes vipTickerScroll {
+    0% {
+        transform: translateX(100%); /* 👈 Text Right side se start hoga */
+    }
+    100% {
+        transform: translateX(-100%); /* 👈 Text Left side par khatam hoga */
+    }
+}
+
+/* ========================================================= */
+/* 💨 No-Container: Smoke GIF & Solid Dhupbatti               */
+/* ========================================================= */
+
+.smoke-gif-transparent {
+    position: absolute;
+    bottom: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: auto;
+    z-index: 2200001;
+    pointer-events: none;
+    mix-blend-mode: screen !important;
+    opacity: 0.9;
+}
+
+.dhupbatti-img-solid {
+    position: absolute;
+    bottom: 230px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: auto;
+    z-index: 2200002;
+    pointer-events: none;
+    filter: drop-shadow(0 0 10px rgba(255, 165, 0, 1));
+}
+
+/* ========================================================= */
+/* 🌸 Square Flower Buttons (Left & Right)                   */
+/* ========================================================= */
+
+.flower-btn {
+    position: absolute;
+    bottom: 240px;
+    width: 55px;
+    height: 55px;
+    background: rgba(20, 15, 5, 0.65); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 215, 0, 0.7); 
+    border-radius: 12px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2200005; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6), inset 0 2px 5px rgba(255, 215, 0, 0.3); 
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flower-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.left-flower-btn {
+    left: 20px; 
+}
+
+.right-flower-btn {
+    right: 20px; 
+}
+
+.flower-btn img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain; 
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7)); 
+}
+
+/* ========================================================= */
+/* 🌸 Flower Shower Physics & Animation Styles               */
+/* ========================================================= */
+
+#flower-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 2200006;
+    overflow: hidden;
+}
+
+.falling-flower {
+    position: absolute;
+    bottom: 15%; 
+    left: 50%;
+    object-fit: contain;
+    will-change: transform, opacity;
+    pointer-events: none;
+    z-index: 2200006;
+}
+
+.rose-size {
+    width: 10px;
+    height: 10px;
+}
+
+.marigold-size {
+    width: 35px;
+    height: 35px;
+}
+
+/* ========================================================== */
+/* 🌟 ULTRA VIP 'चढ़ावा' BUTTON - ULTIMATE SPARKLE & GLOW      */
+/* ========================================================== */
+
+#chadawaActionBtn {
+    /* 1. शाही रॉयल ब्लू और डीप नेवी ब्लू का रिच ग्रेडिएंट */
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #0f172a 100%) !important;
+    
+    /* 2. प्रीमियम ब्राइट स्काई ब्लू और गोल्डन थिक बॉर्डर */
+    border: 3px solid #38bdf8 !important;
+    
+    /* परफेक्ट गोल शेप */
+    border-radius: 50% !important;
+    
+    /* 3. वीआईपी आउटर ग्लो और इनर शैडो ताकि बटन एकदम उभरा हुआ और चमकीला दिखे */
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.8), 
+                inset 0 0 15px rgba(147, 197, 253, 0.6), 
+                0 8px 20px rgba(0, 0, 0, 0.9) !important;
+                
+    position: relative !important;
+    overflow: visible !important;
+    cursor: pointer !important;
+    animation: none !important;
+}
+
+/* ✨ बॉर्डर के चारों तरफ घूमने वाले जादुई गोल्डन और व्हाइट पार्टिकल्स (Sparkles) */
+#chadawaActionBtn::before,
+#chadawaActionBtn::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -5px !important; 
+    left: -5px !important; 
+    right: -5px !important; 
+    bottom: -5px !important;
+    border-radius: 50% !important;
+    border: 2px dashed #ffd700 !important; /* गोल्डन डॉट्स का बॉर्डर */
+    animation: rotateGoldParticles 5s linear infinite !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+#chadawaActionBtn::after {
+    border: 2px dotted #ffffff !important; /* तारों जैसी सफेद चमक */
+    animation: rotateGoldParticles 3s linear infinite reverse !important;
+    opacity: 0.9 !important;
+}
+
+/* पार्टिकल्स को गोल-गोल घुमाने का रोटेशन */
+@keyframes rotateGoldParticles {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* बटन के अंदर की इमेज और टेक्स्ट को ऊपर रखना */
+#chadawaActionBtn img,
+#chadawaActionBtn span {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* इमेज की फिनिशिंग और शैडो */
+#chadawaActionBtn img {
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8)) !important;
+}
+
+/* 'चढ़ावा' टेक्स्ट का रंग और चमक */
+#chadawaActionBtn span {
+    color: #f0f9ff !important;
+    font-weight: 900 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 12px rgba(56, 189, 248, 1) !important;
+}
+
+/* 🖱️ जब यूज़र क्लिक करे (Smooth Press Action) */
+#chadawaActionBtn:active {
+    transform: scale(0.92) translateY(2px) !important;
+    background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%) !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.9), inset 0 2px 8px rgba(0,0,0,0.9) !important;
+}
+
+/* ========================================================= */
+/* 🪙 2. GOLDEN COIN (SPA Fix: Fixed & Max Z-Index)          */
+/* ========================================================= */
+
+.falling-coin {
+    position: fixed !important; 
+    top: 0; 
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #FFD700, #B8860B);
+    border-radius: 50%;
+    border: 2px solid #DAA520;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.6);
+    z-index: 2147483647 !important;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* ========================================================= */
+/* ✨ 3. SUCCESS AASHIRWAD OVERLAY                            */
+/* ========================================================= */
+
+.chadawa-success-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 2147483648 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+}
+
+.chadawa-success-overlay.show {
+    opacity: 1; 
+    visibility: visible;
+}
+
+.chadawa-success-text {
+    text-align: center;
+    color: #FFD700;
+    font-size: 24px;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    transform: scale(0.5);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chadawa-success-overlay.show .chadawa-success-text {
+    transform: scale(1);
+}
+
+/* ========================================================== */
+/* 🔒 ABSOLUTE FULLSCREEN OVERLAY & POPUP FIX (PERFECT LOCK)  */
+/* ========================================================== */
+
+/* 1. 🌆 बैकग्राउंड ओवरले (inset: 0 से चारों कोनों पर 100% लॉक) */
+.temple-modal-overlay {
+    position: fixed !important;
+    inset: 0 !important;             /* Top, Left, Right, Bottom सब 0 कर देता है */
+    width: 100% !important;          /* 100vw की जगह 100% से दाईं तरफ की जगह भरना बंद होगी */
+    height: 100% !important;
+    
+    background: rgba(0, 0, 0, 0.75) !important; 
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    
+    display: none;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 9999999 !important;     /* सबसे ऊपर रखने के लिए */
+    
+    margin: 0 !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    transform: none !important;      /* किसी भी बाहरी मूवमेंट को ब्लॉक करेगा */
+}
+
+.temple-modal-overlay.active {
+    display: flex !important;
+}
+
+/* 2. 🛕 मुख्य सफ़ेद पॉपअप कार्ड (परफेक्ट सेंटर साइज) */
+.temple-modal-card {
+    width: 90% !important;             
+    max-width: 450px !important;       
+    max-height: 78vh !important;       
+    
+    margin: auto !important;          /* स्क्रीन के बिल्कुल बीचों-बीच रखेगा */
+    transform: none !important;
+    
+    padding: 16px !important;          
+    border-radius: 20px !important;    
+
+    background: var(--bg-home, #ffffff) !important;
+    position: relative !important;
+    overflow-y: auto !important;      /* सिर्फ कार्ड का कंटेंट स्क्रॉल होगा */
+    
+    /* थीम बॉर्डर्स और शैडो */
+    border: 2px solid var(--border-color, var(--primary-color, #ff9933)) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
+    color: var(--text-color, #2c3e50) !important;
+    animation: modalGlassSlide 0.25s ease-out;
+}
+
+@keyframes modalGlassSlide {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* स्क्रॉलबार डिज़ाइन */
+.temple-modal-card::-webkit-scrollbar {
+    width: 4px;
+}
+.temple-modal-card::-webkit-scrollbar-thumb {
+    background: var(--primary-color, #ff9933);
+    border-radius: 10px;
+}
+
+/* 3. ❌ क्लोज (X) बटन */
+.close-modal-btn {
+    position: absolute !important;
+    top: 10px !important;              
+    right: 12px !important;            
+    width: 32px !important;            
+    height: 32px !important;           
+    
+    border-radius: 50% !important;
+    background: var(--bg-main, rgba(0, 0, 0, 0.05)) !important;
+    border: 1px solid var(--border-color, rgba(0,0,0,0.1)) !important;
+    color: var(--text-color, #333) !important;
+    font-size: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+}
+
+.close-modal-btn:active {
+    transform: scale(0.88);
+    background: var(--primary-color, #ff9933) !important;
+    color: #ffffff !important;
+}
+
+/* 4. 📝 मोडल हेडर */
+.modal-header h3 {
+    margin: 0 0 14px 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary-color, #ff9933);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 5. 🖼️ पॉपअप फोटो (Popup Image) */
+.temple-modal-card img#popupImage {
+    width: 100%;
+    height: 160px;                     
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+}
+
+.modal-body-content .location-badge {
+    display: inline-block;
+    background: var(--primary-color, #ff9933);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.modal-body-content h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--accent-color, var(--text-color));
+    margin: 4px 0 8px 0;
+}
+
+.modal-body-content p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+    white-space: pre-line;
+}
+
+/* 6. 📜 "सभी पवित्र धामों की सूची" वाला कार्ड */
+.temples-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.temple-list-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--bg-main, #f9f9f9);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.temple-list-card:active {
+    transform: scale(0.97);
+    background: var(--bg-home);
+    border-color: var(--primary-color, #ff9933);
+}
+
+.temple-list-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    background: #f0f0f0;
+}
+
+.temple-list-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.temple-list-info h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-color, #2c3e50);
+}
+
+.temple-list-info span {
+    font-size: 12px;
+    color: var(--text-muted, #7f8c8d);
+}
+
+
