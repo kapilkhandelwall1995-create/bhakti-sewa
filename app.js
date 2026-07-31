@@ -1237,8 +1237,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('audio').forEach(a => a.pause()); 
     });
     
-    document.getElementById("btnDarshanBhajan")?.addEventListener("click", () => window.location.href = "https://youtube.com/@bhaktisagarkapil");
-    document.getElementById("btnDarshanStatus")?.addEventListener("click", () => window.open("https://www.instagram.com/bhaktisagar.app", '_blank'));
+document.getElementById("btnDarshanBhajan")?.addEventListener("click", () => window.open("https://www.youtube.com/@BhaktiSewa_kapil", "_blank"));
+document.getElementById("btnDarshanStatus")?.addEventListener("click", () => window.open("https://www.instagram.com/bhaktisewa_kapil?igsh=MXVwa205aDFrZGY3cQ==", "_blank"));
 
 
     // ==========================================================
