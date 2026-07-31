@@ -2727,10 +2727,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ========================================================= */
-/* 🌸 Flower Shower Gravity Physics Engine (Custom Quantity & Sizes) */
+/* 🌸 Flower Shower Gravity Physics Engine (With 5-Sec Timer)*/
 /* ========================================================= */
 
-function startFlowerShower(flowerType) {
+// Cooldown track karne ke liye variable (Isko function ke bahar rakhna zaroori hai)
+let flowerCooldowns = { rose: false, marigold: false }; 
+
+function startFlowerShower(flowerType, btnElement) {
+    // 1. Agar button pehle se lock hai (timer chal raha hai), toh click ignore karein
+    if (flowerCooldowns[flowerType]) return;
+
+    // 2. Button ko lock kar dein
+    flowerCooldowns[flowerType] = true;
+
+    // 3. Timer UI (Countdown) dikhane ka logic
+    if (btnElement) {
+        btnElement.style.pointerEvents = 'none'; // Click disable karein
+        btnElement.style.opacity = '0.6'; // Button ko thoda dhundhla (dim) karein
+        btnElement.style.position = 'relative'; // Taki timer iske upar sahi se baithe
+
+        let timer = 5;
+        let timerDiv = document.createElement('div');
+        // Timer ka design (Button ke upar dark layer aur white text)
+        timerDiv.style.cssText = 'position:absolute; inset:0; background:rgba(0,0,0,0.6); color:white; display:flex; justify-content:center; align-items:center; font-size:24px; font-weight:bold; border-radius:inherit; z-index:10;';
+        timerDiv.innerText = timer;
+        btnElement.appendChild(timerDiv);
+
+        // Har 1 second mein ginti kam karein
+        let countdown = setInterval(() => {
+            timer--;
+            if (timer > 0) {
+                timerDiv.innerText = timer;
+            } else {
+                // 5 second pure hone par sab normal kar dein
+                clearInterval(countdown);
+                if (btnElement.contains(timerDiv)) {
+                    btnElement.removeChild(timerDiv);
+                }
+                btnElement.style.pointerEvents = 'auto'; // Click wapas chalu
+                btnElement.style.opacity = '1';
+                flowerCooldowns[flowerType] = false; // Lock hata dein
+            }
+        }, 1000);
+    }
+
+    // ========================================================= 
+    // 4. Yahan se aapka Original Physics Engine code shuru hota hai
+    // ========================================================= 
     const container = document.getElementById('flower-container');
     
     // इमेजेस (pti.png और phool.png)
@@ -2785,6 +2828,7 @@ function startFlowerShower(flowerType) {
         requestAnimationFrame(updatePhysics);
     }
 }
+
 
 
 /* ========================================================= */
