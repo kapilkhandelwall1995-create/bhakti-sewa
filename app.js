@@ -2895,3 +2895,57 @@ function showChadawaSuccess() {
 }
 
 
+// ==========================================================
+// 📱 PWA APP INSTALLATION LOGIC (NATIVE PROMPT)
+// ==========================================================
+let deferredPrompt;
+const installBanner = document.getElementById('installBanner');
+const installAppBtn = document.getElementById('installAppBtn');
+const closeInstallBtn = document.getElementById('closeInstallBtn');
+
+// 1. Browser check karega ki app install hone layak hai ya nahi
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Browser ka apna default prompt rok do
+    e.preventDefault();
+    
+    // Event ko save kar lo taaki button click par use kar sakein
+    deferredPrompt = e;
+    
+    // Humara custom sundar banner show karo (2 second baad thoda smooth dikhega)
+    setTimeout(() => {
+        if(installBanner) installBanner.classList.remove('hidden');
+    }, 2000);
+});
+
+// 2. Jab user 'Install' button par click kare
+if (installAppBtn) {
+    installAppBtn.addEventListener('click', async () => {
+        // Banner ko hide kar do
+        installBanner.classList.add('hidden');
+        
+        if (deferredPrompt) {
+            // Asli install wala popup show karo
+            deferredPrompt.prompt();
+            
+            // User ka decision check karo (Usne Install kiya ya Cancel)
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                console.log('User ne app install kar li! 🎉');
+            } else {
+                console.log('User ne install cancel kar diya.');
+            }
+            
+            // Ek baar use hone ke baad prompt delete kar do
+            deferredPrompt = null;
+        }
+    });
+}
+
+// 3. Jab user 'X' (Close) button par click kare
+if (closeInstallBtn) {
+    closeInstallBtn.addEventListener('click', () => {
+        installBanner.classList.add('hidden');
+    });
+}
+
+
